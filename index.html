@@ -6,80 +6,86 @@
   <title>Apex Run 2026</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- CSS -->
-
   <link rel="stylesheet" href="style.css">
 
-  <!-- THREE JS -->
+  <!-- Fonts -->
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<!-- 3D CANVAS -->
+<!-- CINEMATIC INTRO -->
 
-<canvas id="bg"></canvas>
+<div id="intro">
+  <img src="logo.png" class="intro-logo">
+  <h1 class="intro-title">APEX RUN 2026</h1>
+</div>
 
-<!-- HERO -->
+<!-- MAIN CONTENT -->
 
-<section class="hero">
-  <img src="logo.png" class="logo">
-  <h1>APEX RUN 2026</h1>
-  <p>Run Beyond Limits • Mangalore</p>
-  <a href="#register" class="btn">Register Now</a>
-</section>
+<div id="main" class="hidden">
 
-<!-- RUNS -->
+  <!-- HERO -->
 
-<section class="runs">
-  <div class="card">
-    <h2>3K Run</h2>
-    <button onclick="openModal(0)">View More</button>
-  </div>
-  <div class="card">
-    <h2>5K Run</h2>
-    <button onclick="openModal(1)">View More</button>
-  </div>
-  <div class="card">
-    <h2>10K Run</h2>
-    <button onclick="openModal(2)">View More</button>
-  </div>
-</section>
+  <section class="hero">
+    <h1 class="neon-text">APEX RUN 2026</h1>
+    <p>Run Beyond Limits • Mangalore</p>
+    <button class="neon-btn">Register Now</button>
+  </section>
+
+  <!-- RUNS -->
+
+  <section class="runs">
+    <div class="card">
+      <h2>3K Run</h2>
+      <button onclick="openModal(0)">View More</button>
+    </div>
+    <div class="card">
+      <h2>5K Run</h2>
+      <button onclick="openModal(1)">View More</button>
+    </div>
+    <div class="card">
+      <h2>10K Run</h2>
+      <button onclick="openModal(2)">View More</button>
+    </div>
+  </section>
+
+  <!-- REGISTER -->
+
+  <section class="register">
+    <h2 class="neon-text">Register</h2>
+
+```
+<form id="form">
+  <input placeholder="Full Name" required>
+  <input placeholder="Location / Area" required>
+  <input placeholder="Contact Number" required>
+  <input placeholder="Email ID" required>
+
+  <select>
+    <option>3K</option>
+    <option>5K</option>
+    <option>10K</option>
+  </select>
+
+  <button type="submit" class="neon-btn">Submit</button>
+</form>
+```
+
+  </section>
+
+</div>
 
 <!-- MODAL -->
 
-<div id="modal" class="modal">
+<div id="modal">
   <div class="modal-box">
     <h2 id="modal-title"></h2>
     <ul id="rules"></ul>
     <button onclick="closeModal()">Close</button>
   </div>
 </div>
-
-<!-- REGISTER -->
-
-<section id="register" class="register">
-  <h2>Register</h2>
-  <form id="form">
-    <input type="text" placeholder="Full Name" required>
-    <input type="text" placeholder="Location / Area" required>
-    <input type="tel" placeholder="Contact Number" required>
-    <input type="email" placeholder="Email ID" required>
-
-```
-<select>
-  <option>3K</option>
-  <option>5K</option>
-  <option>10K</option>
-</select>
-
-<button type="submit">Submit</button>
-```
-
-  </form>
-</section>
 
 <script src="script.js"></script>
 
