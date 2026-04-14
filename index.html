@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>APEX RUN 2026</title>
+<title>Apex Run 2026</title>
 
 <link rel="stylesheet" href="css/style.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
@@ -11,64 +11,58 @@
 
 <body>
 
-<section class="hero">
-<img src="assets/logo.png">
-<h1>FEEL THE HEAT</h1>
-<div id="countdown"></div>
-<button onclick="scrollToSection('register')" class="btn">Register Now</button>
+<div class="blob"></div>
+<div class="blob2"></div>
+
+<nav class="nav">
+  <h2>APEX RUN</h2>
+  <a href="#register">Register</a>
+</nav>
+
+<section class="hero reveal">
+  <img src="assets/logo.png" class="logo">
+  <h1>Run Beyond Limits</h1>
+  <p>National Level Marathon • Mangaluru</p>
+  <button onclick="scrollToSection('register')" class="btn">Register Now</button>
 </section>
 
-<section class="section">
-<h2>Choose Your Run</h2>
+<section class="section reveal">
+  <h2>Choose Your Run</h2>
 
-<div class="cards">
+  <div class="cards">
+    <div class="card glass">
+      <h3>10K</h3>
+      <p class="old">₹600</p>
+      <p class="new">₹450</p>
+    </div>
 
-<div class="card">
-<h3>10K</h3>
-<p class="price-old">₹600</p>
-<p class="price-new">₹450</p>
-<button onclick="toggleMore(this)" class="btn">View More</button>
-<div class="more">
-<p>Dry Fit T-Shirt</p>
-<p>Bib (No Chip)</p>
-<p>E-Certificate</p>
-<p>Refreshments</p>
-</div>
-</div>
+    <div class="card glass">
+      <h3>5K</h3>
+      <p class="old">₹550</p>
+      <p class="new">₹350</p>
+    </div>
 
-<div class="card">
-<h3>5K</h3>
-<p class="price-old">₹550</p>
-<p class="price-new">₹350</p>
-<button onclick="toggleMore(this)" class="btn">View More</button>
-<div class="more">
-<p>Dry Fit T-Shirt</p>
-<p>Bib (No Chip)</p>
-<p>E-Certificate</p>
-<p>Refreshments</p>
-</div>
-</div>
-
-<div class="card">
-<h3>3K</h3>
-<p class="price-old">₹450</p>
-<p class="price-new">₹250</p>
-<button onclick="toggleMore(this)" class="btn">View More</button>
-<div class="more">
-<p>Dry Fit T-Shirt</p>
-<p>Bib (No Chip)</p>
-<p>E-Certificate</p>
-<p>Refreshments</p>
-</div>
-</div>
-
-</div>
+    <div class="card glass">
+      <h3>3K</h3>
+      <p class="old">₹450</p>
+      <p class="new">₹250</p>
+    </div>
+  </div>
 </section>
 
-<section id="register" class="section">
-<h2>Register Now</h2>
+<section class="section about reveal">
+<h2>About</h2>
+<p>
+Apex Run 2026 is a dynamic marathon event hosted by Milagres College, Mangaluru,
+in association with ICYM Mangalore and Mangalore Runners Club.
+Bringing together over 2500 participants...
+</p>
+</section>
 
-<form id="form">
+<section id="register" class="section reveal">
+<h2>Register</h2>
+
+<form id="form" class="glass form">
 <input id="name" placeholder="Full Name" required>
 <input id="location" placeholder="Location" required>
 <input id="phone" placeholder="Phone" required>
@@ -84,11 +78,6 @@
 </form>
 </section>
 
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-<script src="js/config.js"></script>
-<script src="js/animations.js"></script>
-<script src="js/payment.js"></script>
 <script src="js/main.js"></script>
-
 </body>
 </html>
