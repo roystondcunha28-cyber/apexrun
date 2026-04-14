@@ -1,0 +1,103 @@
+body {
+margin: 0;
+font-family: sans-serif;
+color: white;
+overflow-x: hidden;
+}
+
+/* 3D canvas */
+#bg {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: -1;
+}
+
+/* HERO */
+.hero {
+text-align: center;
+padding: 100px 20px;
+}
+
+.logo {
+width: 150px;
+animation: reveal 1.5s forwards;
+opacity: 0;
+}
+
+@keyframes reveal {
+to {
+opacity: 1;
+transform: scale(1);
+}
+from {
+transform: scale(0.5);
+}
+}
+
+h1 {
+font-size: 60px;
+background: linear-gradient(red, yellow, blue);
+-webkit-background-clip: text;
+color: transparent;
+}
+
+.btn {
+padding: 10px 20px;
+background: red;
+border-radius: 20px;
+text-decoration: none;
+color: white;
+}
+
+/* RUNS */
+.runs {
+display: flex;
+justify-content: center;
+gap: 20px;
+}
+
+.card {
+background: rgba(0,0,0,0.6);
+padding: 20px;
+border-radius: 15px;
+}
+
+/* MODAL */
+.modal {
+display: none;
+position: fixed;
+background: rgba(0,0,0,0.8);
+width: 100%;
+height: 100%;
+}
+
+.modal-box {
+background: #111;
+margin: 100px auto;
+padding: 20px;
+width: 300px;
+}
+
+/* FORM */
+.register {
+padding: 50px;
+text-align: center;
+}
+
+input, select {
+width: 80%;
+padding: 10px;
+margin: 10px;
+background: #111;
+border: none;
+color: white;
+}
+
+button {
+padding: 10px;
+background: blue;
+color: white;
+}
