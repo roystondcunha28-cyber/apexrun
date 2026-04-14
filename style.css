@@ -1,15 +1,149 @@
-function scrollToSection(id){
-document.getElementById(id).scrollIntoView({behavior:"smooth"});
+body{
+margin:0;
+font-family:Poppins;
+background:#050505;
+color:white;
+overflow:hidden;
 }
 
-// SCROLL REVEAL
-function reveal(){
-document.querySelectorAll(".reveal").forEach(el=>{
-if(el.getBoundingClientRect().top < window.innerHeight - 100){
-el.classList.add("active");
-}
-});
+/* 🎬 INTRO */
+#intro{
+position:fixed;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:9999;
 }
 
-window.addEventListener("scroll",reveal);
-reveal();
+.intro-logo{
+width:200px;
+opacity:0;
+animation:introAnim 3s forwards;
+}
+
+@keyframes introAnim{
+0%{opacity:0;transform:scale(0.5)}
+50%{opacity:1;transform:scale(1.1)}
+100%{opacity:0;transform:scale(1.5)}
+}
+
+/* MAIN hidden initially */
+#main{
+opacity:0;
+transition:1s;
+}
+
+/* LIGHT */
+.light{
+position:fixed;
+width:600px;
+height:600px;
+background:radial-gradient(circle,#ff6a00,transparent);
+top:20%;
+left:50%;
+transform:translateX(-50%);
+filter:blur(120px);
+z-index:-2;
+}
+
+/* FOG */
+.fog{
+position:fixed;
+width:100%;
+height:100%;
+background:linear-gradient(to bottom,transparent,#000);
+opacity:.6;
+z-index:-1;
+}
+
+/* NAV */
+.nav{
+position:fixed;
+top:0;
+width:100%;
+display:flex;
+justify-content:space-between;
+padding:20px;
+background:rgba(0,0,0,0.4);
+backdrop-filter:blur(10px);
+}
+
+/* HERO */
+.hero{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+
+.logo{width:240px}
+
+.title{
+font-size:3rem;
+text-shadow:0 10px 30px rgba(255,100,0,0.5);
+}
+
+.btn{
+padding:14px 35px;
+border:none;
+border-radius:30px;
+background:linear-gradient(90deg,#ff6a00,#ffcc00);
+cursor:pointer;
+margin-top:20px;
+}
+
+/* CARDS */
+.cards{
+display:flex;
+gap:30px;
+justify-content:center;
+flex-wrap:wrap;
+}
+
+.card{
+padding:30px;
+width:260px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(20px);
+border-radius:20px;
+transition:.4s;
+}
+
+.card:hover{
+transform:rotateX(8deg) rotateY(-8deg) scale(1.05);
+}
+
+/* FORM */
+.form{
+padding:30px;
+max-width:400px;
+margin:auto;
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+input,select{
+padding:12px;
+border:none;
+border-radius:10px;
+background:#111;
+color:white;
+}
+
+/* REVEAL */
+.reveal{
+opacity:0;
+transform:translateY(50px);
+transition:1s;
+}
+
+.reveal.active{
+opacity:1;
+transform:translateY(0);
+}
