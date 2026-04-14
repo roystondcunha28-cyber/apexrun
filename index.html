@@ -5,20 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>APEX RUN 2026</title>
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="css/style.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<canvas id="bg"></canvas>
-<div class="runner">🏃‍♂️</div>
-
 <section class="hero">
-<img src="logo.png">
+<img src="assets/logo.png">
 <h1>FEEL THE HEAT</h1>
-<div class="countdown" id="countdown"></div>
-<button class="btn" onclick="scrollToSection('register')">Register Now</button>
+<div id="countdown"></div>
+<button onclick="scrollToSection('register')" class="btn">Register Now</button>
 </section>
 
 <section class="section">
@@ -30,7 +27,7 @@
 <h3>10K</h3>
 <p class="price-old">₹600</p>
 <p class="price-new">₹450</p>
-<button class="btn" onclick="toggleMore(this)">View More</button>
+<button onclick="toggleMore(this)" class="btn">View More</button>
 <div class="more">
 <p>Dry Fit T-Shirt</p>
 <p>Bib (No Chip)</p>
@@ -43,7 +40,7 @@
 <h3>5K</h3>
 <p class="price-old">₹550</p>
 <p class="price-new">₹350</p>
-<button class="btn" onclick="toggleMore(this)">View More</button>
+<button onclick="toggleMore(this)" class="btn">View More</button>
 <div class="more">
 <p>Dry Fit T-Shirt</p>
 <p>Bib (No Chip)</p>
@@ -56,7 +53,7 @@
 <h3>3K</h3>
 <p class="price-old">₹450</p>
 <p class="price-new">₹250</p>
-<button class="btn" onclick="toggleMore(this)">View More</button>
+<button onclick="toggleMore(this)" class="btn">View More</button>
 <div class="more">
 <p>Dry Fit T-Shirt</p>
 <p>Bib (No Chip)</p>
@@ -68,14 +65,14 @@
 </div>
 </section>
 
-<section class="section" id="register">
+<section id="register" class="section">
 <h2>Register Now</h2>
 
 <form id="form">
-<input type="text" placeholder="Full Name" required id="name">
-<input type="text" placeholder="Location" required id="location">
-<input type="tel" placeholder="Phone" required id="phone">
-<input type="email" placeholder="Email" required id="email">
+<input id="name" placeholder="Full Name" required>
+<input id="location" placeholder="Location" required>
+<input id="phone" placeholder="Phone" required>
+<input id="email" placeholder="Email" required>
 
 <select id="category">
 <option>10K</option>
@@ -88,7 +85,10 @@
 </section>
 
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-<script src="script.js"></script>
+<script src="js/config.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/payment.js"></script>
+<script src="js/main.js"></script>
 
 </body>
 </html>
