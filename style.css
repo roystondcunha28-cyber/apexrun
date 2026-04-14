@@ -1,126 +1,15 @@
-body{
-margin:0;
-font-family:Poppins;
-background:#0d0d0d;
-color:white;
-overflow-x:hidden;
+function scrollToSection(id){
+document.getElementById(id).scrollIntoView({behavior:"smooth"});
 }
 
-/* BLOBS (background effect) */
-.blob,.blob2{
-position:fixed;
-width:400px;
-height:400px;
-border-radius:50%;
-filter:blur(120px);
-z-index:-1;
+// SCROLL REVEAL
+function reveal(){
+document.querySelectorAll(".reveal").forEach(el=>{
+if(el.getBoundingClientRect().top < window.innerHeight - 100){
+el.classList.add("active");
+}
+});
 }
 
-.blob{
-background:#ff6a00;
-top:-100px;
-left:-100px;
-}
-
-.blob2{
-background:#ffcc00;
-bottom:-100px;
-right:-100px;
-}
-
-/* NAV */
-.nav{
-position:fixed;
-top:0;
-width:100%;
-display:flex;
-justify-content:space-between;
-padding:20px;
-backdrop-filter:blur(10px);
-background:rgba(255,255,255,0.05);
-}
-
-/* HERO */
-.hero{
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-}
-
-.logo{
-width:220px;
-margin-bottom:20px;
-}
-
-h1{
-font-size:3rem;
-}
-
-.btn{
-padding:12px 30px;
-border:none;
-border-radius:30px;
-background:linear-gradient(90deg,#ff6a00,#ffcc00);
-cursor:pointer;
-margin-top:20px;
-}
-
-/* GLASS */
-.glass{
-background:rgba(255,255,255,0.05);
-backdrop-filter:blur(20px);
-border:1px solid rgba(255,255,255,0.1);
-border-radius:20px;
-}
-
-/* CARDS */
-.cards{
-display:flex;
-gap:30px;
-justify-content:center;
-flex-wrap:wrap;
-}
-
-.card{
-padding:30px;
-width:250px;
-text-align:center;
-transition:.3s;
-}
-
-.card:hover{
-transform:translateY(-10px);
-}
-
-/* FORM */
-.form{
-padding:30px;
-max-width:400px;
-margin:auto;
-display:flex;
-flex-direction:column;
-gap:15px;
-}
-
-input,select{
-padding:12px;
-border:none;
-border-radius:10px;
-background:#111;
-color:white;
-}
-
-/* REVEAL ANIMATION */
-.reveal{
-opacity:0;
-transform:translateY(40px);
-transition:all 1s ease;
-}
-
-.reveal.active{
-opacity:1;
-transform:translateY(0);
-}
+window.addEventListener("scroll",reveal);
+reveal();
