@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>APEX RUN 2026</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{background:#020202;color:white;overflow-x:hidden}
+canvas{position:fixed;top:0;left:0;z-index:-2}
+
+/* FIRE CURSOR */
+.fire{
+position:fixed;
+width:8px;height:8px;
+background:orange;
+border-radius:50%;
+pointer-events:none;
+box-shadow:0 0 15px red,0 0 30px orange;
+}
+
+/* HERO */
+.hero{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+
+.hero img{
+width:320px;
+animation:float 3s infinite;
+}
+
+@keyframes float{
+50%{transform:translateY(-20px)}
+}
+
+.hero h1{
+font-size:3rem;
+background:linear-gradient(90deg,#ff3c00,#ffcc00);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+animation:glow 1.5s infinite alternate;
+}
+
+@keyframes glow{
+from{filter:drop-shadow(0 0 10px red)}
+to{filter:drop-shadow(0 0 30px yellow)}
+}
+
+.btn{
+padding:12px 30px;
+border:none;
+border-radius:30px;
+background:linear-gradient(90deg,#ff3c00,#ffcc00);
+cursor:pointer;
+font-weight:600;
+margin-top:20px;
+}
+
+.btn:hover{
+transform:scale(1.2);
+box-shadow:0 0 30px red;
+}
+
+.section{padding:80px 10%;text-align:center}
+
+/* CARDS */
+.cards{display:flex;gap:30px;justify-content:center;flex-wrap:wrap}
+
+.card{
+background:#0a0a0a;
+padding:25px;
+border-radius:20px;
+width:260px;
+transition:.4s;
+position:relative;
+overflow:hidden;
+}
+
+.card::before{
+content:"";
+position:absolute;
+width:200%;height:200%;
+background:conic-gradient(#ff3c00,#ffcc00,#ff3c00);
+animation:spin 4s linear infinite;
+opacity:.2;
+}
+
+@keyframes spin{100%{transform:rotate(360deg)}}
+
+.card:hover{
+transform:translateY(-15px) scale(1.1);
+}
+
+.price-old{text-decoration:line-through;color:#777}
+.price-new{font-size:1.6rem;color:#ffcc00}
+
+.more{display:none;color:#ccc}
+.show{display:block}
+
+/* FORM */
+form{
+display:flex;
+flex-direction:column;
+gap:15px;
+max-width:400px;
+margin:auto;
+}
+
+input,select{
+padding:12px;
+border-radius:10px;
+border:none;
+background:#111;
+color:white;
+}
+
+/* RUNNER */
+.runner{
+position:fixed;
+bottom:40px;
+left:-200px;
+font-size:40px;
+animation:run 10s linear infinite;
+}
+
+@keyframes run{
+0%{left:-200px}
+100%{left:110%}
+}
+
+.countdown{
+color:#ffcc00;
+margin-top:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<canvas id="bg"></canvas>
+<div class="runner">🏃‍♂️</div>
+
+<!-- HERO -->
+<section class="hero">
+<img src="logo.png">
+<h1>FEEL THE HEAT</h1>
+<div class="countdown" id="countdown"></div>
+<button class="btn" onclick="scrollToSection('register')">Register Now</button>
+</section>
+
+<!-- PRICING -->
+<section class="section">
+<h2>Choose Your Run</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>10K</h3>
+<p class="price-old">₹600</p>
+<p class="price-new">₹450</p>
+<button class="btn" onclick="toggleMore(this)">View More</button>
+<div class="more">
+<p>Dry Fit T-Shirt</p>
+<p>Bib (No Chip)</p>
+<p>E-Certificate</p>
+<p>Refreshments</p>
+</div>
+</div>
+
+<div class="card">
+<h3>5K</h3>
+<p class="price-old">₹550</p>
+<p class="price-new">₹350</p>
+<button class="btn" onclick="toggleMore(this)">View More</button>
+<div class="more">
+<p>Dry Fit T-Shirt</p>
+<p>Bib (No Chip)</p>
+<p>E-Certificate</p>
+<p>Refreshments</p>
+</div>
+</div>
+
+<div class="card">
+<h3>3K</h3>
+<p class="price-old">₹450</p>
+<p class="price-new">₹250</p>
+<button class="btn" onclick="toggleMore(this)">View More</button>
+<div class="more">
+<p>Dry Fit T-Shirt</p>
+<p>Bib (No Chip)</p>
+<p>E-Certificate</p>
+<p>Refreshments</p>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- REGISTER -->
+<section class="section" id="register">
+<h2>Register Now</h2>
+
+<form id="form">
+<input type="text" placeholder="Full Name" required id="name">
+<input type="text" placeholder="Location" required id="location">
+<input type="tel" placeholder="Phone" required id="phone">
+<input type="email" placeholder="Email" required id="email">
+
+<select id="category">
+<option>10K</option>
+<option>5K</option>
+<option>3K</option>
+</select>
+
+<button class="btn">Pay & Register</button>
+</form>
+</section>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+// PARTICLES
+const c=document.getElementById('bg');
+const ctx=c.getContext('2d');
+c.width=innerWidth;c.height=innerHeight;
+let p=[];
+for(let i=0;i<120;i++){p.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*2})}
+function draw(){ctx.clearRect(0,0,c.width,c.height);ctx.fillStyle=\"#ff3c00\";p.forEach(a=>{a.y+=0.6;if(a.y>innerHeight)a.y=0;ctx.beginPath();ctx.arc(a.x,a.y,a.r,0,6.28);ctx.fill()});requestAnimationFrame(draw)}draw();
+
+// COUNTDOWN
+const target=new Date(\"Jan 1, 2026\").getTime();
+setInterval(()=>{
+let now=new Date().getTime();
+let d=Math.floor((target-now)/(1000*60*60*24));
+document.getElementById(\"countdown\").innerText=d+\" Days Left\"},1000);
+
+// FIRE CURSOR
+document.addEventListener(\"mousemove\",e=>{
+let f=document.createElement(\"div\");
+f.className=\"fire\";
+f.style.left=e.clientX+\"px\";
+f.style.top=e.clientY+\"px\";
+document.body.appendChild(f);
+setTimeout(()=>f.remove(),400);
+});
+
+// VIEW MORE
+function toggleMore(btn){btn.nextElementSibling.classList.toggle(\"show\")}
+
+// SCROLL
+function scrollToSection(id){document.getElementById(id).scrollIntoView({behavior:\"smooth\"})}
+
+// FORM + PAYMENT
+document.getElementById(\"form\").addEventListener(\"submit\",function(e){
+e.preventDefault();
+
+let data={
+name:document.getElementById(\"name\").value,
+location:document.getElementById(\"location\").value,
+phone:document.getElementById(\"phone\").value,
+email:document.getElementById(\"email\").value,
+category:document.getElementById(\"category\").value
+};
+
+let price={
+\"10K\":450,
+\"5K\":350,
+\"3K\":250
+}[data.category];
+
+var options={
+\"key\":\"YOUR_RAZORPAY_KEY\",
+\"amount\":price*100,
+\"currency\":\"INR\",
+\"name\":\"Apex Run 2026\",
+\"handler\":function(){
+fetch(\"YOUR_SCRIPT_URL\",{
+method:\"POST\",
+body:JSON.stringify(data)
+});
+
+window.open(`https://wa.me/91${data.phone}?text=Registered for Apex Run 2026`);
+alert(\"Registration Successful!\");
+}
+};
+
+var rzp=new Razorpay(options);
+rzp.open();
+});
+</script>
+
+</body>
+</html>
