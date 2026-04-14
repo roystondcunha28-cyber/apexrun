@@ -1,5 +1,5 @@
 const scene = new THREE.Scene();
-scene.fog = new THREE.Fog(0x000000, 20, 300);
+scene.fog = new THREE.Fog(0x000000, 10, 200);
 
 const camera = new THREE.PerspectiveCamera(
 75,
@@ -18,162 +18,54 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 const ambient = new THREE.AmbientLight(0xffffff, 0.3);
 scene.add(ambient);
 
-const redLight = new THREE.PointLight(0xff0000, 2, 200);
-redLight.position.set(0, 20, 20);
-scene.add(redLight);
+const neonLight = new THREE.PointLight(0xff0040, 3, 200);
+neonLight.position.set(0, 20, 20);
+scene.add(neonLight);
 
-const blueLight = new THREE.PointLight(0x00aaff, 2, 200);
-blueLight.position.set(0, 20, -20);
-scene.add(blueLight);
+/* NEON GRID FLOOR */
+const grid = new THREE.GridHelper(200, 40, 0xff0040, 0x00aaff);
+grid.position.y = -5;
+scene.add(grid);
 
-/* ROAD */
-const roadGeo = new THREE.PlaneGeometry(200, 600, 50, 50);
-const roadMat = new THREE.MeshStandardMaterial({
-color: 0x111111,
-side: THREE.DoubleSide
+/* RUNNING TRACK (CENTER STRIP) */
+const trackGeo = new THREE.PlaneGeometry(10, 400);
+const trackMat = new THREE.MeshBasicMaterial({
+color: 0x111111
 });
-const road = new THREE.Mesh(roadGeo, roadMat);
-road.rotation.x = -Math.PI / 2;
-road.position.y = -5;
-scene.add(road);
+const track = new THREE.Mesh(trackGeo, trackMat);
+track.rotation.x = -Math.PI / 2;
+track.position.y = -4.9;
+scene.add(track);
 
-/* NEON LANES */
-const laneMaterial = new THREE.LineBasicMaterial({ color: 0xff0000 });
+/* NEON LANE LINES */
+const laneMaterial = new THREE.LineBasicMaterial({ color: 0xff0040 });
 
-for (let i = -10; i <= 10; i += 5) {
-const pts = [
-new THREE.Vector3(i, -4.9, -300),
-new THREE.Vector3(i, -4.9, 300)
+for (let i = -4; i <= 4; i += 2) {
+const points = [
+new THREE.Vector3(i, -4.8, -200),
+new THREE.Vector3(i, -4.8, 200)
 ];
-const geo = new THREE.BufferGeometry().setFromPoints(pts);
+
+const geo = new THREE.BufferGeometry().setFromPoints(points);
 const line = new THREE.Line(geo, laneMaterial);
 scene.add(line);
 }
-/* INSANE PARTICLES */
 
-// Geometry
-const starsGeo = new THREE.BufferGeometry();
-const starCount = 5000;
-
-const positions = new Float32Array(starCount * 3);
-const colors = new Float32Array(starCount * 3);
-
-for (let i = 0; i < starCount; i++) {
-const i3 = i * 3;
-
-// Position
-positions[i3] = (Math.random() - 0.5) * 600;
-positions[i3 + 1] = (Math.random() - 0.5) * 600;
-positions[i3 + 2] = (Math.random() - 0.5) * 600;
-
-// Random colors (red/blue/white mix)
-colors[i3] = Math.random();        // R
-colors[i3 + 1] = Math.random() * 0.3; // G low
-colors[i3 + 2] = Math.random();    // B
-}
-
-starsGeo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-starsGeo.setAttribute("color", new THREE.BufferAttribute(colors, 3));
-
-// Material
-const starsMat = new THREE.PointsMaterial({
-size: 1.2,
-vertexColors: true,
-transparent: true,
-opacity: 0.9
+/* SIDE LIGHT BARS */
+for (let i = -1; i <= 1; i += 2) {
+const lightGeo = new THREE.BoxGeometry(0.5, 0.5, 400);
+const lightMat = new THREE.MeshBasicMaterial({
+color: 0x00aaff
 });
 
-const stars = new THREE.Points(starsGeo, starsMat);
-scene.add(stars);
-
-/* SHOOTING STARS */
-const shootingGeo = new THREE.BufferGeometry();
-const shootCount = 200;
-
-const shootPos = new Float32Array(shootCount * 3);
-
-for (let i = 0; i < shootCount * 3; i++) {
-shootPos[i] = (Math.random() - 0.5) * 400;
+const bar = new THREE.Mesh(lightGeo, lightMat);
+bar.position.x = i * 8;
+bar.position.y = -4;
+scene.add(bar);
 }
-
-shootingGeo.setAttribute("position", new THREE.BufferAttribute(shootPos, 3));
-
-const shootingMat = new THREE.PointsMaterial({
-color: 0xffffff,
-size: 2
-});
-
-const shootingStars = new THREE.Points(shootingGeo, shootingMat);
-scene.add(shootingStars);
-
-/* ENERGY BURST ON CLICK */
-document.addEventListener("click", () => {
-for (let i = 0; i < positions.length; i++) {
-positions[i] *= 1.5;
-}
-stars.geometry.attributes.position.needsUpdate = true;
-
-setTimeout(() => {
-for (let i = 0; i < positions.length; i++) {
-positions[i] *= 0.66;
-}
-stars.geometry.attributes.position.needsUpdate = true;
-}, 300);
-});
-
-
-/* CITY BUILDINGS */
-for (let i = 0; i < 50; i++) {
-const geo = new THREE.BoxGeometry(5, Math.random() * 30 + 10, 5);
-const mat = new THREE.MeshStandardMaterial({ color: 0x111111 });
-
-const building = new THREE.Mesh(geo, mat);
-
-building.position.x = (Math.random() > 0.5 ? 1 : -1) * (20 + Math.random() * 50);
-building.position.z = (Math.random() - 0.5) * 400;
-building.position.y = geo.parameters.height / 2 - 5;
-
-scene.add(building);
-}
-
-/* PARTICLES */
-const starsGeo = new THREE.BufferGeometry();
-const starCount = 4000;
-const positions = new Float32Array(starCount * 3);
-
-for (let i = 0; i < starCount * 3; i++) {
-positions[i] = (Math.random() - 0.5) * 500;
-}
-
-starsGeo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-
-const starsMat = new THREE.PointsMaterial({
-size: 0.7
-});
-
-const stars = new THREE.Points(starsGeo, starsMat);
-scene.add(stars);
-
-/* SPEED LINES (RUNNER EFFECT) */
-const speedGeo = new THREE.BufferGeometry();
-const speedCount = 500;
-const speedPos = new Float32Array(speedCount * 3);
-
-for (let i = 0; i < speedCount * 3; i++) {
-speedPos[i] = (Math.random() - 0.5) * 200;
-}
-
-speedGeo.setAttribute("position", new THREE.BufferAttribute(speedPos, 3));
-
-const speedMat = new THREE.PointsMaterial({
-size: 2
-});
-
-const speedLines = new THREE.Points(speedGeo, speedMat);
-scene.add(speedLines);
 
 /* CAMERA */
-camera.position.set(0, 8, 30);
+camera.position.set(0, 8, 25);
 
 /* MOUSE CONTROL */
 let mouseX = 0;
@@ -185,30 +77,16 @@ mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
 });
 
 /* ANIMATION */
-let speed = 1;
-
 function animate() {
-// Twinkling rotation
-stars.rotation.y += 0.001;
+requestAnimationFrame(animate);
 
-// Shooting stars motion
-shootingStars.position.z += 5;
-if (shootingStars.position.z > 200) shootingStars.position.z = -200;
+// move grid (illusion of running)
+grid.position.z += 0.5;
+if (grid.position.z > 10) grid.position.z = 0;
 
-// ROAD movement
-road.position.z += speed;
-if (road.position.z > 200) road.position.z = 0;
-
-// SPEED LINES
-speedLines.position.z += speed * 5;
-if (speedLines.position.z > 200) speedLines.position.z = 0;
-
-// STARS
-stars.rotation.y += 0.001;
-
-// CAMERA movement
-camera.position.x += (mouseX * 10 - camera.position.x) * 0.05;
-camera.position.y += (8 + -mouseY * 5 - camera.position.y) * 0.05;
+// camera follow mouse
+camera.position.x += (mouseX * 5 - camera.position.x) * 0.05;
+camera.position.y += (8 + -mouseY * 3 - camera.position.y) * 0.05;
 
 camera.lookAt(0, 0, 0);
 
@@ -216,12 +94,6 @@ renderer.render(scene, camera);
 }
 
 animate();
-
-/* BOOST EFFECT */
-document.addEventListener("click", () => {
-speed = 5;
-setTimeout(() => speed = 1, 1000);
-});
 
 /* RESPONSIVE */
 window.addEventListener("resize", () => {
