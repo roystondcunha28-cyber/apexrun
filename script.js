@@ -49,6 +49,78 @@ const geo = new THREE.BufferGeometry().setFromPoints(pts);
 const line = new THREE.Line(geo, laneMaterial);
 scene.add(line);
 }
+/* INSANE PARTICLES */
+
+// Geometry
+const starsGeo = new THREE.BufferGeometry();
+const starCount = 5000;
+
+const positions = new Float32Array(starCount * 3);
+const colors = new Float32Array(starCount * 3);
+
+for (let i = 0; i < starCount; i++) {
+const i3 = i * 3;
+
+// Position
+positions[i3] = (Math.random() - 0.5) * 600;
+positions[i3 + 1] = (Math.random() - 0.5) * 600;
+positions[i3 + 2] = (Math.random() - 0.5) * 600;
+
+// Random colors (red/blue/white mix)
+colors[i3] = Math.random();        // R
+colors[i3 + 1] = Math.random() * 0.3; // G low
+colors[i3 + 2] = Math.random();    // B
+}
+
+starsGeo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+starsGeo.setAttribute("color", new THREE.BufferAttribute(colors, 3));
+
+// Material
+const starsMat = new THREE.PointsMaterial({
+size: 1.2,
+vertexColors: true,
+transparent: true,
+opacity: 0.9
+});
+
+const stars = new THREE.Points(starsGeo, starsMat);
+scene.add(stars);
+
+/* SHOOTING STARS */
+const shootingGeo = new THREE.BufferGeometry();
+const shootCount = 200;
+
+const shootPos = new Float32Array(shootCount * 3);
+
+for (let i = 0; i < shootCount * 3; i++) {
+shootPos[i] = (Math.random() - 0.5) * 400;
+}
+
+shootingGeo.setAttribute("position", new THREE.BufferAttribute(shootPos, 3));
+
+const shootingMat = new THREE.PointsMaterial({
+color: 0xffffff,
+size: 2
+});
+
+const shootingStars = new THREE.Points(shootingGeo, shootingMat);
+scene.add(shootingStars);
+
+/* ENERGY BURST ON CLICK */
+document.addEventListener("click", () => {
+for (let i = 0; i < positions.length; i++) {
+positions[i] *= 1.5;
+}
+stars.geometry.attributes.position.needsUpdate = true;
+
+setTimeout(() => {
+for (let i = 0; i < positions.length; i++) {
+positions[i] *= 0.66;
+}
+stars.geometry.attributes.position.needsUpdate = true;
+}, 300);
+});
+
 
 /* CITY BUILDINGS */
 for (let i = 0; i < 50; i++) {
@@ -116,7 +188,12 @@ mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
 let speed = 1;
 
 function animate() {
-requestAnimationFrame(animate);
+// Twinkling rotation
+stars.rotation.y += 0.001;
+
+// Shooting stars motion
+shootingStars.position.z += 5;
+if (shootingStars.position.z > 200) shootingStars.position.z = -200;
 
 // ROAD movement
 road.position.z += speed;
