@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -7,7 +6,6 @@
 <title>Apex Run 2026</title>
 
 <link rel="stylesheet" href="style.css">
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
 </head>
 
@@ -16,14 +14,12 @@
 <canvas id="bg"></canvas>
 
 <!-- INTRO -->
-
 <div id="intro">
   <img src="logo.png" class="logo">
   <h1>APEX RUN 2026</h1>
 </div>
 
 <!-- MAIN -->
-
 <div id="main" class="hidden">
 
 <section class="hero">
@@ -33,46 +29,33 @@
 </section>
 
 <section class="runs">
-  <div class="card">
-    <h2>3K Run</h2>
-    <button onclick="openModal(0)">View More</button>
-  </div>
-  <div class="card">
-    <h2>5K Run</h2>
-    <button onclick="openModal(1)">View More</button>
-  </div>
-  <div class="card">
-    <h2>10K Run</h2>
-    <button onclick="openModal(2)">View More</button>
-  </div>
+  <div class="card"><h2>3K Run</h2><button onclick="openModal(0)">View</button></div>
+  <div class="card"><h2>5K Run</h2><button onclick="openModal(1)">View</button></div>
+  <div class="card"><h2>10K Run</h2><button onclick="openModal(2)">View</button></div>
 </section>
 
 <section class="register">
   <h2 class="neon-text">Register</h2>
 
   <form id="form">
-    <input placeholder="Full Name" required>
-    <input placeholder="Location" required>
-    <input placeholder="Contact Number" required>
-    <input placeholder="Email ID" required>
+    <input name="name" placeholder="Full Name" required>
+    <input name="location" placeholder="Location" required>
+    <input name="phone" placeholder="Contact" required>
+    <input name="email" type="email" placeholder="Email" required>
 
-```
-<select>
-  <option>3K</option>
-  <option>5K</option>
-  <option>10K</option>
-</select>
+    <select name="category">
+      <option>3K</option>
+      <option>5K</option>
+      <option>10K</option>
+    </select>
 
-<button type="submit" class="neon-btn">Submit</button>
-```
-
+    <button class="neon-btn">Submit</button>
   </form>
 </section>
 
 </div>
 
 <!-- MODAL -->
-
 <div id="modal">
   <div class="box">
     <h2 id="modal-title"></h2>
@@ -82,7 +65,6 @@
 </div>
 
 <script src="https://unpkg.com/three@0.134.0/build/three.min.js"></script>
-
 <script src="script.js"></script>
 
 </body>
