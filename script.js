@@ -1,101 +1,160 @@
-/* INTRO */
-setTimeout(() => {
-document.getElementById("main").classList.remove("hidden");
-}, 3000);
+/* =========================
+🎬 CINEMATIC INTRO
+========================= */
+const intro = document.getElementById("intro");
+const main = document.getElementById("main");
 
-/* THREE JS */
+setTimeout(() => {
+intro.style.opacity = "0";
+}, 2500);
+
+setTimeout(() => {
+intro.style.display = "none";
+main.classList.remove("hidden");
+}, 3500);
+
+/* =========================
+🌌 SCENE
+========================= */
 const scene = new THREE.Scene();
-scene.fog = new THREE.Fog(0x000000, 10, 200);
+scene.fog = new THREE.Fog(0x000000, 10, 220);
 
 const camera = new THREE.PerspectiveCamera(75, innerWidth/innerHeight, 0.1, 1000);
 
+/* =========================
+🎥 RENDERER
+========================= */
 const renderer = new THREE.WebGLRenderer({
 canvas: document.getElementById("bg"),
 antialias: true
 });
 renderer.setSize(innerWidth, innerHeight);
+renderer.setPixelRatio(window.devicePixelRatio);
 
-/* LIGHTS */
-scene.add(new THREE.AmbientLight(0xffffff, 0.3));
+/* =========================
+✨ BLOOM (VFX)
+========================= */
+const composer = new THREE.EffectComposer(renderer);
 
-const red = new THREE.PointLight(0xff0000, 2);
-red.position.set(10,20,10);
+const renderPass = new THREE.RenderPass(scene, camera);
+composer.addPass(renderPass);
+
+const bloomPass = new THREE.UnrealBloomPass(
+new THREE.Vector2(window.innerWidth, window.innerHeight),
+1.5,  // strength
+0.4,  // radius
+0.85  // threshold
+);
+composer.addPass(bloomPass);
+
+/* =========================
+💡 LIGHTING
+========================= */
+scene.add(new THREE.AmbientLight(0xffffff, 0.25));
+
+const red = new THREE.PointLight(0xff0040, 3, 200);
+red.position.set(10, 20, 10);
 scene.add(red);
 
-const blue = new THREE.PointLight(0x00aaff, 2);
-blue.position.set(-10,20,-10);
+const blue = new THREE.PointLight(0x00aaff, 3, 200);
+blue.position.set(-10, 20, -10);
 scene.add(blue);
 
-/* GRID */
-const grid = new THREE.GridHelper(200, 40, 0xff0000, 0x00aaff);
-grid.position.y = -5;
-scene.add(grid);
-
-/* TRACK */
+/* =========================
+🛣️ TRACK
+========================= */
 const track = new THREE.Mesh(
-new THREE.PlaneGeometry(10, 400),
-new THREE.MeshStandardMaterial({color:0x111111})
+new THREE.PlaneGeometry(12, 500),
+new THREE.MeshStandardMaterial({ color: 0x0a0a0a })
 );
-track.rotation.x = -Math.PI/2;
-track.position.y = -4.9;
+track.rotation.x = -Math.PI / 2;
+track.position.y = -5;
 scene.add(track);
 
-/* CAMERA */
-camera.position.set(0,8,25);
+/* =========================
+🌐 NEON GRID
+========================= */
+const grid = new THREE.GridHelper(300, 60, 0xff0040, 0x00aaff);
+grid.position.y = -4.9;
+scene.add(grid);
 
-/* MOUSE */
-let mx=0,my=0;
-addEventListener("mousemove",e=>{
-mx=(e.clientX/innerWidth-0.5)*2;
-my=(e.clientY/innerHeight-0.5)*2;
+/* =========================
+✨ GLOW LINES
+========================= */
+const mat = new THREE.LineBasicMaterial({ color: 0xff0040 });
+
+for (let i = -5; i <= 5; i += 2) {
+const geo = new THREE.BufferGeometry().setFromPoints([
+new THREE.Vector3(i, -4.8, -300),
+new THREE.Vector3(i, -4.8, 300)
+]);
+scene.add(new THREE.Line(geo, mat));
+}
+
+/* =========================
+💡 SIDE LIGHTS
+========================= */
+for (let i = -1; i <= 1; i += 2) {
+const bar = new THREE.Mesh(
+new THREE.BoxGeometry(0.3, 0.3, 500),
+new THREE.MeshBasicMaterial({ color: 0x00aaff })
+);
+bar.position.x = i * 8;
+bar.position.y = -4.5;
+scene.add(bar);
+}
+
+/* =========================
+🎥 CAMERA
+========================= */
+camera.position.set(0, 8, 30);
+
+/* =========================
+🧲 MOUSE PARALLAX
+========================= */
+let mx = 0, my = 0;
+
+addEventListener("mousemove", e => {
+mx = (e.clientX / innerWidth - 0.5) * 2;
+my = (e.clientY / innerHeight - 0.5) * 2;
 });
 
-/* ANIMATION */
-let speed=0.6;
+/* =========================
+⚡ SPEED BOOST
+========================= */
+let speed = 0.7;
 
-addEventListener("click",()=>{
-speed=2;
-setTimeout(()=>speed=0.6,800);
+addEventListener("click", () => {
+speed = 3;
+setTimeout(() => speed = 0.7, 700);
 });
 
-function animate(){
+/* =========================
+🔄 ANIMATION
+========================= */
+function animate() {
 requestAnimationFrame(animate);
 
-grid.position.z+=speed;
-if(grid.position.z>10) grid.position.z=0;
+grid.position.z += speed;
+if (grid.position.z > 10) grid.position.z = 0;
 
-camera.position.x+=(mx*5-camera.position.x)*0.05;
-camera.position.y+=(8-my*3-camera.position.y)*0.05;
+camera.position.x += (mx * 6 - camera.position.x) * 0.05;
+camera.position.y += (8 - my * 4 - camera.position.y) * 0.05;
 
-camera.lookAt(0,0,0);
+camera.lookAt(0, 0, 0);
 
-renderer.render(scene,camera);
+composer.render();
 }
+
 animate();
 
-/* MODAL */
-const runs=[
-{title:"3K Run",rules:["Fun run","Open to all"]},
-{title:"5K Run",rules:["Age 12+","Hydration needed"]},
-{title:"10K Run",rules:["Age 16+","Medical fitness"]}
-];
+/* =========================
+📱 RESPONSIVE
+========================= */
+addEventListener("resize", () => {
+renderer.setSize(innerWidth, innerHeight);
+composer.setSize(innerWidth, innerHeight);
 
-function openModal(i){
-modal.style.display="block";
-modalTitle.innerText=runs[i].title;
-
-rules.innerHTML="";
-runs[i].rules.forEach(r=>{
-rules.innerHTML+=`<li>${r}</li>`;
+camera.aspect = innerWidth / innerHeight;
+camera.updateProjectionMatrix();
 });
-}
-
-function closeModal(){
-modal.style.display="none";
-}
-
-/* FORM */
-form.onsubmit=e=>{
-e.preventDefault();
-alert("Registered 🚀");
-};
