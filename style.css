@@ -61,6 +61,17 @@ transition: 0.3s;
 transform: scale(1.1);
 box-shadow: 0 0 30px cyan;
 }
+/* 3. CARNIVAL ANIMATIONS (Floating & Glowing) */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+}
+
+.event-logo {
+    animation: float 4s ease-in-out infinite;
+}
+
 
 /* CARDS */
 .runs {
