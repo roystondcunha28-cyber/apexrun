@@ -1,25 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Apex Run 2026</title>
-
-<link rel="stylesheet" href="style.css">
-  <canvas id="vfx"></canvas>
-
-<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-</head>
-
 <body>
-<!-- VIDEO HERO -->
+
+<canvas id="vfx"></canvas>
+
 <section class="hero">
   <video autoplay muted loop class="bg-video">
     <source src="assets/bg-video.mp4" type="video/mp4">
   </video>
+
+  <div class="overlay"></div>
 
   <div class="hero-content">
     <div class="top-logos">
@@ -32,89 +20,47 @@
   </div>
 </section>
 
-<!-- ABOUT -->
 <section class="about">
   <h2 class="reveal">About Apex Run 2026</h2>
-  <p class="reveal">
-    Apex Run 2026 is a neon-powered marathon experience combining fitness,
-    energy, and futuristic design.
-  </p>
+  <p class="reveal">A futuristic neon marathon experience.</p>
 </section>
 
-<!-- EVENTS -->
 <section class="events">
 
   <div class="event-card reveal">
     <img src="assets/3k.png">
     <h3>3K Run</h3>
-    <p>T-shirt • Medal • E-Certificate • Bib • Refreshments</p>
     <button class="confetti">View More</button>
   </div>
 
   <div class="event-card reveal">
     <img src="assets/5k.png">
     <h3>5K Run</h3>
-    <p>T-shirt • Medal • E-Certificate • Bib • Refreshments</p>
     <button class="confetti">View More</button>
   </div>
 
   <div class="event-card premium reveal">
     <img src="assets/10k.png">
     <h3>10K Run</h3>
-    <p>T-shirt • Medal • E-Certificate • Bib • Refreshments</p>
     <button class="confetti">View More</button>
   </div>
 
 </section>
 
-<!-- MAP -->
-<section class="map reveal">
-  <h2>Event Location</h2>
-  <iframe src="https://maps.google.com/maps?q=Mangalore&output=embed"></iframe>
-</section>
-
-<!-- REGISTRATION -->
 <section class="register">
-
-  <h2 class="reveal">Register Now</h2>
-
-  <form id="regForm" class="reveal">
-    <input type="text" placeholder="Name" required>
-
-    <select required>
-      <option value="">T-Shirt Size</option>
-      <option>S</option><option>M</option>
-      <option>L</option><option>XL</option><option>XXL</option>
+  <form id="regForm">
+    <input placeholder="Name" required>
+    <select>
+      <option>S</option><option>M</option><option>L</option>
     </select>
-
-    <input type="text" placeholder="Location / Area">
-    <input type="tel" placeholder="Contact Number">
-    <input type="email" placeholder="Email ID">
-
-    <button type="submit">Proceed to Payment</button>
+    <button>Proceed</button>
   </form>
 
   <div id="paymentBox" class="hidden">
-    <h3>Scan & Pay</h3>
-    <img src="assets/upi.png" class="upi-img">
-    <p>Upload payment screenshot</p>
-    <input type="file" id="screenshot">
-    <button id="confirmBtn">Confirm Registration</button>
+    <img src="assets/upi.png">
+    <input type="file">
+    <button id="confirmBtn">Confirm</button>
   </div>
-
 </section>
 
-<!-- CONTACT -->
-<section class="contact">
-  <p>For more information:</p>
-  <p>Floyd Pinto: +91 7899588873</p>
-  <p>Clyde Dsouza: +91 9901560321</p>
-</section>
-
-<footer>
-  <p>© roysto@dev</p>
-</footer>
-
-<script src="app.js"></script>
 </body>
-</html>
