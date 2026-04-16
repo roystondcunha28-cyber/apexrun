@@ -1,7 +1,3 @@
-function showDetails(btn) {
-  const details = btn.nextElementSibling;
-  details.style.display = "block";
-
   // CONFETTI BURST
   for (let i = 0; i < 80; i++) {
     let confetti = document.createElement("div");
