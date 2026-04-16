@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Apex Run 2026</title>
+  <title>Apex Run Final Boss</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="style.css">
@@ -11,20 +11,20 @@
 
 <body>
 
-<!-- 3D CANVAS -->
 <canvas id="webgl"></canvas>
 
-<!-- UI OVERLAY -->
 <div class="overlay">
   <img src="assets/logo.png" class="logo">
   <h1>APEX RUN 2026</h1>
-  <p>Milagres College • ICYM Mangalore • Mangalore Runners Club</p>
-  <button>Register Now</button>
+  <button id="startBtn">START EXPERIENCE</button>
 </div>
 
-<!-- Three.js CDN -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
-<script src="main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.152/examples/js/loaders/GLTFLoader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.152/examples/js/postprocessing/EffectComposer.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.152/examples/js/postprocessing/RenderPass.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.152/examples/js/postprocessing/UnrealBloomPass.js"></script>
 
+<script src="app.js"></script>
 </body>
 </html>
