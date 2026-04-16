@@ -1,66 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Apex Run 2026</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="styles.css">
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
+</head>
+
 <body>
 
-<canvas id="vfx"></canvas>
+<!-- PARTICLE BACKGROUND -->
+<div id="particles"></div>
 
+<!-- TOP LOGOS -->
+<section class="top-logos">
+  <img src="logo1.png">
+  <img src="logo2.png">
+  <img src="logo3.png">
+</section>
+
+<!-- HERO -->
 <section class="hero">
-  <video autoplay muted loop class="bg-video">
-    <source src="assets/bg-video.mp4" type="video/mp4">
-  </video>
-
-  <div class="overlay"></div>
-
-  <div class="hero-content">
-    <div class="top-logos">
-      <img src="assets/logo1.png">
-      <img src="assets/logo2.png">
-      <img src="assets/logo3.png">
-    </div>
-
-    <img src="assets/logo.png" class="main-logo">
-  </div>
+  <img src="apexrun-logo.png" class="hero-logo">
 </section>
 
+<!-- ABOUT -->
 <section class="about">
-  <h2 class="reveal">About Apex Run 2026</h2>
-  <p class="reveal">A futuristic neon marathon experience.</p>
+  <h1>Apex Run 2026</h1>
+  <p>Experience the ultimate running event with electrifying atmosphere, elite runners, and immersive visuals.</p>
 </section>
 
+<!-- EVENTS -->
 <section class="events">
 
-  <div class="event-card reveal">
-    <img src="assets/3k.png">
-    <h3>3K Run</h3>
-    <button class="confetti">View More</button>
+  <div class="card">
+    <img src="3k.png">
+    <h2>3K Run</h2>
+    <button onclick="showDetails(this)">View More</button>
+    <p class="details">T-Shirt • Medal • E-Certificate • Bib • Refreshments</p>
   </div>
 
-  <div class="event-card reveal">
-    <img src="assets/5k.png">
-    <h3>5K Run</h3>
-    <button class="confetti">View More</button>
+  <div class="card">
+    <img src="5k.png">
+    <h2>5K Run</h2>
+    <button onclick="showDetails(this)">View More</button>
+    <p class="details">T-Shirt • Medal • E-Certificate • Bib • Refreshments</p>
   </div>
 
-  <div class="event-card premium reveal">
-    <img src="assets/10k.png">
-    <h3>10K Run</h3>
-    <button class="confetti">View More</button>
+  <div class="card premium">
+    <img src="10k.png">
+    <h2>10K Premium</h2>
+    <button onclick="showDetails(this)">View More</button>
+    <p class="details">T-Shirt • Medal • E-Certificate • Bib • Refreshments</p>
   </div>
 
 </section>
 
+<!-- MAP -->
+<section class="map">
+  <iframe src="https://maps.google.com/maps?q=mangalore&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
+</section>
+
+<!-- REGISTER -->
 <section class="register">
-  <form id="regForm">
-    <input placeholder="Name" required>
-    <select>
-      <option>S</option><option>M</option><option>L</option>
-    </select>
-    <button>Proceed</button>
-  </form>
+  <h2>Register</h2>
 
-  <div id="paymentBox" class="hidden">
-    <img src="assets/upi.png">
-    <input type="file">
-    <button id="confirmBtn">Confirm</button>
-  </div>
+  <form>
+    <input type="text" placeholder="Full Name" required>
+
+    <select>
+      <option>T-Shirt Size</option>
+      <option>S</option>
+      <option>M</option>
+      <option>L</option>
+      <option>XL</option>
+      <option>XXL</option>
+    </select>
+
+    <input type="text" placeholder="Location">
+    <input type="tel" placeholder="Contact Number">
+    <input type="email" placeholder="Email ID">
+
+    <img src="qr.png" class="qr">
+
+    <button type="submit">Submit</button>
+  </form>
 </section>
 
+<!-- CONTACT -->
+<section class="contact">
+  <p>Floyd Pinto: +91 7899588873</p>
+  <p>Clyde Dsouza: +91 9901560321</p>
+</section>
+
+<footer>
+  © roysto@dev
+</footer>
+
+<script src="script.js"></script>
 </body>
+</html>
