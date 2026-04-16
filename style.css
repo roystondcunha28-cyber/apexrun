@@ -3,28 +3,86 @@ body {
   background: black;
   color: white;
   font-family: 'Orbitron', sans-serif;
+  overflow-x: hidden;
 }
 
-section {
-  height: 100vh;
+/* LOADER */
+.loader {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: black;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  z-index: 9999;
+}
+
+.loader-text {
+  font-size: 3rem;
+  letter-spacing: 5px;
+}
+
+/* CURSOR */
+.cursor {
+  width: 20px;
+  height: 20px;
+  border: 2px solid cyan;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 1000;
+  transition: transform 0.2s;
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.bg-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.4);
+}
+
+.hero-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .logo {
   width: 300px;
-  filter: drop-shadow(0 0 30px cyan);
+  filter: drop-shadow(0 0 40px cyan);
 }
 
 .title {
   font-size: 4rem;
-  text-shadow: 0 0 40px cyan;
+  text-shadow: 0 0 50px cyan;
 }
 
-.section h2 {
-  font-size: 3rem;
-  opacity: 0;
-  transform: translateY(100px);
+/* SECTIONS */
+.section {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dark {
+  background: #050505;
+}
+
+/* BUTTON */
+.cta {
+  margin-top: 20px;
+  padding: 15px 40px;
+  border: 2px solid cyan;
+  background: transparent;
+  color: cyan;
 }
