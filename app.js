@@ -1,95 +1,32 @@
-/* LENIS */
-const lenis = new Lenis({ lerp: 0.08 });
-function raf(t){ lenis.raf(t); requestAnimationFrame(raf);}
-requestAnimationFrame(raf);
+function showDetails(btn) {
+  const details = btn.nextElementSibling;
+  details.style.display = "block";
 
-/* GSAP */
-gsap.registerPlugin(ScrollTrigger);
+  // CONFETTI BURST
+  for (let i = 0; i < 80; i++) {
+    let confetti = document.createElement("div");
+    confetti.className = "confetti";
+    document.body.appendChild(confetti);
 
-/* REVEAL */
-gsap.utils.toArray(".reveal").forEach(el=>{
-  gsap.from(el,{
-    scrollTrigger:{trigger:el,start:"top 80%"},
-    opacity:0,y:80,duration:1.2,ease:"power4.out"
-  });
-});
+    confetti.style.left = Math.random() * 100 + "vw";
+    confetti.style.background = `hsl(${Math.random()*360},100%,50%)`;
+    confetti.style.animationDuration = Math.random() * 2 + 1 + "s";
 
-/* CONFETTI */
-document.querySelectorAll(".confetti").forEach(btn=>{
-  btn.onclick=()=>{
-    for(let i=0;i<30;i++){
-      let d=document.createElement("div");
-      d.style.position="fixed";
-      d.style.width="5px";
-      d.style.height="5px";
-      d.style.background="cyan";
-      document.body.appendChild(d);
-
-      gsap.to(d,{
-        x:Math.random()*300-150,
-        y:Math.random()*-300,
-        opacity:0,
-        duration:1,
-        onComplete:()=>d.remove()
-      });
-    }
+    setTimeout(() => confetti.remove(), 2000);
   }
-});
-
-/* PAYMENT FLOW */
-regForm.onsubmit=e=>{
-  e.preventDefault();
-  paymentBox.classList.remove("hidden");
-};
-confirmBtn.onclick=()=>alert("Registered ✅");
-
-/* ===== ADVANCED PARTICLE NETWORK ===== */
-
-const canvas = document.getElementById("vfx");
-const ctx = canvas.getContext("2d");
-canvas.width = innerWidth;
-canvas.height = innerHeight;
-
-let pts = [];
-for(let i=0;i<100;i++){
-  pts.push({
-    x:Math.random()*canvas.width,
-    y:Math.random()*canvas.height,
-    vx:(Math.random()-0.5)*0.5,
-    vy:(Math.random()-0.5)*0.5
-  });
 }
 
-function draw(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-
-  pts.forEach(p=>{
-    p.x+=p.vx;
-    p.y+=p.vy;
-
-    ctx.beginPath();
-    ctx.arc(p.x,p.y,2,0,Math.PI*2);
-    ctx.fillStyle="cyan";
-    ctx.fill();
-  });
-
-  /* CONNECT LINES */
-  for(let i=0;i<pts.length;i++){
-    for(let j=i+1;j<pts.length;j++){
-      let dx=pts[i].x-pts[j].x;
-      let dy=pts[i].y-pts[j].y;
-      let dist=Math.sqrt(dx*dx+dy*dy);
-
-      if(dist<120){
-        ctx.strokeStyle="rgba(0,255,255,0.1)";
-        ctx.beginPath();
-        ctx.moveTo(pts[i].x,pts[i].y);
-        ctx.lineTo(pts[j].x,pts[j].y);
-        ctx.stroke();
-      }
-    }
-  }
-
-  requestAnimationFrame(draw);
+// ADD CONFETTI STYLE
+const style = document.createElement('style');
+style.innerHTML = `
+.confetti {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  top: 0;
+  animation: fall linear;
 }
-draw();
+@keyframes fall {
+  to { transform: translateY(100vh); }
+}`;
+document.head.appendChild(style);
