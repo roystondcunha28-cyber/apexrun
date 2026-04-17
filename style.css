@@ -239,24 +239,7 @@ section { padding:80px 10%; }
     0% { background-position: 0% center; }
     100% { background-position: 200% center; }
 }
-/* Registration Card Glass + Neon Glow */
-.registration-card {
-  background: rgba(0, 255, 255, 0.1); /* transparent glass */
-  backdrop-filter: blur(15px);        /* soft blur */
-  border: 1px solid rgba(0, 255, 255, 0.3);
-  border-radius: 25px;
-  padding: 40px;
-  width: 100%;
-  max-width: 700px;
-  box-shadow: 0 0 40px rgba(0, 255, 255, 0.2), 0 0 80px rgba(0, 255, 255, 0.1);
-  animation: floatCard 6s ease-in-out infinite alternate;
-}
-.registration-card h2 {
-  text-align: center;
-  font-size: 2.2rem;
-  color: #00ffff;
-  text-shadow:
-    0 0 5px #00ffff,
+
     0 0 15px #00ffff,
     0 0 25px #00bfff;
   margin-bottom: 20px;
@@ -285,70 +268,6 @@ section { padding:80px 10%; }
   box-shadow: 0 0 5px rgba(0, 255, 255, 0.4);
 }
 
-.registration-card input:focus,
-.registration-card select:focus {
-  border-color: #00ffff;
-  box-shadow: 0 0 15px #00ffff, 0 0 30px #00bfff;
-}.register-btn,
-.next-btn,
-.submit-btn {
-  width: 100%;
-  padding: 15px;
-  margin-top: 20px;
-  border-radius: 30px;
-  border: none;
-  font-size: 16px;
-  font-weight: 700;
-  cursor: pointer;
-  color: #000;
-  background: linear-gradient(45deg, #00ffff, #0077ff);
-  box-shadow: 0 0 20px #00ffff, 0 0 40px #0077ff;
-  transition: 0.3s;
-  text-shadow: 0 0 5px #ffffff;
-}
-
-.register-btn:hover,
-.next-btn:hover,
-.submit-btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 25px #00ffff, 0 0 50px #0077ff, 0 0 70px #00bfff;
-}@media (max-width: 768px) {
-  .registration-section {
-    padding: 40px 15px;
-  }
-  .registration-card {
-    padding: 30px 20px;
-  }
-  .registration-card h2 {
-    font-size: 1.8rem;
-  }
-  .subtitle {
-    font-size: 0.9rem;
-  }
-  .register-btn {
-    padding: 12px;
-  }
-}.registration-section::before {
-  content:"";
-  position:absolute;
-  inset:0;
-  background: radial-gradient(circle, #00ffff 1px, transparent 1px);
-  background-size: 20px 20px;
-  opacity: 0.1;
-  pointer-events:none;
-  animation: moveParticles 40s linear infinite;
-}
-
-@keyframes moveParticles {
-  from { background-position: 0 0; }
-  to { background-position: 200px 200px; }
-}
-/* Subtle floating effect */
-@keyframes floatCard {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
-}
 /* CONVENORS TABLE */
 .convenors-table { width:100%; border-collapse:collapse; margin-top:10px; }
 .convenors-table th, .convenors-table td { border:1px solid #00ffff; padding:5px; font-size:0.9rem; }
