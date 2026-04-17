@@ -187,3 +187,32 @@ document.querySelectorAll(".select-box").forEach(box => {
       ripple.remove();
     }, 600);
   })
+import { db } from "./firebase.js";
+import { collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const form = document.getElementById("registrationForm");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const formData = new FormData(form);
+
+  const data = {
+    name: formData.get("Runner Name"),
+    location: formData.get("Location"),
+    phone: formData.get("Phone Number"),
+    email: formData.get("Email"),
+    run: formData.get("Run Category"),
+    tshirt: formData.get("T-Shirt Size"),
+    createdAt: new Date()
+  };
+
+  try {
+    await addDoc(collection(db, "registrations"), data);
+    alert("Registration Successful ✅");
+    form.reset();
+  } catch (err) {
+    console.error(err);
+    alert("Failed to register ❌");
+  }
+});
