@@ -80,3 +80,145 @@ iframe {
   height: 300px;
   border: none;
 }
+/* ==============================
+   🔥 ORANGE + BLACK THEME OVERRIDE
+   (ADD AT VERY END)
+============================== */
+
+/* GLOBAL COLORS */
+body {
+  background: radial-gradient(circle at top, #140800, #000000 70%) !important;
+}
+
+/* TEXT COLORS */
+h2, h3, h4 {
+  color: #ff8c00 !important;
+  text-shadow: 0 0 10px #ff8c00, 0 0 20px #ff4500 !important;
+}
+
+/* NAVBAR */
+.navbar {
+  border-bottom: 1px solid rgba(255,140,0,0.4) !important;
+}
+
+/* GRADIENT TEXT */
+.gradient-text,
+.gradient-heading {
+  background: linear-gradient(90deg, #ff8c00, #ff4500, #ffb347) !important;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* RULES SECTION */
+.rules-section {
+  box-shadow:
+    0 0 30px #ff4500,
+    0 0 60px #ff8c00,
+    0 0 120px #ff4500 !important;
+}
+
+/* EVENTS CARDS (3D BOOST) */
+.event-card {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: all 0.4s ease !important;
+  border: 1px solid rgba(255,140,0,0.3);
+}
+
+.event-card:hover {
+  transform: rotateY(10deg) rotateX(6deg) scale(1.05) !important;
+  box-shadow:
+    0 0 25px #ff8c00,
+    0 0 50px #ff4500,
+    0 0 80px rgba(255,140,0,0.5) !important;
+}
+
+/* BUTTONS */
+.rules-toggle,
+.register-btn,
+.next-btn,
+.submit-btn {
+  background: linear-gradient(45deg, #ff8c00, #ff4500) !important;
+  color: black !important;
+  box-shadow: 0 0 20px #ff8c00, 0 0 40px #ff4500 !important;
+}
+
+.rules-toggle:hover,
+.register-btn:hover {
+  transform: scale(1.1) !important;
+  box-shadow:
+    0 0 30px #ff8c00,
+    0 0 60px #ff4500,
+    0 0 90px #ff8c00 !important;
+}
+
+/* COUNTDOWN */
+#countdown {
+  color: #ff8c00 !important;
+  text-shadow:
+    0 0 10px #ff8c00,
+    0 0 20px #ff4500,
+    0 0 40px #ff8c00 !important;
+}
+
+/* PARTICLES COLOR SHIFT */
+.particles {
+  background-image:
+    radial-gradient(#ff8c00 1px, transparent 1px),
+    radial-gradient(#ff4500 1px, transparent 1px) !important;
+}
+
+/* FIRE BREATH ENHANCED */
+.fire-breath {
+  background: radial-gradient(circle,
+    rgba(255,140,0,1),
+    rgba(255,69,0,0.9),
+    rgba(255,0,0,0.6),
+    transparent 70%) !important;
+  filter: blur(15px);
+}
+
+/* CONTACT GOLD FRAME BOOST */
+#contact {
+  box-shadow:
+    0 0 20px rgba(255,140,0,0.4),
+    0 0 40px rgba(255,69,0,0.4) !important;
+}
+
+/* INPUT FIELDS */
+input, select {
+  border: 2px solid rgba(255,140,0,0.5) !important;
+  box-shadow: 0 0 10px rgba(255,140,0,0.3) !important;
+}
+
+input:focus {
+  border-color: #ff8c00 !important;
+  box-shadow:
+    0 0 15px #ff8c00,
+    0 0 30px #ff4500 !important;
+}
+
+/* 🔥 EXTRA 3D FLOAT EFFECT */
+@keyframes ultraFloat {
+  0% { transform: translateY(0px) rotateX(0deg); }
+  50% { transform: translateY(-12px) rotateX(5deg); }
+  100% { transform: translateY(0px) rotateX(0deg); }
+}
+
+.event-logo {
+  animation: ultraFloat 4s ease-in-out infinite !important;
+}
+
+/* 🔥 GLOW PULSE FOR LOGO */
+.apex-run-logo {
+  animation: glowPulse 3s infinite alternate;
+}
+
+@keyframes glowPulse {
+  from {
+    filter: drop-shadow(0 0 20px rgba(255,140,0,0.6));
+  }
+  to {
+    filter: drop-shadow(0 0 60px rgba(255,69,0,1));
+  }
+}
