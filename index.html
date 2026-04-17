@@ -1,66 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>APEX RUN 2026 | Milagres College</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+
 <body>
 
-<canvas id="vfx"></canvas>
+<div class="particles"></div>
 
-<section class="hero">
-  <video autoplay muted loop class="bg-video">
-    <source src="assets/bg-video.mp4" type="video/mp4">
-  </video>
+<nav class="navbar">
+    <div class="logo">
+    <img src="apex-run-logo.PNG" class="college-logo-small" alt="Apex RUN LOGO">
+</div>Excelso'26
+    <a href="https://www.instagram.com/_excelso26_?igsh=MXY4ajl4YzA3enVlag%3D%3D&utm_source=qr" target="_blank" class="instagram-link">
+        <img src="instagram-logo.png" class="instagram-icon"> @excelso_2026_
+    </a>
+</nav>
 
-  <div class="overlay"></div>
+<header class="site-header">
 
-  <div class="hero-content">
-    <div class="top-logos">
-      <img src="assets/logo1.png">
-      <img src="assets/logo2.png">
-      <img src="assets/logo3.png">
+    <div class="header-top">
+        <img src="icym-logo.PNG" class="icym-logo-small">
+        <img src="milagres-logo.PNG" class="college-logo-small">
+        <img src="Runners-club-logo.PNG" class="club-logo-small">
+
+        <span class="presents">Presents</span>
     </div>
 
-    <img src="assets/logo.png" class="main-logo">
+    <div class="apexrun-logo-container">
+        <div class="fire-breath"></div>
+        <img src="Apex-run.PNG" class="apex-run-logo">
+    </div>
+
+    <div class="hero-details">
+        10th May 2026 | 5:A.M | Milagres College, Mangalore
+    </div>
+
+    <div id="countdown" class="countdown-box"></div>
+</header>
+
+<!-- ABOUT -->
+<section id="about" class="about-section">
+    <h2>APEX RUN 2026</h2>
+    <p>
+        APEX RUN’26 is a national-level platform For Marathon
+    </p>
+
+    <h2>About Milagres College</h2>
+    <p>
+        Milagres College, Mangaluru, established in 1848, is one of the oldest and reputed institutions
+        in the region. Managed by the Catholic Board of Education and affiliated to Mangalore University,
+        the college offers quality higher education with a focus on academic excellence, holistic development,
+        and values-based learning.
+    </p>
+</section>
+
+<!-- GENERAL RULES -->
+<section class="rules-section">
+   <h2 class="gradient-text">GUIDELINES</h2>
+    <ol>
+        <li>The organizing committee reserves the right to modify rules or schedules, and is not responsible for loss or damage of personal belongings.</li>
+        <li>Participants must confirm registration with event coordinators via phone or email.</li>
+    </ol>
+</section>
+
+<!-- EVENTS -->
+<section id="events" class="event-section">
+    <h2>Events</h2>
+    <div class="event-grid">
+
+      <!-- 3K RUN --->
+        <div class="event-card fade-in">
+            <img src="reels-logo.PNG" alt="3k RUN" class="event-logo">
+            <h3>The 3K Run</h3>
+            <p>Short Distance, Big Accomplishment</p>
+            <p>₹250</p>
+            <button class="rules-toggle" aria-controls="reels-rules" aria-expanded="false">Amenties</button>
+            <div id="reels-rules" class="event-rules" hidden>
+                <ul>
+                    <li><strong>E-Certificate</strong>.</li>
+                   <li><strong>BIB Number</strong>.</li>
+                    <li><strong>Medal</strong>.</li>
+                    <li><strong>T-Shirt</strong>.</li>
+                     <li><strong>Refreshments</strong>.</li>
+                </ul>
+            </div>
+        </div> 
+
+        <!-- 5K RUN --->
+        <div class="event-card fade-in">
+            <img src="reels-logo.PNG" alt="5k RUN" class="event-logo">
+            <h3>The 5K Run</h3>
+            <p>Push Your Limits & Break Them</p>
+            <p>₹350</p>
+            <button class="rules-toggle" aria-controls="reels-rules" aria-expanded="false">Amenties</button>
+            <div id="reels-rules" class="event-rules" hidden>
+                <ul>
+                    <li><strong>E-Certificate</strong>.</li>
+                   <li><strong>BIB Number</strong>.</li>
+                    <li><strong>Medal</strong>.</li>
+                    <li><strong>T-Shirt</strong>.</li>
+                     <li><strong>Refreshments</strong>.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 10K RUN -->
+        <div class="event-card fade-in">
+            <img src="reels-logo.PNG" alt="10K RUN" class="event-logo">
+            <h3>The 10K Run</h3>
+            <p>Push Your Limits & Break Them</p>
+            <p>₹450</p>
+            <button class="rules-toggle" aria-controls="reels-rules" aria-expanded="false">Amenties</button>
+            <div id="reels-rules" class="event-rules" hidden>
+                <ul>
+                    <li><strong>E-Certificate</strong>.</li>
+                   <li><strong>BIB Number</strong>.</li>
+                    <li><strong>Medal</strong>.</li>
+                    <li><strong>T-Shirt</strong>.</li>
+                     <li><strong>Refreshments</strong>.</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- REGISTRATION -->
+   <h2 class="gradient-heading">
+   REGISTER HERE
+</h2>
+  <section id="registration" class="registration-section">
+  <form id="registrationForm" action="https://formspree.io/f/maqdddzz" method="POST">
+
+    <!-- STEP 1 -->
+    <div class="form-step active">
+      <label>Runner's Name</label>
+      <input type="text" name="Runner's Name" required placeholder="Enter your Name">
+      <button type="button" class="next-btn">Next</button>
+    </div>
+
+  <!-- STEP 2 -->
+    <section class="registration-section">
+     <div class="event-selection">
+      <h3>Select Events</h3>
+
+      <label class="event-option">
+        <input type="checkbox" class="event-checkbox" value="3K RUN">
+        <p>3K RUN</p>
+      </label>
+
+      <label class="event-option">
+        <input type="checkbox" class="event-checkbox" value="5K RUN">
+        <p>5K RUN</p>
+      </label>
+
+      <label class="event-option">
+        <input type="checkbox" class="event-checkbox" value="10K RUN">
+        <p>10K RUN</p>
+      </label>
+    </div>
+
+    <div id="participantsContainer" class="participants-box"></div>
+
+    <button class="register-btn">Complete Registration</button>
+
   </div>
 </section>
 
-<section class="about">
-  <h2 class="reveal">About Apex Run 2026</h2>
-  <p class="reveal">A futuristic neon marathon experience.</p>
+<!-- VENUE -->
+<section id="venue" class="venue-section">
+    <h2>Event Venue</h2>
+    <p>Milagres College - Athena Hospital - Unity Hospital - Father Muller Hospital - Jeppu - Koti Chennaya Cirlcle - KMC Hospital - Casa Grande - Sturrock Road - Avery Junction - Milagres College</p>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.710827347024!2d74.79934407587027!3d12.87486219087878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba35a4c66670121%3A0x8795747a583dd784!2sMilagres%20College!5e0!3m2!1sen!2sin!4v1697400000000!5m2!1sen!2sin" width="100%" height="400" style="border-radius:15px;"></iframe>
 </section>
 
-<section class="events">
-
-  <div class="event-card reveal">
-    <img src="assets/3k.png">
-    <h3>3K Run</h3>
-    <button class="confetti">View More</button>
-  </div>
-
-  <div class="event-card reveal">
-    <img src="assets/5k.png">
-    <h3>5K Run</h3>
-    <button class="confetti">View More</button>
-  </div>
-
-  <div class="event-card premium reveal">
-    <img src="assets/10k.png">
-    <h3>10K Run</h3>
-    <button class="confetti">View More</button>
-  </div>
-
+<!-- CONTACT -->
+<section id="contact">
+    <h2 class="gradient-heading">
+   FOR MORE DETAILS CONTACT
+</h2>
+    <div class="contact-box">
+        <p><strong>Mr. Clyde Dsouza</strong><br>Event Co-ordinator<br>+91 99015 60321</p>
+        <p><strong>Floyd Pinto</strong><br>Student Co-ordinator<br>+91 91485 02215</p>
 </section>
 
-<section class="register">
-  <form id="regForm">
-    <input placeholder="Name" required>
-    <select>
-      <option>S</option><option>M</option><option>L</option>
-    </select>
-    <button>Proceed</button>
-  </form>
+<!-- FOOTER -->
+<footer>
+    <p>@roysto.dev</p>
+    <p>Hampankatta, Mangaluru – 575001</p>
+    <p>© APEXRUN’26</p>
+</footer>
 
-  <div id="paymentBox" class="hidden">
-    <img src="assets/upi.png">
-    <input type="file">
-    <button id="confirmBtn">Confirm</button>
-  </div>
-</section>
-
+<script src="script.js"></script>
 </body>
+</html>
