@@ -132,53 +132,83 @@
 </section>
 
 <!-- REGISTRATION -->
-   <h2 class="gradient-heading">
-       REGISTER HERE
-</h2>
-  <section id="registration" class="registration-section">
-  <form id="registrationForm" action="https://formspree.io/f/maqdddzz" method="POST">
+  <h2 class="gradient-heading">REGISTER HERE</h2>
 
-    <!-- STEP 1 -->
-    <div class="form-step active">
-      <label>Runner's Name</label>
-      <input type="text" name="Runner's Name" required placeholder="Enter your Name">  
-        <label>Location\Area</label>
-      <input type="text" name="Location\Area" required placeholder="Location\area">
-     <label>Phone Number</label>
-      <input type="text" name="Phone Number" required placeholder="Contact Details">
-     <label>Email id</label>
-      <input type="text" name="Email address" required placeholder="Email ID">
-    
-    </div>
+<section id="registration" class="registration-section">
+<form id="registrationForm" action="https://formspree.io/f/maqdddzz" method="POST">
 
-  <!-- STEP 2 -->
-    <section class="registration-section">
-     <div class="event-selection">
-      <h3>Select Events</h3>
+<!-- USER DETAILS -->
+<label>Runner's Name</label>
+<input type="text" name="Runner Name" required placeholder="Enter your Name">
 
-      <label class="event-option">
-        <input type="checkbox" class="event-checkbox" value="3K RUN">
-        <p>3K RUN</p>
-      </label>
+<label>Location / Area</label>
+<input type="text" name="Location" required placeholder="Enter your Area">
 
-      <label class="event-option">
-        <input type="checkbox" class="event-checkbox" value="5K RUN">
-        <p>5K RUN</p>
-      </label>
+<label>Phone Number</label>
+<input type="tel" name="Phone Number" required placeholder="Enter Phone Number">
 
-      <label class="event-option">
-        <input type="checkbox" class="event-checkbox" value="10K RUN">
-        <p>10K RUN</p>
-      </label>
-    </div>
+<label>Email ID</label>
+<input type="email" name="Email" required placeholder="Enter Email ID">
 
-    <div id="participantsContainer" class="participants-box"></div>
 
-    <button class="register-btn">Complete Registration</button>
+<!-- RUN SELECTION (ONLY ONE) -->
+<h3>Select Run Category</h3>
 
-  </div>
+<label class="event-option">
+  <input type="radio" name="Run Category" value="3K RUN" required>
+  <p>3K RUN</p>
+</label>
+
+<label class="event-option">
+  <input type="radio" name="Run Category" value="5K RUN">
+  <p>5K RUN</p>
+</label>
+
+<label class="event-option">
+  <input type="radio" name="Run Category" value="10K RUN">
+  <p>10K RUN</p>
+</label>
+
+
+<!-- T-SHIRT SIZE (ONLY ONE) -->
+<h3>Select T-Shirt Size</h3>
+
+<label class="event-option">
+  <input type="radio" name="T-Shirt Size" value="S" required>
+  <p>S</p>
+</label>
+
+<label class="event-option">
+  <input type="radio" name="T-Shirt Size" value="M">
+  <p>M</p>
+</label>
+
+<label class="event-option">
+  <input type="radio" name="T-Shirt Size" value="L">
+  <p>L</p>
+</label>
+
+<label class="event-option">
+  <input type="radio" name="T-Shirt Size" value="XL">
+  <p>XL</p>
+</label>
+
+<label class="event-option">
+  <input type="radio" name="T-Shirt Size" value="XXL">
+  <p>XXL</p>
+</label>
+
+<label class="event-option">
+  <input type="radio" name="T-Shirt Size" value="XXXL">
+  <p>XXXL</p>
+</label>
+
+
+<button type="submit" class="register-btn">Complete Registration</button>
+
+</form>
 </section>
-
+ 
 <!-- VENUE -->
 <section id="venue" class="venue-section">
     <h2>Event Venue</h2>
