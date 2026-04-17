@@ -24,12 +24,23 @@ a { text-decoration:none; color:white; }
 .department-line { font-size:1.2rem; margin-bottom:10px; font-weight:600; }
 .department-line {
     color: #008BFF;/* }
-.cinematic-countdown span {
-    display: block;
-    padding: 20px 30px;
-    border-radius: 20px;
-    position: relative;
+.countdown-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 20px;
+  position: relative;
 }
+
+.countdown-card {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(20px);
+  padding: 40px 50px;
+  border-radius: 25px;
+  text-align: center;
+  box-shadow: 
+    0 0 20px #02e0b9,
+    
     .excelso-logo-container::before {
     content: "";
     position: absolute;
@@ -42,7 +53,49 @@ a { text-decoration:none; color:white; }
     animation: smokePulse 6s ease-in-out infinite;
     z-index: 0;
 }
+    0 0 40px #f9db84,
+    0 0 60px #ff8334;
+  animation: floatCard 5s ease-in-out infinite;
+}@keyframes floatCard {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+.countdown-card {
+  position: relative;
+  z-index: 1;
+}
 
+.countdown-card::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 25px;
+  background: linear-gradient(270deg, #02e0b9, #f9db84, #ff8334);
+  background-size: 400% 400%;
+  animation: gradientMove 6s linear infinite;
+  z-index: -1;
+}
+    .countdown-card::before {
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}.countdown-number {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #02e0b9;
+  text-shadow:
+    0 0 10px #02e0b9,
+    0 0 20px #f9db84,
+    0 0 40px #ff8334;
+  animation: pulseGlow 2s infinite alternate;
+}
+/* Content above effect */
+.rules-section * {
+  position: relative;
+  z-index: 2;
+}
 @keyframes smokePulse {
     0%,100% { opacity: 0.2; transform: translate(-50%, -50%) scale(1); }
     50% { opacity: 0.4; transform: translate(-50%, -50%) scale(1.2); }
@@ -247,64 +300,8 @@ section { padding:80px 10%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
-.countdown-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 80px 20px;
-  position: relative;
-}
 
-.countdown-card {
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(20px);
-  padding: 40px 50px;
-  border-radius: 25px;
-  text-align: center;
-  box-shadow: 
-    0 0 20px #02e0b9,
-    0 0 40px #f9db84,
-    0 0 60px #ff8334;
-  animation: floatCard 5s ease-in-out infinite;
-}@keyframes floatCard {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-15px); }
-  100% { transform: translateY(0px); }
-}
-.countdown-card {
-  position: relative;
-  z-index: 1;
-}
-
-.countdown-card::before {
-  content: "";
-  position: absolute;
-  inset: -3px;
-  border-radius: 25px;
-  background: linear-gradient(270deg, #02e0b9, #f9db84, #ff8334);
-  background-size: 400% 400%;
-  animation: gradientMove 6s linear infinite;
-  z-index: -1;
-}
-
-@keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 100% 50%; }
-}.countdown-number {
-  font-size: 3rem;
-  font-weight: 800;
-  color: #02e0b9;
-  text-shadow:
-    0 0 10px #02e0b9,
-    0 0 20px #f9db84,
-    0 0 40px #ff8334;
-  animation: pulseGlow 2s infinite alternate;
-}
-/* Content above effect */
-.rules-section * {
-  position: relative;
-  z-index: 2;
-}
+   
 
 /* EVENTS GRID */
 .event-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:30px; margin-top:40px; }
