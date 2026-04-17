@@ -1,33 +1,45 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, addDoc, collection } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "YOUR_KEY",
-  authDomain: "YOUR_DOMAIN",
-  projectId: "YOUR_PROJECT_ID"
+  apiKey: "AIzaSyDh3yeWRxl8LOEcXJfK2eouSqyPn5MrWQ8",
+  authDomain: "apex-run-2026-details.firebaseapp.com",
+  projectId: "apex-run-2026-details",
+  storageBucket: "apex-run-2026-details.firebasestorage.app",
+  messagingSenderId: "709122500778",
+  appId: "1:709122500778:web:91794532d472b21e1e08d3",
+  measurementId: "G-BYMLBHSECQ"
 };
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+// FORM
 const form = document.getElementById("registrationForm");
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const data = {
-    name: document.getElementById("name").value,
-    email: document.getElementById("email").value,
-    phone: document.getElementById("phone").value,
-    event: document.getElementById("event").value,
-    time: new Date()
-  };
-
   try {
+    const formData = new FormData(form);
+
+    const data = {
+      name: formData.get("Runner Name"),
+      location: formData.get("Location"),
+      phone: formData.get("Phone Number"),
+      email: formData.get("Email"),
+      run: formData.get("Run Category"),
+      tshirt: formData.get("T-Shirt Size"),
+      timestamp: new Date()
+    };
+
     await addDoc(collection(db, "registrations"), data);
-    document.getElementById("status").innerText = "Registered Successfully!";
+
+    alert("✅ Registration Successful!");
     form.reset();
-  } catch {
-    document.getElementById("status").innerText = "Error!";
+
+  } catch (error) {
+    console.error(error);
+    alert("❌ Error saving data");
   }
 });
