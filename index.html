@@ -2,101 +2,110 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>APEX RUN 2026 | Milagres College</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>APEX RUN 2026</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 
-<!-- THREE JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 
 <body>
 
-<canvas id="bg"></canvas>
+<div class="particles"></div>
 
 <nav class="navbar">
-  <h1>APEX RUN 2026</h1>
+    <div class="logo">Excelso'26</div>
+
+    <a href="https://www.instagram.com/_excelso26_" target="_blank" rel="noopener noreferrer">
+        @excelso_2026_
+    </a>
 </nav>
 
-<section class="hero">
-  <h2>RUN BEYOND LIMITS</h2>
-  <p>10 May 2026 | 5:00 AM</p>
-  <div id="countdown"></div>
+<header class="site-header">
+    <h1>APEX RUN 2026</h1>
+    <div class="hero-details">
+        10th May 2026 | 5:00 AM | Milagres College
+    </div>
+    <div id="countdown" class="countdown-box"></div>
+</header>
+
+<!-- ABOUT -->
+<section class="about-section">
+    <h2>About</h2>
+    <p>APEX RUN’26 is a national-level marathon event.</p>
 </section>
 
-<section class="events">
-  <div class="card">3K RUN - ₹250</div>
-  <div class="card">5K RUN - ₹350</div>
-  <div class="card">10K RUN - ₹450</div>
+<!-- EVENTS -->
+<section class="event-section">
+    <h2>Events</h2>
+
+    <div class="event-card">
+        <h3>3K Run</h3>
+        <p>₹250</p>
+        <button onclick="toggleRules('rules1')">Amenities</button>
+        <div id="rules1" class="event-rules hidden">
+            E-Certificate, Medal, T-Shirt, Refreshments
+        </div>
+    </div>
+
+    <div class="event-card">
+        <h3>5K Run</h3>
+        <p>₹350</p>
+        <button onclick="toggleRules('rules2')">Amenities</button>
+        <div id="rules2" class="event-rules hidden">
+            E-Certificate, Medal, T-Shirt, Refreshments
+        </div>
+    </div>
+
+    <div class="event-card">
+        <h3>10K Run</h3>
+        <p>₹450</p>
+        <button onclick="toggleRules('rules3')">Amenities</button>
+        <div id="rules3" class="event-rules hidden">
+            E-Certificate, Medal, T-Shirt, Refreshments
+        </div>
+    </div>
+
 </section>
 
-<section class="register">
-  <h2>Register Now</h2>
+<!-- REGISTRATION -->
+<section class="registration-section">
+<h2>Register</h2>
 
-  <form id="form">
-    <input type="text" id="name" placeholder="Name" required>
-    <input type="email" id="email" placeholder="Email" required>
-    <input type="tel" id="phone" placeholder="Phone" required>
+<form id="registrationForm">
 
-    <select id="event">
-      <option>3K RUN</option>
-      <option>5K RUN</option>
-      <option>10K RUN</option>
-    </select>
+<input type="text" id="name" placeholder="Name" required>
+<input type="email" id="email" placeholder="Email" required>
+<input type="tel" id="phone" placeholder="Phone" required>
 
-    <img src="qr.png" class="qr">
+<select id="event">
+<option>3K Run</option>
+<option>5K Run</option>
+<option>10K Run</option>
+</select>
 
-    <button type="submit">Submit</button>
-  </form>
+<img src="qr.png" class="qr">
 
-  <p id="status"></p>
+<button type="submit">Register</button>
+
+</form>
+
+<p id="status"></p>
+</section>
+
+<!-- MAP -->
+<section class="venue-section">
+<h2>Venue</h2>
+
+<iframe src="https://www.google.com/maps?q=Milagres+College+Mangalore&output=embed"></iframe>
+
 </section>
 
 <script src="script.js"></script>
 
 <!-- Firebase -->
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, addDoc, collection } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-const firebaseConfig = {
-  apiKey: "YOUR_KEY",
-  authDomain: "YOUR_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_BUCKET",
-  messagingSenderId: "YOUR_ID",
-  appId: "YOUR_APP_ID"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-const form = document.getElementById("form");
-
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const data = {
-    name: document.getElementById("name").value,
-    email: document.getElementById("email").value,
-    phone: document.getElementById("phone").value,
-    event: document.getElementById("event").value,
-    time: new Date()
-  };
-
-  try {
-    await addDoc(collection(db, "registrations"), data);
-    document.getElementById("status").innerText = "Registered Successfully!";
-    form.reset();
-  } catch (err) {
-    document.getElementById("status").innerText = "Error!";
-  }
-});
-</script>
+<script type="module" src="firebase.js"></script>
 
 </body>
 </html>
-
-
