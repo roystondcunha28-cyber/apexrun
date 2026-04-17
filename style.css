@@ -31,76 +31,8 @@ a { text-decoration:none; color:white; }
   padding: 80px 20px;
   position: relative;
 }
-
-.countdown-card {
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(20px);
-  padding: 40px 50px;
-  border-radius: 25px;
-  text-align: center;
-  box-shadow: 
-    0 0 20px #02e0b9,
     
-    .excelso-logo-container::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(255,255,255,0.15), transparent 70%);
-    transform: translate(-50%, -50%);
-    animation: smokePulse 6s ease-in-out infinite;
-    z-index: 0;
-}
-    0 0 40px #f9db84,
-    0 0 60px #ff8334;
-  animation: floatCard 5s ease-in-out infinite;
-}@keyframes floatCard {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-15px); }
-  100% { transform: translateY(0px); }
-}
-.countdown-card {
-  position: relative;
-  z-index: 1;
-}
-
-.countdown-card::before {
-  content: "";
-  position: absolute;
-  inset: -3px;
-  border-radius: 25px;
-  background: linear-gradient(270deg, #02e0b9, #f9db84, #ff8334);
-  background-size: 400% 400%;
-  animation: gradientMove 6s linear infinite;
-  z-index: -1;
-}
-    .countdown-card::before {
-
-@keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 100% 50%; }
-}.countdown-number {
-  font-size: 3rem;
-  font-weight: 800;
-  color: #02e0b9;
-  text-shadow:
-    0 0 10px #02e0b9,
-    0 0 20px #f9db84,
-    0 0 40px #ff8334;
-  animation: pulseGlow 2s infinite alternate;
-}
-/* Content above effect */
-.rules-section * {
-  position: relative;
-  z-index: 2;
-}
-@keyframes smokePulse {
-    0%,100% { opacity: 0.2; transform: translate(-50%, -50%) scale(1); }
-    50% { opacity: 0.4; transform: translate(-50%, -50%) scale(1.2); }
-}
-    /* GENERAL RULES AND GUIDELINES */
+/* GENERAL RULES AND GUIDELINES */
     .rules-section, 
 .rules-section * {
   color: #00bfff !important; /* Neon Blue forced */
@@ -186,36 +118,13 @@ a { text-decoration:none; color:white; }
     to { box-shadow: 0 0 40px #0077ff; }
 }
 
-.cinematic-countdown small {
+.cinematic-countdown big {
     display: block;
     margin-top: 10px;
     font-size: 0.9rem;
     letter-spacing: 2px;
 }
 
-/* FLOATING FISHES */
-.floating-fishes {
-    position: absolute;
-    width: 100%;
-    height: 200px;
-    top: 40%;
-    pointer-events: none;
-}
-
-.fish {
-    position: absolute;
-    font-size: 2rem;
-    animation: swim 12s linear infinite;
-}
-
-.fish1 { top: 10%; left: -50px; animation-delay: 0s; }
-.fish2 { top: 50%; left: -100px; animation-delay: 3s; }
-.fish3 { top: 70%; left: -150px; animation-delay: 6s; }
-
-@keyframes swim {
-    from { transform: translateX(0); }
-    to { transform: translateX(120vw); }
-}
 .fire-side span::before {
     content: "";
     position: absolute;
@@ -274,7 +183,6 @@ section { padding:80px 10%; }
       0 0 160px #ff00ff;
   }
 }
-
 /* Dragon Fire Moving Background */
 .rules-section::before {
   content: "";
