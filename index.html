@@ -130,85 +130,63 @@
 
     </div>
 </section>
-
-<!-- REGISTRATION -->
-  <h2 class="gradient-heading">REGISTER HERE</h2>
+<h2 class="gradient-heading">REGISTER HERE</h2>
 
 <section id="registration" class="registration-section">
-<form id="registrationForm" action="https://formspree.io/f/maqdddzz" method="POST">
 
-<!-- USER DETAILS -->
-<label>Runner's Name</label>
-<input type="text" name="Runner Name" required placeholder="Enter your Name">
+<form id="registrationForm" action="https://formspree.io/f/maqdddzz" method="POST" class="registration-card">
 
-<label>Location / Area</label>
-<input type="text" name="Location" required placeholder="Enter your Area">
+<!-- PERSONAL DETAILS -->
+<div class="form-group">
+  <h3>Personal Details</h3>
 
-<label>Phone Number</label>
-<input type="tel" name="Phone Number" required placeholder="Enter Phone Number">
+  <input type="text" name="Runner Name" placeholder="Runner's Name" required>
+  <input type="text" name="Location" placeholder="Location / Area" required>
+  <input type="tel" name="Phone Number" placeholder="Phone Number" required>
+  <input type="email" name="Email" placeholder="Email ID" required>
+</div>
 
-<label>Email ID</label>
-<input type="email" name="Email" required placeholder="Enter Email ID">
+<!-- RUN SELECTION -->
+<div class="form-group">
+  <h3>Select Run</h3>
 
+  <div class="option-grid">
+    <label>
+      <input type="radio" name="Run Category" value="3K RUN" required>
+      <span>3K RUN</span>
+    </label>
 
-<!-- RUN SELECTION (ONLY ONE) -->
-<h3>Select Run Category</h3>
+    <label>
+      <input type="radio" name="Run Category" value="5K RUN">
+      <span>5K RUN</span>
+    </label>
 
-<label class="event-option">
-  <input type="radio" name="Run Category" value="3K RUN" required>
-  <p>3K RUN</p>
-</label>
+    <label>
+      <input type="radio" name="Run Category" value="10K RUN">
+      <span>10K RUN</span>
+    </label>
+  </div>
+</div>
 
-<label class="event-option">
-  <input type="radio" name="Run Category" value="5K RUN">
-  <p>5K RUN</p>
-</label>
+<!-- SIZE SELECTION -->
+<div class="form-group">
+  <h3>T-Shirt Size</h3>
 
-<label class="event-option">
-  <input type="radio" name="Run Category" value="10K RUN">
-  <p>10K RUN</p>
-</label>
-
-
-<!-- T-SHIRT SIZE (ONLY ONE) -->
-<h3>Select T-Shirt Size</h3>
-
-<label class="event-option">
-  <input type="radio" name="T-Shirt Size" value="S" required>
-  <p>S</p>
-</label>
-
-<label class="event-option">
-  <input type="radio" name="T-Shirt Size" value="M">
-  <p>M</p>
-</label>
-
-<label class="event-option">
-  <input type="radio" name="T-Shirt Size" value="L">
-  <p>L</p>
-</label>
-
-<label class="event-option">
-  <input type="radio" name="T-Shirt Size" value="XL">
-  <p>XL</p>
-</label>
-
-<label class="event-option">
-  <input type="radio" name="T-Shirt Size" value="XXL">
-  <p>XXL</p>
-</label>
-
-<label class="event-option">
-  <input type="radio" name="T-Shirt Size" value="XXXL">
-  <p>XXXL</p>
-</label>
-
+  <div class="option-grid">
+    <label><input type="radio" name="T-Shirt Size" value="S" required><span>S</span></label>
+    <label><input type="radio" name="T-Shirt Size" value="M"><span>M</span></label>
+    <label><input type="radio" name="T-Shirt Size" value="L"><span>L</span></label>
+    <label><input type="radio" name="T-Shirt Size" value="XL"><span>XL</span></label>
+    <label><input type="radio" name="T-Shirt Size" value="XXL"><span>XXL</span></label>
+    <label><input type="radio" name="T-Shirt Size" value="XXXL"><span>XXXL</span></label>
+  </div>
+</div>
 
 <button type="submit" class="register-btn">Complete Registration</button>
 
 </form>
 </section>
- 
+
 <!-- VENUE -->
 <section id="venue" class="venue-section">
     <h2>Event Venue</h2>
