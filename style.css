@@ -17,7 +17,6 @@ a { text-decoration:none; color:white; }
 .instagram-icon { width:20px; }
 
 /* HEADER */
-/* HEADER */
 .site-header {
   padding-top: 80px;
   text-align: center;
@@ -77,7 +76,11 @@ color: #008BFF;/* }
   padding: 80px 20px;
   position: relative;
 }
-    
+  .apex-run-logo {
+  max-width: 260px;
+  width: 90%;
+  height: auto;
+}
 /* GENERAL RULES AND GUIDELINES */
     .rules-section, 
 .rules-section * {
