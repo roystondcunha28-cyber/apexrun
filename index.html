@@ -139,11 +139,12 @@
 <!-- PERSONAL DETAILS -->
 <div class="form-group">
   <h3>Personal Details</h3>
-
   <input type="text" name="runner_name" placeholder="Runner's Name" required>
 <input type="text" name="location" placeholder="Location / Area" required>
 <input type="tel" name="phone" placeholder="Phone Number" required>
 <input type="email" name="email" placeholder="Email ID" required>
+    <input type="number" id="age" name="age" placeholder="Age" required>
+    <input type="text" id="organisation" placeholder="organisation" required>
 </div>
 
 <!-- RUN SELECTION -->
@@ -215,7 +216,8 @@
       <span>XXXL</span>
     </label>
 </div>  
- </div>
+<p id="sizeSuggestion" class="size-note"></p>
+     </div>
     
 <!-- PAYMENT QR -->
 <div class="qr-section">
