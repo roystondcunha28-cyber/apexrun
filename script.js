@@ -5,37 +5,17 @@ console.log("APEX RUN Loaded Successfully!");
 document.querySelectorAll('.rules-toggle').forEach(button => {
   button.addEventListener('click', () => {
     const rulesDiv = document.getElementById(button.getAttribute('aria-controls'));
-    const isExpanded = button.getAttribute('aria-expanded') === 'true';
+    const isHidden = rulesDiv.hasAttribute("hidden");
 
-    button.setAttribute('aria-expanded', !isExpanded);
-   rulesDiv.hidden = !rulesDiv.hidden;
- function fireConfetti() {
-  for (let i = 0; i < 80; i++) {
-    const conf = document.createElement("div");
-    conf.style.position = "fixed";
-    conf.style.width = "8px";
-    conf.style.height = "8px";
-    conf.style.background = `hsl(${Math.random()*360},100%,50%)`;
-    conf.style.top = "-10px";
-    conf.style.left = Math.random() * window.innerWidth + "px";
-    conf.style.opacity = "0.8";
-    conf.style.zIndex = "9999";
-    conf.style.borderRadius = "50%";
-
-    document.body.appendChild(conf);
-
-    let fall = setInterval(() => {
-      conf.style.top = conf.offsetTop + 5 + "px";
-      conf.style.transform = `rotate(${Math.random()*360}deg)`;
-
-      if (conf.offsetTop > window.innerHeight) {
-        clearInterval(fall);
-        conf.remove();
-      }
-    }, 20);
-  }
-}
-}
+    if (isHidden) {
+      rulesDiv.removeAttribute("hidden");
+      button.setAttribute("aria-expanded", "true");
+    } else {
+      rulesDiv.setAttribute("hidden", "");
+      button.setAttribute("aria-expanded", "false");
+    }
+  });
+});
 
 // SPARKLES
 function createSparkles(x, y) {
