@@ -488,16 +488,7 @@ footer { background:#004f7c; padding:20px; text-align:center; font-size:0.9rem; 
     white-space: nowrap; /* prevent text wrap */
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .header-top { flex-direction: column; gap: 10px; }
-    .college-logo-small {
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
-}
-    .excelso-logo { width: 100px; margin-top: 10px; }
-    .event-grid { grid-template-columns: 1fr; }
-    .free-entry { position: static; display: inline-block; margin-top: 15px; }
-}
+
 /* 1. HIGHLIGHT FACULTY IN-CHARGE */
 .faculty-highlight {
     color: #ffd700; /* Gold */
