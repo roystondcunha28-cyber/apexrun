@@ -17,13 +17,59 @@ a { text-decoration:none; color:white; }
 .instagram-icon { width:20px; }
 
 /* HEADER */
-.site-header { padding-top:80px; text-align:center; background: linear-gradient(to bottom,#004f7c,#007ea7,#00b4d8); position:relative; }
-.header-top { display:flex; justify-content:center; align-items:center; gap:15px; margin-bottom:10px; }
-.vertical-bar { width:2px; height:40px; background:white; }
-.college-info { font-size:0.9rem; font-weight:600; }
-.department-line { font-size:1.2rem; margin-bottom:10px; font-weight:600; }
+/* HEADER */
+.site-header {
+  padding-top: 80px;
+  text-align: center;
+  background: linear-gradient(to bottom, #004f7c, #007ea7, #00b4d8);
+  position: relative;
+}
+
+/* LOGO ROW */
+.header-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px; /* increased spacing */
+  margin-bottom: 15px;
+}
+
+/* 🔥 CONTROL LOGO SIZE (MAIN FIX) */
+.header-top img {
+  height: 45px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* OPTIONAL GLOW (looks premium) */
+.header-top img {
+  filter: drop-shadow(0 0 6px rgba(255,255,255,0.5));
+  transition: 0.3s ease;
+}
+
+.header-top img:hover {
+  transform: scale(1.1);
+}
+
+/* TEXT STYLES */
+.vertical-bar {
+  width: 2px;
+  height: 40px;
+  background: white;
+}
+
+.college-info {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
 .department-line {
-    color: #008BFF;/* }
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+COUNTDOWN 
+color: #008BFF;/* }
 .countdown-section {
   display: flex;
   justify-content: center;
