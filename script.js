@@ -5,6 +5,7 @@ console.log("APEX RUN Loaded Successfully!");
 document.querySelectorAll('.rules-toggle').forEach(button => {
   button.addEventListener('click', () => {
     const rulesDiv = document.getElementById(button.getAttribute('aria-controls'));
+
     const isHidden = rulesDiv.hasAttribute("hidden");
 
     if (isHidden) {
