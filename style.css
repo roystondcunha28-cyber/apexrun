@@ -112,8 +112,8 @@ h2 { text-align:center; margin-bottom:20px; }
 }
 /* MAIN LOGO */
 .apex-run-logo {
-  max-width:260px;
-  width:90%;
+  max-width:45px;
+  width:auto%;
   height:auto;
 }
 
