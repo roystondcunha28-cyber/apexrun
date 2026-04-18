@@ -1333,3 +1333,8 @@ html {
     transform: translateY(0);
   }
 }
+input[type="radio"]:checked + span {
+  background: orange;
+  color: black;
+  transform: scale(1.1);
+}
