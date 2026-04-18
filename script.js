@@ -8,8 +8,9 @@ document.querySelectorAll('.rules-toggle').forEach(button => {
     const isExpanded = button.getAttribute('aria-expanded') === 'true';
 
     button.setAttribute('aria-expanded', !isExpanded);
-    rulesDiv.style.display = rulesDiv.style.display === 'block' ? 'none' : 'block';
-  });
+   rulesDiv.hidden = !rulesDiv.hidden;
+  function  fireConfetti();
+createSparkles(window.innerWidth / 2, window.innerHeight / 2);
 });
 
 // CONFETTI MOCK
@@ -37,8 +38,7 @@ function createSparkles(x, y) {
 }
 
 // COUNTDOWN
-const targetDate = new Date("May 10, 2026 08:30:00").getTime();
-
+const targetDate = new Date("May 10, 2026 05:00:00").getTime();
 setInterval(() => {
   const now = Date.now();
   const diff = targetDate - now;
