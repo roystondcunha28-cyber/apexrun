@@ -53,6 +53,51 @@ setInterval(() => {
   }
 }, 1000);
 
+//TSHIRT SIZE
+const ageInput = document.getElementById("age");
+const sizeSuggestion = document.getElementById("sizeSuggestion");
+
+ageInput.addEventListener("input", () => {
+  const age = parseInt(ageInput.value);
+  let suggestedSize = "";
+
+  if (!age) return;
+
+  // Kids
+  if (age <= 7) {
+    suggestedSize = "6-8Y";
+  } else if (age <= 10) {
+    suggestedSize = "8-10Y";
+  } else if (age <= 12) {
+    suggestedSize = "10-12Y";
+  }
+  // Teens / Adults
+  else if (age <= 15) {
+    suggestedSize = "XS";
+  } else if (age <= 18) {
+    suggestedSize = "S";
+  } else if (age <= 25) {
+    suggestedSize = "M";
+  } else if (age <= 35) {
+    suggestedSize = "L";
+  } else if (age <= 45) {
+    suggestedSize = "XL";
+  } else if (age <= 55) {
+    suggestedSize = "XXL";
+  } else {
+    suggestedSize = "XXXL";
+  }
+
+  sizeSuggestion.innerHTML = `Recommended Size: <strong>${suggestedSize}</strong>`;
+
+  // Auto select radio button
+  const sizeRadios = document.querySelectorAll('input[name="size"]');
+  sizeRadios.forEach(radio => {
+    if (radio.value === suggestedSize) {
+      radio.checked = true;
+    }
+  });
+});
 // REGISTRATION
 const form = document.getElementById("registrationForm");
 
