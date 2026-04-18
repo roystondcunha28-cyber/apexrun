@@ -206,8 +206,8 @@ section {
 }
 
 .event-logo {
-  height:60px;
-  margin-bottom:10px;
+  height:200px;
+  margin-bottom:100px;
   animation:float 4s ease-in-out infinite;
 }
 
