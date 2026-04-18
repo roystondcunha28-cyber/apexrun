@@ -37,7 +37,7 @@ function createSparkles(x, y) {
 }
 
 // COUNTDOWN
-const targetDate = new Date("March 7, 2026 08:30:00").getTime();
+const targetDate = new Date("May 10, 2026 08:30:00").getTime();
 
 setInterval(() => {
   const now = Date.now();
@@ -53,34 +53,36 @@ setInterval(() => {
   }
 }, 1000);
 
-
-// ================= FIREBASE =================
-import { db } from "./firebase.js";
-import { collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
+// REGISTRATION
 const form = document.getElementById("registrationForm");
 
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwOSEImyUDsUyqtzqBv1xKmixNErZ8zqcV1g5hSkRhKFWUqKwCoABQmlKSV751_WWqmJw/exec";
+
 form.addEventListener("submit", async (e) => {
-  e.preventDefault();
+  e.preventDefault()
 
   const formData = new FormData(form);
 
   const data = {
-    name: formData.get("Runner Name"),
-    location: formData.get("Location"),
-    phone: formData.get("Phone Number"),
-    email: formData.get("Email"),
-    run: formData.get("Run Category"),
-    tshirt: formData.get("T-Shirt Size"),
-    createdAt: new Date()
+    name: formData.get("runner_name"),
+    location: formData.get("location"),
+    phone: formData.get("phone"),
+    email: formData.get("email"),
+    run: formData.get("run"),
+    size: formData.get("size")
   };
 
   try {
-    await addDoc(collection(db, "registrations"), data);
-    alert("Registration Successful ✅");
+    await fetch(SCRIPT_URL, {
+      method: "POST",
+      body: JSON.stringify(data)
+    });
+
+    alert("✅ Registration Successful!");
     form.reset();
-  } catch (err) {
-    console.error("Firebase Error:", err);
-    alert("Failed to register ❌");
+
+  } catch (error) {
+    console.error(error);
+    alert("❌ Something went wrong!");
   }
 });
