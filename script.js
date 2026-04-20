@@ -2,30 +2,52 @@ document.addEventListener("DOMContentLoaded", () => {
 
   console.log("APEX RUN Loaded Successfully!");
 
-  // ✅ TOGGLE
+  /* =========================
+     ✅ AMENITIES TOGGLE (FIXED)
+  ========================= */
   document.querySelectorAll('.rules-toggle').forEach(button => {
     button.addEventListener('click', () => {
-      const rulesDiv = document.getElementById(button.getAttribute('aria-controls'));
-      if (!rulesDiv) return;
-      rulesDiv.classList.toggle("show");
+      const target = document.getElementById(button.getAttribute('aria-controls'));
+      if (!target) return;
+
+      target.classList.toggle("active");
+
+      // close others (premium feel)
+      document.querySelectorAll('.event-rules').forEach(el => {
+        if (el !== target) el.classList.remove("active");
+      });
     });
   });
 
-  // ✅ COUNTDOWN
+
+  /* =========================
+     ⏳ COUNTDOWN
+  ========================= */
   const targetDate = new Date("May 10, 2026 05:00:00").getTime();
-  setInterval(() => {
+  const countdownEl = document.getElementById("countdown");
+
+  const timer = setInterval(() => {
     const now = Date.now();
     const diff = targetDate - now;
 
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / 3600000);
-    const mins = Math.floor((diff % 3600000) / 60000);
+    if (diff <= 0) {
+      clearInterval(timer);
+      if (countdownEl) countdownEl.innerHTML = "🚀 Event Started!";
+      return;
+    }
 
-    const el = document.getElementById("countdown");
-    if (el) el.innerHTML = `${days}d ${hours}h ${mins}m`;
+    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+
+    if (countdownEl) countdownEl.innerHTML = `${d}d ${h}h ${m}m`;
+
   }, 1000);
 
-  // ✅ SIZE SUGGESTION
+
+  /* =========================
+     📏 SIZE SUGGESTION
+  ========================= */
   const ageInput = document.getElementById("age");
   const sizeSuggestion = document.getElementById("sizeSuggestion");
 
@@ -33,7 +55,10 @@ document.addEventListener("DOMContentLoaded", () => {
     ageInput.addEventListener("input", () => {
 
       const age = parseInt(ageInput.value);
-      if (!age) return;
+      if (!age) {
+        sizeSuggestion.innerHTML = "";
+        return;
+      }
 
       let size = "";
 
@@ -57,78 +82,83 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ✅ FORM SUBMIT
+
+  /* =========================
+     🚀 FORM SUBMIT (WORKING)
+  ========================= */
   const form = document.getElementById("registrationForm");
 
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwOSEImyUDsUyqtzqBv1xKmixNErZ8zqcV1g5hSkRhKFWUqKwCoABQmlKSV751_WWqmJw/exec";
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwOSEImyUDsUyqtzqBv1xKmixNErZ8zqcV1g5hSkRhKFWUqKwCoABQmlKSV751_WWqmJw/exec";
 
-if (form) {
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+  if (form) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
 
-    const btn = form.querySelector(".register-btn");
-    const originalText = btn.innerText;
+      const btn = form.querySelector(".register-btn");
+      const originalText = btn.innerText;
 
-    const formData = new FormData(form);
+      const formData = new FormData(form);
 
-    // ✅ BASIC VALIDATION
-    if (!formData.get("run")) {
-      alert("⚠️ Please select a run");
-      return;
-    }
-
-    if (!formData.get("size")) {
-      alert("⚠️ Please select a T-shirt size");
-      return;
-    }
-
-    if (!/^[0-9]{10}$/.test(formData.get("phone"))) {
-      alert("⚠️ Enter valid 10-digit phone number");
-      return;
-    }
-
-    btn.innerText = "Processing...";
-    btn.disabled = true;
-
-    try {
-      const response = await fetch(SCRIPT_URL, {
-        method: "POST",
-        body: new URLSearchParams({
-          name: formData.get("name"),
-          location: formData.get("location"),
-          phone: formData.get("phone"),
-          email: formData.get("email"),
-          run: formData.get("run"),
-          size: formData.get("size"),
-          organisation: formData.get("organisation")
-        })
-      });
-
-      const result = await response.json();
-
-      // ✅ HANDLE RESPONSE PROPERLY
-      if (result.status === "success") {
-        btn.innerText = "✅ Registered!";
-        form.reset();
-      } 
-      else if (result.status === "duplicate") {
-        btn.innerText = "⚠️ Already Registered";
-      } 
-      else {
-        btn.innerText = "❌ Error";
+      /* ✅ VALIDATION */
+      if (!formData.get("run")) {
+        alert("⚠️ Please select a run");
+        return;
       }
 
-    } catch (error) {
-      console.error(error);
-      btn.innerText = "❌ Failed";
-    }
+      if (!formData.get("size")) {
+        alert("⚠️ Please select a T-shirt size");
+        return;
+      }
 
-    setTimeout(() => {
-      btn.innerText = originalText;
-      btn.disabled = false;
-    }, 2000);
+      if (!/^[0-9]{10}$/.test(formData.get("phone"))) {
+        alert("⚠️ Enter valid 10-digit phone number");
+        return;
+      }
 
-  });
-}
- 
-       
+      btn.innerText = "Processing...";
+      btn.disabled = true;
+
+      try {
+        const response = await fetch(SCRIPT_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
+          body: new URLSearchParams({
+            name: formData.get("name"),
+            location: formData.get("location"),
+            phone: formData.get("phone"),
+            email: formData.get("email"),
+            run: formData.get("run"),
+            size: formData.get("size"),
+            organisation: formData.get("organisation")
+          })
+        });
+
+        const result = await response.json();
+
+        if (result.status === "success") {
+          btn.innerText = "✅ Registered!";
+          form.reset();
+        } 
+        else if (result.status === "duplicate") {
+          btn.innerText = "⚠️ Already Registered";
+        } 
+        else {
+          btn.innerText = "❌ Error";
+        }
+
+      } catch (error) {
+        console.error(error);
+        btn.innerText = "❌ Failed";
+      }
+
+      setTimeout(() => {
+        btn.innerText = originalText;
+        btn.disabled = false;
+      }, 2000);
+
+    });
+  }
+
+});
