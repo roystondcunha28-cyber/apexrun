@@ -19,18 +19,6 @@ a { text-decoration:none; color:white; }
 h2 { text-align:center; margin-bottom:20px; }
 
 /* ==============================
-   PARTICLES (FIXED)
-============================== */
-#particles {
-  position:fixed;
-  width:100%;
-  height:100%;
-  top:0;
-  left:0;
-  z-index:-1;
-}
-
-/* ==============================
    NAVBAR
 ============================== */
 .navbar {
@@ -41,10 +29,9 @@ h2 { text-align:center; margin-bottom:20px; }
   justify-content:space-between;
   align-items:center;
   padding:15px 30px;
-  background:rgba(0,0,0,0.6);
-  backdrop-filter:blur(12px);
+  background:rgba(0,0,0,0.7);
+  backdrop-filter:blur(10px);
   z-index:1000;
-  box-shadow:0 0 20px rgba(0,255,255,0.2);
 }
 
 .instagram-link {
@@ -52,14 +39,17 @@ h2 { text-align:center; margin-bottom:20px; }
   align-items:center;
   gap:6px;
   font-size:0.9rem;
-  transition:0.3s;
-}
-.instagram-link:hover {
-  transform:scale(1.1);
-  filter:drop-shadow(0 0 10px #ff00ff);
 }
 
-.instagram-icon { width:20px; }
+.instagram-icon {
+  width:20px;
+}
+
+/* LOGO CONTROL */
+.college-logo-small {
+  height:35px;
+  width:auto;
+}
 
 /* ==============================
    HEADER
@@ -72,7 +62,7 @@ h2 { text-align:center; margin-bottom:20px; }
   overflow:hidden;
 }
 
-/* cinematic sweep */
+/* glow sweep */
 .site-header::before {
   content:"";
   position:absolute;
@@ -89,67 +79,49 @@ h2 { text-align:center; margin-bottom:20px; }
   to { left:100%; }
 }
 
-/* subtle radial glow */
-.site-header::after {
-  content:"";
-  position:absolute;
-  width:600px;
-  height:600px;
-  background:radial-gradient(circle,#00ffff33,transparent 70%);
-  top:20%;
-  left:50%;
-  transform:translateX(-50%);
-  filter:blur(80px);
+/* LOGO ROW */
+.header-top {
+  display: flex;
+  flex-direction: column; /* stack items vertically */
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
 }
 
-/* LOGOS */
+/* Row for logos only */
 .logo-row {
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
 }
 
+/* Logo size control */
 .logo-row img {
-  height:45px;
-  object-fit:contain;
-  transition:0.4s;
+  height: 45px;
+  width: auto;
+  object-fit: contain;
 }
 
-.logo-row img:hover {
-  transform:scale(1.15) rotateZ(2deg);
-  filter:drop-shadow(0 0 12px #00ffff);
-}
-
-/* PRESENTS */
+/* PRESENTS TEXT */
 .presents {
-  font-family:'Playfair Display', serif;
-  font-size:1.8rem;
-  color:#fccf31;
-  letter-spacing:2px;
-  text-shadow:0 0 10px #ffcc00;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: #fccf31;
+  letter-spacing: 2px;
 }
-
 /* MAIN LOGO */
 .apex-run-logo {
   max-width:500px;
   width:auto;
   height:auto;
-  position:relative;
-  display:inline-block;
-  transition:0.5s;
-}
-
-.apex-run-logo:hover {
-  transform:scale(1.03);
-  filter:drop-shadow(0 0 25px #00ffff);
 }
 
 /* FIRE EFFECT */
 .fire-breath {
-  position:absolute;
+  position:relative;
   top:50%;
-  left:50%;
+  left:40%;
   width:200px;
   height:200px;
   background:radial-gradient(circle,rgba(255,140,0,0.9),rgba(255,0,0,0.7),transparent 70%);
@@ -159,17 +131,19 @@ h2 { text-align:center; margin-bottom:20px; }
   filter:blur(12px);
   animation:dragonFire 6s infinite ease-in-out;
 }
-
+.apex-run-logo {
+  position:relative;
+  display:inline-block;
+}
 @keyframes dragonFire {
   0%,85%,100% { opacity:0; }
-  90% { opacity:1; transform:translate(-50%,-50%) scaleX(1.6); }
+  90% { opacity:1; transform:translate(-40%,-50%) scaleX(1.5); }
 }
 
 /* HERO TEXT */
 .hero-details {
   margin-top:20px;
   font-size:1.1rem;
-  opacity:0.9;
 }
 
 /* COUNTDOWN */
@@ -178,16 +152,24 @@ h2 { text-align:center; margin-bottom:20px; }
   font-size:2rem;
   font-weight:700;
   color:#00ffff;
-  text-shadow:0 0 20px #00ffff, 0 0 40px #00ffff;
+  text-shadow:0 0 15px #00ffff;
 }
 
 /* ==============================
    SECTIONS
 ============================== */
-section { padding:80px 10%; }
+section {
+  padding:80px 10%;
+}
 
 /* ABOUT */
-.about-section h2 { color:#4fc3fc; }
+.about-section h2 {
+  color:#4fc3fc;
+}
+
+.about-section p {
+  margin-bottom:15px;
+}
 
 /* ==============================
    RULES
@@ -197,6 +179,10 @@ section { padding:80px 10%; }
   border-radius:20px;
   background: linear-gradient(135deg,#050014,#14003a);
   box-shadow:0 0 40px #00ffff;
+}
+
+.rules-section li {
+  margin-bottom:10px;
 }
 
 /* ==============================
@@ -214,13 +200,12 @@ section { padding:80px 10%; }
   border-radius:20px;
   padding:25px;
   text-align:center;
-  transition:0.4s;
-  transform-style:preserve-3d;
+  transition:0.3s;
 }
 
 .event-card:hover {
-  transform:translateY(-10px) scale(1.02);
-  box-shadow:0 0 40px #00ffff, inset 0 0 20px rgba(0,255,255,0.2);
+  transform:translateY(-10px);
+  box-shadow:0 0 30px #00ffff;
 }
 
 .event-logo {
@@ -231,7 +216,7 @@ section { padding:80px 10%; }
 
 @keyframes float {
   0%,100% { transform:translateY(0); }
-  50% { transform:translateY(-12px); }
+  50% { transform:translateY(-10px); }
 }
 
 /* BUTTON */
@@ -245,50 +230,34 @@ section { padding:80px 10%; }
   background:linear-gradient(45deg,#ffb703,#fb8500);
   color:black;
   cursor:pointer;
-  transition:0.3s;
-  position:relative;
-  overflow:hidden;
-}
-
-.rules-toggle::before,
-.register-btn::before {
-  content:"";
-  position:absolute;
-  width:120%;
-  height:120%;
-  background:linear-gradient(120deg,transparent,rgba(255,255,255,0.5),transparent);
-  top:-100%;
-  left:-100%;
-  transform:rotate(25deg);
-  transition:0.5s;
-}
-
-.rules-toggle:hover::before,
-.register-btn:hover::before {
-  top:100%;
-  left:100%;
 }
 
 .rules-toggle:hover,
 .register-btn:hover {
-  transform:scale(1.07);
-  box-shadow:0 0 25px #ff8500;
+  transform:scale(1.05);
+  box-shadow:0 0 20px #ff8500;
 }
 
-/* DROPDOWN */
-.event-rules {
+/* RULES DROPDOWN */
+.event-rules[hidden] {
   margin-top:10px;
   padding:10px;
   border-radius:10px;
   background:rgba(0,255,255,0.05);
-
-  max-height:0;
-  overflow:hidden;
-  opacity:0;
-  transition:max-height 0.4s ease, opacity 0.3s ease;
 }
 
-.event-rules.show {
+/* hide only when HTML says hidden */
+.event-rules[hidden] {
+  display:none;
+}
+.event-rules {
+  max-height:0;
+  overflow:hidden;
+  transition:max-height 0.4s ease, opacity 0.3s ease;
+  opacity:0;
+}
+
+.event-rules:not([hidden]) {
   max-height:300px;
   opacity:1;
 }
@@ -296,14 +265,19 @@ section { padding:80px 10%; }
 /* ==============================
    FORM
 ============================== */
+.registration-section {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
 .registration-card {
   width:100%;
   max-width:600px;
   padding:30px;
   border-radius:20px;
   background:rgba(255,255,255,0.08);
-  backdrop-filter:blur(15px);
-  box-shadow:0 0 30px rgba(0,255,255,0.2);
+  backdrop-filter:blur(10px);
 }
 
 .registration-card input {
@@ -327,22 +301,30 @@ section { padding:80px 10%; }
   border-radius:10px;
   background:rgba(255,255,255,0.05);
   cursor:pointer;
-  transition:0.3s;
-}
-
-.select-box:hover {
-  transform:scale(1.05);
 }
 
 .select-box:has(input:checked) {
   background:orange;
   color:black;
-  box-shadow:0 0 15px orange;
 }
 
 /* QR */
-.qr-section { text-align:center; margin-top:20px; }
-.qr-image { width:200px; }
+.qr-section {
+  text-align:center;
+  margin-top:20px;
+}
+
+.qr-image {
+  width:200px;
+}
+
+/* ==============================
+   VENUE
+============================== */
+.venue-section iframe {
+  margin-top:15px;
+  border-radius:15px;
+}
 
 /* ==============================
    CONTACT
@@ -351,7 +333,6 @@ section { padding:80px 10%; }
   border:3px solid gold;
   padding:40px;
   margin:40px 10%;
-  box-shadow:0 0 20px gold;
 }
 
 /* ==============================
@@ -360,13 +341,42 @@ section { padding:80px 10%; }
 footer {
   text-align:center;
   padding:20px;
-  opacity:0.8;
+}
+
+/* ==============================
+   PARTICLES
+============================== */
+.particles {
+  position:fixed;
+  width:100%;
+  height:100%;
+  background-image:
+    radial-gradient(#00ffff 1px,transparent 1px),
+    radial-gradient(#ffb703 1px,transparent 1px);
+  background-size:60px 60px;
+  animation:moveParticles 80s linear infinite;
+  opacity:0.1;
+}
+
+@keyframes moveParticles {
+  from { background-position:0 0; }
+  to { background-position:600px 600px; }
 }
 
 /* ==============================
    RESPONSIVE
 ============================== */
 @media (max-width:768px) {
-  .logo-row img { height:35px; }
-  section { padding:60px 5%; }
+
+  .header-top img {
+    height:35px;
+  }
+
+  .college-logo-small {
+    height:50px;
+  }
+
+  section {
+    padding:60px 5%;
+  }
 }
