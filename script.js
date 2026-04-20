@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // ✅ FORM SUBMIT
   const form = document.getElementById("registrationForm");
 
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxJjRqD3ryFhcT3yHtDz49OE98fcQ9y1S0XtmK66sVvPhJM718jaUHsW06R6jv7G0iC_A/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwOSEImyUDsUyqtzqBv1xKmixNErZ8zqcV1g5hSkRhKFWUqKwCoABQmlKSV751_WWqmJw/exec";
 
 if (form) {
   form.addEventListener("submit", async (e) => {
