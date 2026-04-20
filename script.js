@@ -60,36 +60,75 @@ document.addEventListener("DOMContentLoaded", () => {
   // ✅ FORM SUBMIT
   const form = document.getElementById("registrationForm");
 
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxJjRqD3ryFhcT3yHtDz49OE98fcQ9y1S0XtmK66sVvPhJM718jaUHsW06R6jv7G0iC_A/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxJjRqD3ryFhcT3yHtDz49OE98fcQ9y1S0XtmK66sVvPhJM718jaUHsW06R6jv7G0iC_A/exec";
 
-  if (form) {
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
+if (form) {
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-      const formData = new FormData(form);
+    const btn = form.querySelector(".register-btn");
+    const originalText = btn.innerText;
 
-      try {
-        await fetch(SCRIPT_URL, {
-          method: "POST",
-          body: new URLSearchParams({
-            name: formData.get("name"),
-            location: formData.get("location"),
-            phone: formData.get("phone"),
-            email: formData.get("email"),
-            run: formData.get("run"),
-            size: formData.get("size"),
-            organisation: formData.get("organisation")
-          })
-        });
+    const formData = new FormData(form);
 
-        alert("✅ Registration Successful!");
+    // ✅ BASIC VALIDATION
+    if (!formData.get("run")) {
+      alert("⚠️ Please select a run");
+      return;
+    }
+
+    if (!formData.get("size")) {
+      alert("⚠️ Please select a T-shirt size");
+      return;
+    }
+
+    if (!/^[0-9]{10}$/.test(formData.get("phone"))) {
+      alert("⚠️ Enter valid 10-digit phone number");
+      return;
+    }
+
+    btn.innerText = "Processing...";
+    btn.disabled = true;
+
+    try {
+      const response = await fetch(SCRIPT_URL, {
+        method: "POST",
+        body: new URLSearchParams({
+          name: formData.get("name"),
+          location: formData.get("location"),
+          phone: formData.get("phone"),
+          email: formData.get("email"),
+          run: formData.get("run"),
+          size: formData.get("size"),
+          organisation: formData.get("organisation")
+        })
+      });
+
+      const result = await response.json();
+
+      // ✅ HANDLE RESPONSE PROPERLY
+      if (result.status === "success") {
+        btn.innerText = "✅ Registered!";
         form.reset();
-
-      } catch (error) {
-        console.error(error);
-        alert("❌ Submission failed!");
+      } 
+      else if (result.status === "duplicate") {
+        btn.innerText = "⚠️ Already Registered";
+      } 
+      else {
+        btn.innerText = "❌ Error";
       }
-    });
-  }
 
-});
+    } catch (error) {
+      console.error(error);
+      btn.innerText = "❌ Failed";
+    }
+
+    setTimeout(() => {
+      btn.innerText = originalText;
+      btn.disabled = false;
+    }, 2000);
+
+  });
+}
+ 
+       
