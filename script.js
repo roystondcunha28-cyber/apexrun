@@ -119,23 +119,21 @@ document.addEventListener("DOMContentLoaded", () => {
       btn.disabled = true;
 
       try {
-        const response = await fetch(SCRIPT_URL, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-          },
-          body: new URLSearchParams({
-            name: formData.get("name"),
-            location: formData.get("location"),
-            phone: formData.get("phone"),
-            email: formData.get("email"),
-            run: formData.get("run"),
-            size: formData.get("size"),
-            organisation: formData.get("organisation")
-          })
-        });
+       const response = await fetch(SCRIPT_URL, {
+  method: "POST",
+  body: new URLSearchParams({
+    name: formData.get("name"),
+    location: formData.get("location"),
+    phone: formData.get("phone"),
+    email: formData.get("email"),
+    run: formData.get("run"),
+    size: formData.get("size"),
+    organisation: formData.get("organisation")
+  }),
+  mode: "no-cors"
+});
 
-        const result = await response.json();
+    
 
         if (result.status === "success") {
           btn.innerText = "✅ Registered!";
