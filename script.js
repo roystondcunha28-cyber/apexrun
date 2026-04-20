@@ -57,10 +57,11 @@ setInterval(() => {
 const ageInput = document.getElementById("age");
 const sizeSuggestion = document.getElementById("sizeSuggestion");
 
-ageInput.addEventListener("input", () => {
-  const age = parseInt(ageInput.value);
+if (ageInput) {
+  ageInput.addEventListener("input", () => {
+ const age = parseInt(ageInput.value);
   let suggestedSize = "";
-
+}
   if (!age) return;
 
   // Kids
