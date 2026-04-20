@@ -141,38 +141,5 @@ form.addEventListener("submit", async (e) => {
     alert("❌ Something went wrong!");
   }
 });
-const form = document.getElementById("registrationForm");
-const submitBtn = document.querySelector(".register-btn");
 
-if (form) {
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    // 🚫 Prevent multiple clicks
-    submitBtn.disabled = true;
-    submitBtn.innerText = "Processing...";
-
-    const formData = new FormData(form);
-
-    try {
-      await fetch(SCRIPT_URL, {
-        method: "POST",
-        body: formData
-      });
-
-      alert("✅ Registration Successful!");
-      form.reset();
-
-      // 🔒 Lock button permanently (optional)
-      submitBtn.innerText = "Registered ✅";
-
-    } catch (error) {
-      console.error(error);
-      alert("❌ Something went wrong!");
-
-      // 🔓 Re-enable if failed
-      submitBtn.disabled = false;
-      submitBtn.innerText = "Complete Registration";
-    }
-  });
-}
+      
