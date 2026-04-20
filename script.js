@@ -2,20 +2,29 @@
 console.log("APEX RUN Loaded Successfully!");
 
 // RULES TOGGLE
-document.querySelectorAll('.rules-toggle').forEach(button => {
-  button.addEventListener('click', () => {
-    const rulesDiv = document.getElementById(button.getAttribute('aria-controls'));
+document.addEventListener("DOMContentLoaded", () => {
 
-    const isHidden = rulesDiv.hasAttribute("hidden");
+  document.querySelectorAll('.rules-toggle').forEach(button => {
+    button.addEventListener('click', () => {
 
-    if (isHidden) {
-      rulesDiv.removeAttribute("hidden");
-      button.setAttribute("aria-expanded", "true");
-    } else {
-      rulesDiv.setAttribute("hidden", "");
-      button.setAttribute("aria-expanded", "false");
-    }
+      const targetId = button.getAttribute('aria-controls');
+      const rulesDiv = document.getElementById(targetId);
+
+      if (!rulesDiv) return;
+
+      const isHidden = rulesDiv.hasAttribute("hidden");
+
+      if (isHidden) {
+        rulesDiv.removeAttribute("hidden");
+        button.setAttribute("aria-expanded", "true");
+      } else {
+        rulesDiv.setAttribute("hidden", "");
+        button.setAttribute("aria-expanded", "false");
+      }
+
+    });
   });
+
 });
 
 // SPARKLES
