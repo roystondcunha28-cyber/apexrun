@@ -118,40 +118,30 @@ document.addEventListener("DOMContentLoaded", () => {
       btn.innerText = "Processing...";
       btn.disabled = true;
 
-      try {
-       const response = await fetch(SCRIPT_URL, {
-  method: "POST",
-  body: new URLSearchParams({
-    name: formData.get("name"),
-    location: formData.get("location"),
-    phone: formData.get("phone"),
-    email: formData.get("email"),
-    run: formData.get("run"),
-    size: formData.get("size"),
-    organisation: formData.get("organisation")
-  }),
-  mode: "no-cors"
-});
+    try {
+  await fetch(SCRIPT_URL, {
+    method: "POST",
+    body: new URLSearchParams({
+      name: formData.get("name"),
+      location: formData.get("location"),
+      phone: formData.get("phone"),
+      email: formData.get("email"),
+      run: formData.get("run"),
+      size: formData.get("size"),
+      organisation: formData.get("organisation")
+    }),
+    mode: "no-cors"
+  });
 
-    
+  // ✅ ALWAYS SUCCESS (because no-cors hides response)
+  btn.innerText = "✅ Registered!";
+  form.reset();
 
-        if (result.status === "success") {
-          btn.innerText = "✅ Registered!";
-          form.reset();
-        } 
-        else if (result.status === "duplicate") {
-          btn.innerText = "⚠️ Already Registered";
-        } 
-        else {
-          btn.innerText = "❌ Error";
-        }
-
-      } catch (error) {
-        console.error(error);
-        btn.innerText = "❌ Failed";
-      }
-
-      setTimeout(() => {
+} catch (error) {
+  console.error(error);
+  btn.innerText = "❌ Failed";
+}
+ setTimeout(() => {
         btn.innerText = originalText;
         btn.disabled = false;
       }, 2000);
