@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
   });
-
+rulesDiv.style.display = isHidden ? "block" : "none";
 });
 
 // SPARKLES
