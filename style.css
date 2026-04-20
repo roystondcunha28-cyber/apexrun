@@ -110,13 +110,20 @@ h2 { text-align:center; margin-bottom:20px; }
   color: #fccf31;
   letter-spacing: 2px;
 }
-/* MAIN LOGO */
 .apex-run-logo {
-  max-width:500px;
-  width:auto;
-  height:auto;
+  display: block;
+  margin: 0 auto;
+  max-width: 500px;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
-
+@media (max-width: 768px) {
+  .apex-run-logo {
+    max-width: 280px;
+    width: 90%;
+  }
+}
 /* FIRE EFFECT */
 .fire-breath {
   position:relative;
