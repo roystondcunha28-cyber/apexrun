@@ -10,16 +10,23 @@
 
 body {
   font-family:'Poppins',sans-serif;
-  background: radial-gradient(circle at top,#001d3d,#000814 70%);
+  background:
+    radial-gradient(circle at 20% 10%, rgba(0,255,255,0.08), transparent 40%),
+    radial-gradient(circle at 80% 20%, rgba(255,183,3,0.08), transparent 40%),
+    radial-gradient(circle at 50% 90%, rgba(0,150,255,0.08), transparent 50%),
+    #000814;
   color:white;
   overflow-x:hidden;
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 a { text-decoration:none; color:white; }
 h2 { text-align:center; margin-bottom:20px; }
 
 /* ==============================
-   PARTICLES (FIXED)
+   PARTICLES (CANVAS)
 ============================== */
 #particles {
   position:fixed;
@@ -31,7 +38,7 @@ h2 { text-align:center; margin-bottom:20px; }
 }
 
 /* ==============================
-   NAVBAR
+   NAVBAR (CRISP GLASS)
 ============================== */
 .navbar {
   position:fixed;
@@ -41,10 +48,14 @@ h2 { text-align:center; margin-bottom:20px; }
   justify-content:space-between;
   align-items:center;
   padding:15px 30px;
-  background:rgba(0,0,0,0.6);
-  backdrop-filter:blur(12px);
+
+  background:rgba(0,0,0,0.85);
+  backdrop-filter: blur(4px);
+
+  border-bottom:1px solid rgba(0,255,255,0.2);
+  box-shadow:0 5px 25px rgba(0,0,0,0.6);
+
   z-index:1000;
-  box-shadow:0 0 20px rgba(0,255,255,0.2);
 }
 
 .instagram-link {
@@ -62,17 +73,19 @@ h2 { text-align:center; margin-bottom:20px; }
 .instagram-icon { width:20px; }
 
 /* ==============================
-   HEADER
+   HEADER (CINEMATIC HERO)
 ============================== */
 .site-header {
   padding:120px 20px 60px;
   text-align:center;
-  background: linear-gradient(135deg,#000814,#001d3d,#003566);
   position:relative;
   overflow:hidden;
+
+  background:
+    linear-gradient(135deg,#000814,#001d3d,#003566);
 }
 
-/* cinematic sweep */
+/* light sweep */
 .site-header::before {
   content:"";
   position:absolute;
@@ -83,42 +96,39 @@ h2 { text-align:center; margin-bottom:20px; }
   background:linear-gradient(120deg,transparent,rgba(0,255,255,0.08),transparent);
   animation:sweep 10s linear infinite;
 }
-
 @keyframes sweep {
   from { left:-100%; }
   to { left:100%; }
 }
 
-/* subtle radial glow */
+/* glow aura (controlled) */
 .site-header::after {
   content:"";
   position:absolute;
-  width:600px;
-  height:600px;
-  background:radial-gradient(circle,#00ffff33,transparent 70%);
-  top:20%;
+  width:500px;
+  height:500px;
+  background:radial-gradient(circle, rgba(0,255,255,0.25), transparent 70%);
+  top:30%;
   left:50%;
   transform:translateX(-50%);
-  filter:blur(80px);
+  filter:blur(40px);
+  opacity:0.5;
 }
 
-/* LOGOS */
+/* LOGO ROW */
 .logo-row {
   display:flex;
   justify-content:center;
   align-items:center;
   gap:25px;
 }
-
 .logo-row img {
   height:45px;
-  object-fit:contain;
   transition:0.4s;
 }
-
 .logo-row img:hover {
-  transform:scale(1.15) rotateZ(2deg);
-  filter:drop-shadow(0 0 12px #00ffff);
+  transform:scale(1.15);
+  filter:drop-shadow(0 0 15px #00ffff);
 }
 
 /* PRESENTS */
@@ -127,25 +137,20 @@ h2 { text-align:center; margin-bottom:20px; }
   font-size:1.8rem;
   color:#fccf31;
   letter-spacing:2px;
-  text-shadow:0 0 10px #ffcc00;
+  text-shadow:0 0 12px #ffcc00;
 }
 
 /* MAIN LOGO */
 .apex-run-logo {
   max-width:500px;
-  width:auto;
-  height:auto;
-  position:relative;
-  display:inline-block;
   transition:0.5s;
 }
-
 .apex-run-logo:hover {
-  transform:scale(1.03);
-  filter:drop-shadow(0 0 25px #00ffff);
+  transform:scale(1.04);
+  filter:drop-shadow(0 0 30px #00ffff);
 }
 
-/* FIRE EFFECT */
+/* FIRE FX */
 .fire-breath {
   position:absolute;
   top:50%;
@@ -153,22 +158,20 @@ h2 { text-align:center; margin-bottom:20px; }
   width:200px;
   height:200px;
   background:radial-gradient(circle,rgba(255,140,0,0.9),rgba(255,0,0,0.7),transparent 70%);
-  transform:translate(-50%,-50%) scaleX(.3);
+  transform:translate(-50%,-50%) scaleX(.4);
   opacity:0;
   border-radius:50%;
-  filter:blur(12px);
+  filter:blur(6px);
   animation:dragonFire 6s infinite ease-in-out;
 }
-
 @keyframes dragonFire {
   0%,85%,100% { opacity:0; }
-  90% { opacity:1; transform:translate(-50%,-50%) scaleX(1.6); }
+  90% { opacity:1; transform:translate(-50%,-50%) scaleX(1.5); }
 }
 
 /* HERO TEXT */
 .hero-details {
   margin-top:20px;
-  font-size:1.1rem;
   opacity:0.9;
 }
 
@@ -178,7 +181,7 @@ h2 { text-align:center; margin-bottom:20px; }
   font-size:2rem;
   font-weight:700;
   color:#00ffff;
-  text-shadow:0 0 20px #00ffff, 0 0 40px #00ffff;
+  text-shadow:0 0 20px #00ffff;
 }
 
 /* ==============================
@@ -186,21 +189,8 @@ h2 { text-align:center; margin-bottom:20px; }
 ============================== */
 section { padding:80px 10%; }
 
-/* ABOUT */
-.about-section h2 { color:#4fc3fc; }
-
 /* ==============================
-   RULES
-============================== */
-.rules-section {
-  padding:60px 30px;
-  border-radius:20px;
-  background: linear-gradient(135deg,#050014,#14003a);
-  box-shadow:0 0 40px #00ffff;
-}
-
-/* ==============================
-   EVENTS
+   EVENTS (3D DEPTH)
 ============================== */
 .event-grid {
   display:grid;
@@ -209,18 +199,21 @@ section { padding:80px 10%; }
 }
 
 .event-card {
-  background:rgba(0,255,255,0.05);
-  border:1px solid rgba(0,255,255,0.3);
+  background:linear-gradient(145deg, rgba(0,255,255,0.08), rgba(0,0,0,0.5));
+  border:1px solid rgba(0,255,255,0.25);
   border-radius:20px;
   padding:25px;
   text-align:center;
+
   transition:0.4s;
   transform-style:preserve-3d;
 }
 
 .event-card:hover {
-  transform:translateY(-10px) scale(1.02);
-  box-shadow:0 0 40px #00ffff, inset 0 0 20px rgba(0,255,255,0.2);
+  transform:translateY(-12px) scale(1.02);
+  box-shadow:
+    0 20px 50px rgba(0,255,255,0.2),
+    inset 0 0 20px rgba(0,255,255,0.15);
 }
 
 .event-logo {
@@ -228,13 +221,13 @@ section { padding:80px 10%; }
   margin-bottom:20px;
   animation:float 4s ease-in-out infinite;
 }
-
 @keyframes float {
-  0%,100% { transform:translateY(0); }
-  50% { transform:translateY(-12px); }
+  50% { transform:translateY(-10px); }
 }
 
-/* BUTTON */
+/* ==============================
+   BUTTONS (PREMIUM SHINE)
+============================== */
 .rules-toggle,
 .register-btn {
   margin-top:10px;
@@ -245,22 +238,23 @@ section { padding:80px 10%; }
   background:linear-gradient(45deg,#ffb703,#fb8500);
   color:black;
   cursor:pointer;
-  transition:0.3s;
+
   position:relative;
   overflow:hidden;
+  transition:0.3s;
 }
 
 .rules-toggle::before,
 .register-btn::before {
   content:"";
   position:absolute;
-  width:120%;
-  height:120%;
+  width:200%;
+  height:200%;
   background:linear-gradient(120deg,transparent,rgba(255,255,255,0.5),transparent);
+  transform:rotate(25deg);
   top:-100%;
   left:-100%;
-  transform:rotate(25deg);
-  transition:0.5s;
+  transition:0.6s;
 }
 
 .rules-toggle:hover::before,
@@ -271,11 +265,13 @@ section { padding:80px 10%; }
 
 .rules-toggle:hover,
 .register-btn:hover {
-  transform:scale(1.07);
-  box-shadow:0 0 25px #ff8500;
+  transform:scale(1.08);
+  box-shadow:0 0 30px #ff8500;
 }
 
-/* DROPDOWN */
+/* ==============================
+   DROPDOWN
+============================== */
 .event-rules {
   margin-top:10px;
   padding:10px;
@@ -285,12 +281,17 @@ section { padding:80px 10%; }
   max-height:0;
   overflow:hidden;
   opacity:0;
-  transition:max-height 0.4s ease, opacity 0.3s ease;
+
+  transform:scaleY(0.9);
+  transform-origin:top;
+
+  transition:all 0.4s ease;
 }
 
 .event-rules.show {
-  max-height:300px;
+  max-height:500px;
   opacity:1;
+  transform:scaleY(1);
 }
 
 /* ==============================
@@ -301,9 +302,11 @@ section { padding:80px 10%; }
   max-width:600px;
   padding:30px;
   border-radius:20px;
-  background:rgba(255,255,255,0.08);
-  backdrop-filter:blur(15px);
-  box-shadow:0 0 30px rgba(0,255,255,0.2);
+
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+
+  box-shadow:0 0 30px rgba(0,255,255,0.15);
 }
 
 .registration-card input {
@@ -314,7 +317,7 @@ section { padding:80px 10%; }
   border:none;
 }
 
-/* SIZE GRID */
+/* SIZE */
 .option-grid {
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(90px,1fr));
@@ -326,8 +329,8 @@ section { padding:80px 10%; }
   text-align:center;
   border-radius:10px;
   background:rgba(255,255,255,0.05);
-  cursor:pointer;
   transition:0.3s;
+  cursor:pointer;
 }
 
 .select-box:hover {
@@ -340,15 +343,11 @@ section { padding:80px 10%; }
   box-shadow:0 0 15px orange;
 }
 
-/* QR */
-.qr-section { text-align:center; margin-top:20px; }
-.qr-image { width:200px; }
-
 /* ==============================
    CONTACT
 ============================== */
 #contact {
-  border:3px solid gold;
+  border:2px solid gold;
   padding:40px;
   margin:40px 10%;
   box-shadow:0 0 20px gold;
@@ -360,7 +359,7 @@ section { padding:80px 10%; }
 footer {
   text-align:center;
   padding:20px;
-  opacity:0.8;
+  opacity:0.7;
 }
 
 /* ==============================
