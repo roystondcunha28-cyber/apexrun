@@ -110,6 +110,13 @@ h2 { text-align:center; margin-bottom:20px; }
   color: #fccf31;
   letter-spacing: 2px;
 }
+.apex-runlogo-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 5px;
+}
 .apex-run-logo {
   display: block;
   margin: 20px auto;
