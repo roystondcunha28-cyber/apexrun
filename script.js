@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ========================= */
   const form = document.getElementById("registrationForm");
 
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwOSEImyUDsUyqtzqBv1xKmixNErZ8zqcV1g5hSkRhKFWUqKwCoABQmlKSV751_WWqmJw/exec";
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwbR3_yFuHbBoJT6iQwOi3moAF-X-S65eZo1RhVjCYrpWhIihnQWcbDe8mqbzzv0vb1VA/exec";
 
   if (form) {
     form.addEventListener("submit", async (e) => {
