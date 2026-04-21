@@ -160,8 +160,10 @@ if (!utr || !/^[A-Za-z0-9]{10,20}$/.test(utr)) {
 }
       btn.innerText = "Processing...";
       btn.disabled = true;
+      console.log({
+  utr: formData.get("utr")
+});
       try {
-
   const response = await fetch(SCRIPT_URL, {
     method: "POST",
     body: new URLSearchParams({
