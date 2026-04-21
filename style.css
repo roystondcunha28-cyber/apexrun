@@ -204,10 +204,6 @@ section {
 /* ==============================
    EVENTS
 ============================== */
-
-/* ==============================
-   EVENTS
-============================== */
 .event-grid {
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
@@ -251,11 +247,6 @@ section {
   height:200px;
   margin-bottom:20px;
   animation:float 4s ease-in-out infinite;
-}
-.event-grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:30px;
 }
 @keyframes float {
   0%,100% { transform:translateY(0); }
@@ -315,31 +306,6 @@ section {
   opacity:1;
   transform:translateY(0);
 }
-.event-card {
-  background:rgba(0,255,255,0.05);
-  border:1px solid rgba(0,255,255,0.3);
-  border-radius:20px;
-  padding:25px;
-  text-align:center;
-  transition:0.3s;
-}
-
-.event-card:hover {
-  transform:translateY(-10px);
-  box-shadow:0 0 30px #00ffff;
-}
-
-.event-logo {
-  height:200px;
-  margin-bottom:20px;
-  animation:float 4s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%,100% { transform:translateY(0); }
-  50% { transform:translateY(-10px); }
-}
-
 
 /* ==============================
    FORM
@@ -358,7 +324,31 @@ section {
   background:rgba(255,255,255,0.08);
   backdrop-filter:blur(10px);
 }
+.registration-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.15);
+  box-shadow: 
+    0 0 30px rgba(0,255,255,0.15),
+    inset 0 0 20px rgba(255,255,255,0.05);
+}
 
+/* subtle moving glow */
+.registration-card::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background: radial-gradient(circle, rgba(0,255,255,0.08), transparent 60%);
+  animation: rotateGlow 12s linear infinite;
+}
+
+@keyframes rotateGlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
 .registration-card input {
   width:100%;
   padding:10px;
