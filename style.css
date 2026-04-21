@@ -209,25 +209,21 @@ section {
   grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
   gap:30px;
 }
-
 .event-card {
-  position:relative;
-  background:rgba(0,255,255,0.05);
-  border:1px solid rgba(0,255,255,0.3);
-  border-radius:20px;
-  padding:25px;
-  text-align:center;
-  transition:0.3s ease;
-}
-.event-card:hover {
-  transform:translateY(-10px);
-  box-shadow:0 15px 35px rgba(0,255,255,0.2);
+  position: relative;
+  background: rgba(0,255,255,0.05);
+  border: 1px solid rgba(0,255,255,0.3);
+  border-radius: 20px;
+  padding: 25px;
+  text-align: center;
+  transition: 0.4s ease;
+  transform-style: preserve-3d;
+  z-index: 2; /* IMPORTANT */
 }
 
-.event-logo {
-  height:200px;
-  margin-bottom:20px;
-  animation:float 4s ease-in-out infinite;
+.event-card:hover {
+  transform: rotateX(5deg) rotateY(-5deg) translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0,255,255,0.2);
 }
 
 @keyframes float {
@@ -264,18 +260,18 @@ section {
    AMENITIES FIX
 ============================== */
 .event-rules {
-  max-height:0;
-  overflow:hidden;
-  opacity:0;
-  transition:0.4s ease;
-  display:block;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.4s ease;
 }
 
 .event-rules.active {
-  max-height:500px;
-  opacity:1;
+  max-height: 500px;
+  opacity: 1;
+  transform: translateY(0);
 }
-now i will send 2 css codes dont reply after the one code 
 /* ==============================
    RESET
 ============================== */
@@ -595,22 +591,24 @@ section {
 }
 
 .registration-card {
-  width:100%;
-  max-width:600px;
-  padding:30px;
-  border-radius:20px;
-  background:rgba(255,255,255,0.08);
-  backdrop-filter:blur(10px);
-}
-.registration-card {
   position: relative;
-  overflow: hidden;
+  z-index: 2; /* FIX CLICK ISSUE */
+  width: 100%;
+  max-width: 600px;
+  padding: 30px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px);
   border: 1px solid rgba(255,255,255,0.15);
   box-shadow: 
     0 0 30px rgba(0,255,255,0.15),
     inset 0 0 20px rgba(255,255,255,0.05);
 }
 
+/* FIX: glow should not block clicks */
+.registration-card::before {
+  pointer-events: none; /* 🔥 CRITICAL FIX */
+
 /* subtle moving glow */
 .registration-card::before {
   content: "";
@@ -628,349 +626,18 @@ section {
   to { transform: rotate(360deg); }
 }
 .registration-card input {
-  width:100%;
-  padding:10px;
-  margin:10px 0;
-  border-radius:10px;
-  border:none;
-}
-
-/* SIZE GRID */
-.option-grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(90px,1fr));
-  gap:10px;
-}
-
-.select-box {
-  padding:10px;
-  text-align:center;
-  border-radius:10px;
-  background:rgba(255,255,255,0.05);
-  cursor:pointer;
-}
-
-.select-box:has(input:checked) {
-  background:orange;
-  color:black;
-}
-
-/* QR */
-.qr-section {
-  text-align:center;
-  margin-top:20px;
-}
-
-.qr-image {
-  width:200px;
-}
-
-/* ==============================
-   VENUE
-============================== */
-.venue-section iframe {
-  margin-top:15px;
-  border-radius:15px;
-}
-
-/* ==============================
-   CONTACT
-============================== */
-#contact {
-  border:3px solid gold;
-  padding:40px;
-  margin:40px 10%;
-}
-
-/* ==============================
-   FOOTER
-============================== */
-footer {
-  text-align:center;
-  padding:20px;
-}
-/* ==============================
-   BACKGROUND PARTICLES
-============================== */
-body::before {
-  content:"";
-  position:fixed;
-  inset:0;
-  background-image:
-    radial-gradient(#00ffff 1px,transparent 1px),
-    radial-gradient(#ffb703 1px,transparent 1px);
-  background-size:60px 60px;
-  animation:moveParticles 80s linear infinite;
-  opacity:0.08;
-  z-index:-1;
-}
-
-@keyframes moveParticles {
-  from { background-position:0 0; }
-  to { background-position:600px 600px; }
-}
-/* ==============================
-   PARTICLES
-============================== */
-.particles {
-  position:fixed;
-  width:100%;
-  height:100%;
-  background-image:
-    radial-gradient(#00ffff 1px,transparent 1px),
-    radial-gradient(#ffb703 1px,transparent 1px);
-  background-size:60px 60px;
-  animation:moveParticles 80s linear infinite;
-  opacity:0.1;
-}
-
-@keyframes moveParticles {
-  from { background-position:0 0; }
-  to { background-position:600px 600px; }
-}
-
-/* ==============================
-   RESPONSIVE
-============================== */
-@media (max-width:768px) {
-
-  .header-top img {
-    height:35px;
-  }
-
-  .college-logo-small {
-    height:50px;
-  }
-
-  section {
-    padding:60px 5%;
-  }
-}
-/* ==============================
-   FIX LOGO CENTER ON MOBILE
-============================== */
-@media (max-width: 768px) {
-
-  .apexrun-logo-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-  }
-
-  .apex-run-logo {
-    display: block;
-    margin: 20px auto;
-    max-width: 280px;
-    width: 85%;
-  }
-
-  
-}
-/* ==============================
-   SCROLL ANIMATION
-============================== */
-.fade-in {
-  opacity:0;
-  transform:translateY(40px);
-  transition:0.8s;
-}
-
-.fade-in.show {
-  opacity:1;
-  transform:translateY(0);
-}
-/* ==============================
-   RESET
-============================== */
-* {
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  scroll-behavior:smooth;
-}
-
-body {
-  font-family:'Poppins',sans-serif;
-  background: radial-gradient(circle at top,#001d3d,#000814 70%);
-  color:white;
-  overflow-x:hidden;
-}
-
-a { text-decoration:none; color:white; }
-
-/* ==============================
-   NAVBAR
-============================== */
-.navbar {
-  position:fixed;
-  top:0;
-  width:100%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:15px 30px;
-  background:rgba(0,0,0,0.7);
-  backdrop-filter:blur(12px);
-  z-index:1000;
-}
-
-.college-logo-small { height:35px; }
-
-/* ==============================
-   HEADER
-============================== */
-.site-header {
-  padding:120px 20px 60px;
-  text-align:center;
-  background: linear-gradient(135deg,#000814,#001d3d,#003566);
-  position:relative;
-  overflow:hidden;
-}
-
-.site-header::before {
-  content:"";
-  position:absolute;
-  width:200%;
-  height:100%;
-  background:linear-gradient(120deg,transparent,rgba(0,255,255,0.08),transparent);
-  animation:sweep 10s linear infinite;
-}
-
-@keyframes sweep {
-  from { left:-100%; }
-  to { left:100%; }
-}
-
-.site-header > * {
-  position:relative;
-  z-index:2;
-}
-
-.apex-run-logo {
-  display:block;
-  margin:20px auto;
-  max-width:500px;
-  width:100%;
-}
-
-/* ==============================
-   EVENTS
-============================== */
-.event-grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:30px;
-}
-
-.event-card {
-  position:relative;
-  background:rgba(0,255,255,0.05);
-  border:1px solid rgba(0,255,255,0.3);
-  border-radius:20px;
-  padding:25px;
-  text-align:center;
-  transition:0.3s ease;
-}
-
-.event-card:hover {
-  transform:translateY(-10px);
-  box-shadow:0 15px 35px rgba(0,255,255,0.2);
-}
-
-.event-logo {
-  height:200px;
-  margin-bottom:20px;
-  animation:float 4s ease-in-out infinite;
-}
-
-@keyframes float {
-  50% { transform:translateY(-10px); }
-}
-
-/* ==============================
-   BUTTONS
-============================== */
-.rules-toggle,
-.register-btn {
-  padding:10px 20px;
-  border-radius:30px;
-  border:none;
-  background:linear-gradient(45deg,#ffb703,#fb8500);
-  cursor:pointer;
-  position:relative;
-  overflow:hidden;
-}
-
-.rules-toggle::after,
-.register-btn::after {
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(120deg,transparent,rgba(255,255,255,0.4),transparent);
-  transform:translateX(-100%);
-}
-
-.rules-toggle:hover::after,
-.register-btn:hover::after {
-  transform:translateX(100%);
-  transition:0.6s;
-}
-
-/* ==============================
-   AMENITIES FIX
-============================== */
-.event-rules {
-  max-height:0;
-  overflow:hidden;
-  opacity:0;
-  transition:0.4s ease;
-  display:block;
-}
-
-.event-rules.active {
-  max-height:500px;
-  opacity:1;
-}
-
-/* ==============================
-   FORM
-============================== */
-.registration-card {
-  max-width:600px;
-  margin:auto;
-  padding:30px;
-  border-radius:20px;
-  background:rgba(255,255,255,0.07);
-  backdrop-filter:blur(10px);
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  z-index: 3;
+  position: relative;
 }
 
 .registration-card input:focus {
-  outline:none;
-  box-shadow:0 0 10px #00ffff;
-}
-/* subtle moving glow */
-.registration-card::before {
-  content: "";
-  position: absolute;
-  width: 200%;
-  height: 200%;
-  top: -50%;
-  left: -50%;
-  background: radial-gradient(circle, rgba(0,255,255,0.08), transparent 60%);
-  animation: rotateGlow 12s linear infinite;
-}
-
-@keyframes rotateGlow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-.registration-card input {
-  width:100%;
-  padding:10px;
-  margin:10px 0;
-  border-radius:10px;
-  border:none;
+  box-shadow: 0 0 12px #00ffff;
 }
 
 /* SIZE GRID */
@@ -991,33 +658,6 @@ a { text-decoration:none; color:white; }
 .select-box:has(input:checked) {
   background:orange;
   color:black;
-}
-
-/* ==============================
-   QR
-============================== */
-.qr-image {
-  width:200px;
-  opacity:0;
-  transform:scale(0.9);
-  transition:0.4s;
-}
-
-.qr-image.show {
-  opacity:1;
-  transform:scale(1);
-}
-
-/* ==============================
-   MOBILE SAFE
-============================== */
-@media (max-width:768px) {
-
-  .apex-run-logo {
-    max-width:280px;
-    width:85%;
-  }
-
 }
 
 /* ==============================
@@ -1121,17 +761,6 @@ body::before {
   }
 
   
-}
-/* ==============================
-   SCROLL ANIMATION
-============================== */
-.fade-in {
-  opacity:0;
-  transform:translateY(40px);
-  transition:0.8s;
-}
 
-.fade-in.show {
-  opacity:1;
-  transform:translateY(0);
-}
+
+  transform:translateY(
