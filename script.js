@@ -152,7 +152,12 @@ document.querySelectorAll('input[name="run"]').forEach(radio => {
         alert("⚠️ Enter valid 10-digit phone number");
         return;
       }
+const utr = formData.get("utr");
 
+if (!utr || !/^[A-Za-z0-9]{10,20}$/.test(utr)) {
+  alert("⚠️ Please enter a valid UTR / Transaction ID");
+  return;
+}
       btn.innerText = "Processing...";
       btn.disabled = true;
 
