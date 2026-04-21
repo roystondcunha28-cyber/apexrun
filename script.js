@@ -196,9 +196,6 @@ if (!utr || !/^[A-Za-z0-9]{10,20}$/.test(utr)) {
   console.error(error);
   alert("❌ Network or script error");
 }
-      
-      
-      {
  setTimeout(() => {
         btn.innerText = originalText;
         btn.disabled = false;
