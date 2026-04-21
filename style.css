@@ -142,6 +142,10 @@ h2 { text-align:center; margin-bottom:20px; }
   margin-bottom: 5px;
 }
 .apex-run-logo {
+  opacity:0.7;
+  filter: drop-shadow(0 0 10px rgba(255,255,255,0.25));
+}
+.apex-run-logo {
   display: block;
   margin: 20px auto;
   max-width: 500px;
@@ -200,7 +204,25 @@ section {
 .rules-section li {
   margin-bottom:10px;
 }
+.qr-image {
+  height: 160px;   /* slightly smaller than event images (200px) */
+  width: auto;     /* keeps aspect ratio */
+  max-width: 100%;
+  border-radius:12px;
 
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+
+  box-shadow:
+    0 0 10px rgba(0,255,255,0.2),
+    0 0 20px rgba(0,255,255,0.1);
+}
+
+.qr-image:hover {
+  transform: scale(1.06);
+  box-shadow:
+    0 0 25px rgba(0,255,255,0.6),
+    0 0 50px rgba(0,255,255,0.3);
+}
 /* ==============================
    EVENTS
 ============================== */
