@@ -160,9 +160,9 @@ if (!utr || !/^[A-Za-z0-9]{10,20}$/.test(utr)) {
 }
       btn.innerText = "Processing...";
       btn.disabled = true;
+      try {
 
-    try {
-  await fetch(SCRIPT_URL, {
+  const response = await fetch(SCRIPT_URL, {
     method: "POST",
     body: new URLSearchParams({
       name: formData.get("name"),
@@ -172,22 +172,38 @@ if (!utr || !/^[A-Za-z0-9]{10,20}$/.test(utr)) {
       run: formData.get("run"),
       size: formData.get("size"),
       organisation: formData.get("organisation"),
-      utr: formData.get("utr")
-    });
-      
-  // ✅ ALWAYS SUCCESS (because no-cors hides response)
-  btn.innerText = "✅ Registered!";
-  form.reset();
+      utr: formData.get("utr") // ✅ FIXED
+    })
+  });
+
+  const data = await response.json(); // ✅ READ RESPONSE
+
+  if (data.status === "success") {
+    btn.innerText = "✅ Registered!";
+    form.reset();
+  }
+  else if (data.status === "duplicate_phone") {
+    alert("⚠️ Phone already registered");
+  }
+  else if (data.status === "duplicate_utr") {
+    alert("⚠️ UTR already used");
+  }
+  else {
+    alert("❌ Registration failed");
+  }
 
 } catch (error) {
   console.error(error);
-  btn.innerText = "❌ Failed";
+  alert("❌ Network or script error");
 }
+      
+      
+      {
  setTimeout(() => {
         btn.innerText = originalText;
         btn.disabled = false;
-      }, 2000);
-
+       }, 2000);
+       
     });
   }
 
