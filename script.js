@@ -89,9 +89,9 @@ const qrLabel = document.getElementById("qrLabel");
 const utrGroup = document.getElementById("utrGroup");
 
 const qrMap = {
-  "3K": { src: "qr-3k.jpg", text: "Scan to pay ₹250 for 3K Run" },
-  "5K": { src: "qr-5k.jpg", text: "Scan to pay ₹350 for 5K Run" },
-  "10K": { src: "qr-10k.jpg", text: "Scan to pay ₹450 for 10K Run" }
+  "3K": { src: "qr-3k.jpeg", text: "Scan to pay ₹250 for 3K Run" },
+  "5K": { src: "qr-5k.jpeg", text: "Scan to pay ₹350 for 5K Run" },
+  "10K": { src: "qr-10k.jpeg", text: "Scan to pay ₹450 for 10K Run" }
 };
 
 document.querySelectorAll('input[name="run"]').forEach(radio => {
