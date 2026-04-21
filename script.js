@@ -126,7 +126,7 @@ document.querySelectorAll('input[name="run"]').forEach(radio => {
   ========================= */
   const form = document.getElementById("registrationForm");
 
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwbR3_yFuHbBoJT6iQwOi3moAF-X-S65eZo1RhVjCYrpWhIihnQWcbDe8mqbzzv0vb1VA/exec";
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz8U4XBl2d20-0veslXtFbBDieYum5X_I_inZsVps79D9cdKbtQkzER-Zx5TVwKbXA85A/exec";
 
   if (form) {
     form.addEventListener("submit", async (e) => {
