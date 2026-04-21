@@ -396,3 +396,28 @@ footer {
     padding:60px 5%;
   }
 }
+/* ==============================
+   FIX LOGO CENTER ON MOBILE
+============================== */
+@media (max-width: 768px) {
+
+  .apexrun-logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .apex-run-logo {
+    display: block;
+    margin: 20px auto;
+    max-width: 280px;
+    width: 85%;
+  }
+
+  .fire-breath {
+    left: 50% !important;
+    transform: translate(-50%, -50%) scaleX(.3);
+  }
+
+}
