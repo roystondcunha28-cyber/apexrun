@@ -141,9 +141,75 @@ h2 { text-align:center; margin-bottom:20px; }
   gap: 5px;
   margin-bottom: 5px;
 }
+.logo-neon {
+  position: relative;
+  display: inline-block;
+  margin: 20px auto;
+}
+
+/* CORE NEON GLOW */
+.logo-neon::before {
+  content: "";
+  position: absolute;
+  inset: -25px;
+  background: radial-gradient(circle,
+    rgba(0,255,255,0.35),
+    rgba(0,255,255,0.15),
+    transparent 70%);
+  filter: blur(25px);
+  z-index: 0;
+  animation: neonPulse 2.5s ease-in-out infinite;
+}
+
+/* SECOND LAYER (electric flicker base) */
+.logo-neon::after {
+  content: "";
+  position: absolute;
+  inset: -35px;
+  background: radial-gradient(circle,
+    rgba(255,183,3,0.25),
+    transparent 70%);
+  filter: blur(40px);
+  z-index: 0;
+  animation: neonFlicker 1.8s infinite;
+}
+
+/* LOGO ABOVE GLOW */
 .apex-run-logo {
-  opacity:0.7;
-  filter: drop-shadow(0 0 10px rgba(255,255,255,0.25));
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 0 10px rgba(0,255,255,0.35));
+  animation: logoElectric 2s infinite;
+}
+
+/* =========================
+   ELECTRIC ANIMATIONS
+========================= */
+
+/* smooth breathing glow */
+@keyframes neonPulse {
+  0%,100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.08); opacity: 1; }
+}
+
+/* unstable flicker glow */
+@keyframes neonFlicker {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  10% { opacity: 0.2; }
+  20% { opacity: 0.8; }
+  30% { opacity: 0.3; }
+  40% { opacity: 0.9; }
+  50% { opacity: 0.4; }
+  60% { opacity: 0.85; }
+  70% { opacity: 0.3; }
+  80% { opacity: 1; }
+  90% { opacity: 0.5; }
+}
+
+/* subtle electric vibration on logo */
+@keyframes logoElectric {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
 }
 .apex-run-logo {
   display: block;
