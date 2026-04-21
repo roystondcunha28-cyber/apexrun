@@ -81,7 +81,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
   }
+/* =========================
+   💳 DYNAMIC QR SWITCH
+========================= */
+const qrImage = document.getElementById("qrImage");
+const qrLabel = document.getElementById("qrLabel");
 
+const qrMap = {
+  "3K": {
+    src: "qr-3k.jpg",
+    text: "Scan to pay ₹250 for 3K Run"
+  },
+  "5K": {
+    src: "qr-5k.jpg",
+    text: "Scan to pay ₹350 for 5K Run"
+  },
+  "10K": {
+    src: "qr-10k.jpg",
+    text: "Scan to pay ₹450 for 10K Run"
+  }
+};
+
+document.querySelectorAll('input[name="run"]').forEach(radio => {
+  radio.addEventListener("change", () => {
+    const selected = radio.value;
+
+    if (qrMap[selected]) {
+      qrImage.src = qrMap[selected].src;
+      qrLabel.innerHTML = qrMap[selected].text;
+    }
+  });
+});
 
   /* =========================
      🚀 FORM SUBMIT (WORKING)
