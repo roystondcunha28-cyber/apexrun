@@ -82,15 +82,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 /* =========================
-   💳 DYNAMIC QR (HIDDEN INITIALLY)
+   💳 DYNAMIC QR + UTR SHOW
 ========================= */
 const qrImage = document.getElementById("qrImage");
 const qrLabel = document.getElementById("qrLabel");
+const utrGroup = document.getElementById("utrGroup");
 
 const qrMap = {
-  "3K": { src: "qr-3k.jpeg", text: "Scan to pay ₹250 for 3K Run" },
-  "5K": { src: "qr-5k.jpeg", text: "Scan to pay ₹350 for 5K Run" },
-  "10K": { src: "qr-10k.jpeg", text: "Scan to pay ₹450 for 10K Run" }
+  "3K": { src: "qr-3k.jpg", text: "Scan to pay ₹250 for 3K Run" },
+  "5K": { src: "qr-5k.jpg", text: "Scan to pay ₹350 for 5K Run" },
+  "10K": { src: "qr-10k.jpg", text: "Scan to pay ₹450 for 10K Run" }
 };
 
 document.querySelectorAll('input[name="run"]').forEach(radio => {
@@ -100,18 +101,22 @@ document.querySelectorAll('input[name="run"]').forEach(radio => {
 
     if (!qrMap[selected]) return;
 
-    // hide first (smooth transition optional)
+    // hide QR before switching
     qrImage.style.opacity = 0;
 
     setTimeout(() => {
+
+      // 🔥 UPDATE QR
       qrImage.src = qrMap[selected].src;
-
-      // 🔥 show only AFTER selecting
       qrImage.style.display = "block";
-
       qrLabel.innerHTML = qrMap[selected].text;
-
       qrImage.style.opacity = 1;
+
+      // 🔥 SHOW UTR FIELD HERE
+      if (utrGroup) {
+        utrGroup.style.display = "block";
+      }
+
     }, 150);
 
   });
