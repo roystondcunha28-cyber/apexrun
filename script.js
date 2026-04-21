@@ -172,11 +172,9 @@ if (!utr || !/^[A-Za-z0-9]{10,20}$/.test(utr)) {
       run: formData.get("run"),
       size: formData.get("size"),
       organisation: formData.get("organisation"),
-      utr: formdata.get("utr")
-    }),
-    mode: "no-cors"
-  });
-
+      utr: formData.get("utr")
+    });
+      
   // ✅ ALWAYS SUCCESS (because no-cors hides response)
   btn.innerText = "✅ Registered!";
   form.reset();
