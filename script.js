@@ -89,15 +89,15 @@ const qrLabel = document.getElementById("qrLabel");
 
 const qrMap = {
   "3K": {
-    src: "qr-3k.jpg",
+    src: "qr-3k.jpeg",
     text: "Scan to pay ₹250 for 3K Run"
   },
   "5K": {
-    src: "qr-5k.jpg",
+    src: "qr-5k.jpeg",
     text: "Scan to pay ₹350 for 5K Run"
   },
   "10K": {
-    src: "qr-10k.jpg",
+    src: "qr-10k.jpeg",
     text: "Scan to pay ₹450 for 10K Run"
   }
 };
