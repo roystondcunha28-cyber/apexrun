@@ -207,3 +207,77 @@ if (!utr || !/^[A-Za-z0-9]{10,20}$/.test(utr)) {
   }
 
 });
+/* =========================
+   🔥 THREE.JS HERO VFX
+========================= */
+const canvas = document.getElementById("heroCanvas");
+
+if (canvas && window.innerWidth > 768) { // disable on small devices for performance
+
+  const scene = new THREE.Scene();
+
+  const camera = new THREE.PerspectiveCamera(
+    75,
+    canvas.clientWidth / canvas.clientHeight,
+    0.1,
+    1000
+  );
+
+  const renderer = new THREE.WebGLRenderer({
+    canvas: canvas,
+    alpha: true
+  });
+
+  renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+  renderer.setPixelRatio(window.devicePixelRatio);
+
+  camera.position.z = 5;
+
+  /* PARTICLES */
+  const particlesCount = 1200;
+  const geometry = new THREE.BufferGeometry();
+  const positions = [];
+
+  for (let i = 0; i < particlesCount; i++) {
+    positions.push(
+      (Math.random() - 0.5) * 15,
+      (Math.random() - 0.5) * 8,
+      (Math.random() - 0.5) * 10
+    );
+  }
+
+  geometry.setAttribute(
+    "position",
+    new THREE.Float32BufferAttribute(positions, 3)
+  );
+
+  const material = new THREE.PointsMaterial({
+    color: 0x00ffff,
+    size: 0.03
+  });
+
+  const particles = new THREE.Points(geometry, material);
+  scene.add(particles);
+
+  /* ANIMATION */
+  function animate() {
+    requestAnimationFrame(animate);
+
+    particles.rotation.y += 0.0008;
+    particles.rotation.x += 0.0004;
+
+    renderer.render(scene, camera);
+  }
+
+  animate();
+
+  /* RESIZE FIX */
+  window.addEventListener("resize", () => {
+    const width = canvas.clientWidth;
+    const height = canvas.clientHeight;
+
+    renderer.setSize(width, height);
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+  });
+}
