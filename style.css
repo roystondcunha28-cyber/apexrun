@@ -204,12 +204,117 @@ section {
 /* ==============================
    EVENTS
 ============================== */
+
+/* ==============================
+   EVENTS
+============================== */
 .event-grid {
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
   gap:30px;
 }
 
+.event-card {
+  position:relative;
+  background:rgba(0,255,255,0.05);
+  border:1px solid rgba(0,255,255,0.3);
+  border-radius:20px;
+  padding:25px;
+  text-align:center;
+  transition:0.4s ease;
+  transform-style:preserve-3d;
+}
+
+.event-card:hover {
+  transform: rotateX(5deg) rotateY(-5deg) translateY(-10px);
+  box-shadow:0 20px 40px rgba(0,255,255,0.2);
+}
+/* glow border */
+.event-card::before {
+  content:"";
+  position:absolute;
+  inset:-1px;
+  border-radius:20px;
+  background:linear-gradient(45deg,#00ffff,#ffb703,#00ffff);
+  opacity:0;
+  z-index:-1;
+  transition:0.4s;
+}
+
+.event-card:hover::before {
+  opacity:1;
+  filter:blur(10px);
+}
+
+/* EVENT IMAGE */
+.event-logo {
+  height:200px;
+  margin-bottom:20px;
+  animation:float 4s ease-in-out infinite;
+}
+.event-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:30px;
+}
+@keyframes float {
+  0%,100% { transform:translateY(0); }
+  50% { transform:translateY(-10px); }
+}
+
+/* ==============================
+   BUTTONS
+============================== */
+.rules-toggle,
+.register-btn {
+  margin-top:10px;
+  padding:10px 20px;
+  border-radius:30px;
+  border:none;
+  font-weight:700;
+  background:linear-gradient(45deg,#ffb703,#fb8500);
+  color:black;
+  cursor:pointer;
+  position:relative;
+  overflow:hidden;
+}
+/* shine animation */
+.rules-toggle::after,
+.register-btn::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,0.5),transparent);
+  transform:translateX(-100%);
+}
+
+.rules-toggle:hover::after,
+.register-btn:hover::after {
+  transform:translateX(100%);
+  transition:0.6s;
+}
+
+.rules-toggle:active,
+.register-btn:active {
+  transform:scale(0.95);
+}
+
+/* ==============================
+   AMENITIES TOGGLE
+============================== */
+.event-rules {
+  max-height:0;
+  overflow:hidden;
+  opacity:0;
+  transform:translateY(-10px);
+  transition:0.4s ease;
+}
+
+.event-rules.active {
+  max-height:300px;
+  opacity:1;
+  transform:translateY(0);
+}
 .event-card {
   background:rgba(0,255,255,0.05);
   border:1px solid rgba(0,255,255,0.3);
@@ -235,48 +340,6 @@ section {
   50% { transform:translateY(-10px); }
 }
 
-/* BUTTON */
-.rules-toggle,
-.register-btn {
-  margin-top:10px;
-  padding:10px 20px;
-  border-radius:30px;
-  border:none;
-  font-weight:700;
-  background:linear-gradient(45deg,#ffb703,#fb8500);
-  color:black;
-  cursor:pointer;
-}
-
-.rules-toggle:hover,
-.register-btn:hover {
-  transform:scale(1.05);
-  box-shadow:0 0 20px #ff8500;
-}
-
-/* RULES DROPDOWN */
-.event-rules[hidden] {
-  margin-top:10px;
-  padding:10px;
-  border-radius:10px;
-  background:rgba(0,255,255,0.05);
-}
-
-/* hide only when HTML says hidden */
-.event-rules[hidden] {
-  display:none;
-}
-.event-rules {
-  max-height:0;
-  overflow:hidden;
-  transition:max-height 0.4s ease, opacity 0.3s ease;
-  opacity:0;
-}
-
-.event-rules:not([hidden]) {
-  max-height:300px;
-  opacity:1;
-}
 
 /* ==============================
    FORM
@@ -358,7 +421,26 @@ footer {
   text-align:center;
   padding:20px;
 }
+/* ==============================
+   BACKGROUND PARTICLES
+============================== */
+body::before {
+  content:"";
+  position:fixed;
+  inset:0;
+  background-image:
+    radial-gradient(#00ffff 1px,transparent 1px),
+    radial-gradient(#ffb703 1px,transparent 1px);
+  background-size:60px 60px;
+  animation:moveParticles 80s linear infinite;
+  opacity:0.08;
+  z-index:-1;
+}
 
+@keyframes moveParticles {
+  from { background-position:0 0; }
+  to { background-position:600px 600px; }
+}
 /* ==============================
    PARTICLES
 ============================== */
@@ -416,4 +498,17 @@ footer {
   }
 
   
+}
+/* ==============================
+   SCROLL ANIMATION
+============================== */
+.fade-in {
+  opacity:0;
+  transform:translateY(40px);
+  transition:0.8s;
+}
+
+.fade-in.show {
+  opacity:1;
+  transform:translateY(0);
 }
