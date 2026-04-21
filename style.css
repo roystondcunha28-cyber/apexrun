@@ -16,7 +16,6 @@ body {
 }
 
 a { text-decoration:none; color:white; }
-h2 { text-align:center; margin-bottom:20px; }
 
 /* ==============================
    NAVBAR
@@ -30,15 +29,14 @@ h2 { text-align:center; margin-bottom:20px; }
   align-items:center;
   padding:15px 30px;
   background:rgba(0,0,0,0.7);
-  backdrop-filter:blur(10px);
+  backdrop-filter:blur(12px);
   z-index:1000;
 }
 
-.instagram-icon { width:20px; }
 .college-logo-small { height:35px; }
 
 /* ==============================
-   HEADER (UNCHANGED DESIGN)
+   HEADER
 ============================== */
 .site-header {
   padding:120px 20px 60px;
@@ -48,11 +46,10 @@ h2 { text-align:center; margin-bottom:20px; }
   overflow:hidden;
 }
 
+/* sweep glow */
 .site-header::before {
   content:"";
   position:absolute;
-  top:0;
-  left:-100%;
   width:200%;
   height:100%;
   background:linear-gradient(120deg,transparent,rgba(0,255,255,0.08),transparent);
@@ -69,41 +66,12 @@ h2 { text-align:center; margin-bottom:20px; }
   z-index:2;
 }
 
-.logo-row {
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:25px;
-}
-
-.logo-row img {
-  height:45px;
-}
-
-.presents {
-  font-size:1.8rem;
-  color:#fccf31;
-}
-
+/* LOGO */
 .apex-run-logo {
   display:block;
   margin:20px auto;
   max-width:500px;
   width:100%;
-}
-
-/* ==============================
-   HERO TEXT
-============================== */
-.hero-details {
-  margin-top:20px;
-}
-
-.countdown-box {
-  margin-top:20px;
-  font-size:2rem;
-  font-weight:700;
-  color:#00ffff;
 }
 
 /* ==============================
@@ -114,7 +82,7 @@ section {
 }
 
 /* ==============================
-   EVENTS (UPGRADED ONLY)
+   EVENTS (FIXED VISIBILITY)
 ============================== */
 .event-grid {
   display:grid;
@@ -133,11 +101,13 @@ section {
   z-index:2;
 }
 
+/* SAFE hover (no breaking clicks) */
 .event-card:hover {
   transform:translateY(-8px);
   box-shadow:0 15px 30px rgba(0,255,255,0.25);
 }
 
+/* glow border */
 .event-card::before {
   content:"";
   position:absolute;
@@ -154,6 +124,7 @@ section {
   filter:blur(12px);
 }
 
+/* EVENT IMAGE */
 .event-logo {
   height:200px;
   margin-bottom:20px;
@@ -173,9 +144,26 @@ section {
   padding:10px 20px;
   border-radius:30px;
   border:none;
-  font-weight:700;
   background:linear-gradient(45deg,#ffb703,#fb8500);
   cursor:pointer;
+  position:relative;
+  overflow:hidden;
+  font-weight:600;
+}
+
+.rules-toggle::after,
+.register-btn::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,0.4),transparent);
+  transform:translateX(-100%);
+}
+
+.rules-toggle:hover::after,
+.register-btn:hover::after {
+  transform:translateX(100%);
+  transition:0.6s;
 }
 
 /* ==============================
@@ -196,41 +184,20 @@ section {
 }
 
 /* ==============================
-   REGISTRATION (UPGRADED CLEAN)
+   FORM (FIXED INPUT ISSUE)
 ============================== */
-.registration-section {
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
-
 .registration-card {
-  width:100%;
   max-width:600px;
+  margin:auto;
   padding:30px;
   border-radius:20px;
-  background:rgba(255,255,255,0.08);
+  background:rgba(255,255,255,0.07);
   backdrop-filter:blur(10px);
   position:relative;
-  z-index:5;
+  z-index:5; /* 🔥 CRITICAL FIX */
 }
 
-/* glow effect */
-.registration-card::before {
-  content:"";
-  position:absolute;
-  inset:0;
-  background:radial-gradient(circle,rgba(0,255,255,0.05),transparent);
-  animation:glowMove 12s linear infinite;
-  z-index:0;
-}
-
-@keyframes glowMove {
-  0% { transform:rotate(0deg); }
-  100% { transform:rotate(360deg); }
-}
-
-/* INPUT FIX */
+/* inputs clickable fix */
 .registration-card input {
   width:100%;
   padding:10px;
@@ -246,63 +213,33 @@ section {
   box-shadow:0 0 10px #00ffff;
 }
 
-/* SIZE GRID */
-.option-grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(90px,1fr));
-  gap:10px;
+/* subtle glow */
+.registration-card::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle,rgba(0,255,255,0.05),transparent);
+  animation:glowMove 12s linear infinite;
+  z-index:0;
 }
 
-.select-box {
-  padding:10px;
-  text-align:center;
-  border-radius:10px;
-  background:rgba(255,255,255,0.05);
-  cursor:pointer;
+@keyframes glowMove {
+  0% { transform:rotate(0deg); }
+  100% { transform:rotate(360deg); }
 }
 
-.select-box:has(input:checked) {
-  background:orange;
-  color:black;
-}
-
-/* QR */
-.qr-section {
-  text-align:center;
-  margin-top:20px;
-}
-
+/* ==============================
+   QR (FIXED VISIBILITY)
+============================== */
 .qr-image {
   width:200px;
+  opacity:1; /* 🔥 FIX */
+  transform:scale(1);
+  transition:0.3s ease;
 }
 
 /* ==============================
-   VENUE
-============================== */
-.venue-section iframe {
-  margin-top:15px;
-  border-radius:15px;
-}
-
-/* ==============================
-   CONTACT
-============================== */
-#contact {
-  border:3px solid gold;
-  padding:40px;
-  margin:40px 10%;
-}
-
-/* ==============================
-   FOOTER
-============================== */
-footer {
-  text-align:center;
-  padding:20px;
-}
-
-/* ==============================
-   BACKGROUND PARTICLES
+   SAFE BACKGROUND PARTICLES
 ============================== */
 body::before {
   content:"";
@@ -314,7 +251,7 @@ body::before {
   background-size:60px 60px;
   animation:moveParticles 80s linear infinite;
   opacity:0.06;
-  z-index:-1;
+  z-index:-1; /* 🔥 IMPORTANT */
 }
 
 @keyframes moveParticles {
@@ -323,7 +260,21 @@ body::before {
 }
 
 /* ==============================
-   RESPONSIVE
+   SCROLL ANIMATION
+============================== */
+.fade-in {
+  opacity:0;
+  transform:translateY(40px);
+  transition:0.8s ease;
+}
+
+.fade-in.show {
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* ==============================
+   MOBILE FIX
 ============================== */
 @media (max-width:768px) {
 
@@ -335,18 +286,4 @@ body::before {
   section {
     padding:60px 5%;
   }
-}
-
-/* ==============================
-   SCROLL ANIMATION
-============================== */
-.fade-in {
-  opacity:0;
-  transform:translateY(40px);
-  transition:0.8s;
-}
-
-.fade-in.show {
-  opacity:1;
-  transform:translateY(0);
 }
