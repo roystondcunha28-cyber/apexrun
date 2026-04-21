@@ -15,6 +15,22 @@ body {
   overflow-x:hidden;
 }
 
+/* Smooth scroll feel */
+body::after {
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background: radial-gradient(circle at 20% 20%, rgba(0,255,255,0.05), transparent 40%),
+              radial-gradient(circle at 80% 60%, rgba(255,183,3,0.05), transparent 40%);
+  animation: ambientMove 12s infinite alternate ease-in-out;
+}
+
+@keyframes ambientMove {
+  from { transform:translateY(0px); }
+  to { transform:translateY(-20px); }
+}
+
 a { text-decoration:none; color:white; }
 h2 { text-align:center; margin-bottom:20px; }
 
@@ -29,26 +45,22 @@ h2 { text-align:center; margin-bottom:20px; }
   justify-content:space-between;
   align-items:center;
   padding:15px 30px;
-  background:rgba(0,0,0,0.7);
-  backdrop-filter:blur(10px);
+  background:rgba(0,0,0,0.65);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(255,255,255,0.1);
   z-index:1000;
 }
 
-.instagram-link {
-  display:flex;
-  align-items:center;
-  gap:6px;
-  font-size:0.9rem;
+.navbar:hover {
+  background:rgba(0,0,0,0.85);
 }
 
 .instagram-icon {
   width:20px;
 }
 
-/* LOGO CONTROL */
 .college-logo-small {
   height:35px;
-  width:auto;
 }
 
 /* ==============================
@@ -62,107 +74,78 @@ h2 { text-align:center; margin-bottom:20px; }
   overflow:hidden;
 }
 
-/* glow sweep */
+/* cinematic glow */
 .site-header::before {
   content:"";
   position:absolute;
-  top:0;
-  left:-100%;
-  width:200%;
-  height:100%;
-  background:linear-gradient(120deg,transparent,rgba(0,255,255,0.08),transparent);
-  animation:sweep 10s linear infinite;
+  inset:0;
+  background: radial-gradient(circle at center, rgba(0,255,255,0.1), transparent 70%);
+  animation: pulseGlow 6s infinite ease-in-out;
 }
 
-@keyframes sweep {
-  from { left:-100%; }
-  to { left:100%; }
+@keyframes pulseGlow {
+  0%,100% { opacity:0.4; }
+  50% { opacity:1; }
 }
-/* ==============================
-   3D HERO CANVAS
-============================== */
+
+/* 3D canvas */
 #heroCanvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
+  position:absolute;
+  inset:0;
+  z-index:0;
 }
 
 .site-header > * {
-  position: relative;
-  z-index: 2;
+  position:relative;
+  z-index:2;
 }
 
-/* glow overlay */
-.site-header::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at center, rgba(0,255,255,0.08), transparent 70%);
-  z-index: 1;
-}
-/* LOGO ROW */
-.header-top {
-  display: flex;
-  flex-direction: column; /* stack items vertically */
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 15px;
-}
-
-/* Row for logos only */
+/* ==============================
+   LOGO
+============================== */
 .logo-row {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 25px;
+  display:flex;
+  justify-content:center;
+  gap:25px;
 }
 
-/* Logo size control */
 .logo-row img {
-  height: 45px;
-  width: auto;
-  object-fit: contain;
+  height:45px;
 }
 
-/* PRESENTS TEXT */
 .presents {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.8rem;
-  color: #fccf31;
-  letter-spacing: 2px;
-}
-.apex-runlogo-top {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-  margin-bottom: 5px;
-}
-.apex-run-logo {
-  display: block;
-  margin: 20px auto;
-  max-width: 500px;
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-}
-@media (max-width: 768px) {
-  .apex-run-logo {
-    max-width: 280px;
-    width: 85%;
-  }
+  font-family:'Playfair Display',serif;
+  font-size:1.8rem;
+  color:#fccf31;
+  letter-spacing:2px;
 }
 
-/* HERO TEXT */
+.apex-run-logo {
+  display:block;
+  margin:20px auto;
+  max-width:500px;
+}
+
+/* glow pulse */
+.apex-run-logo {
+  filter: drop-shadow(0 0 20px rgba(0,255,255,0.4));
+  animation: logoPulse 3s infinite ease-in-out;
+}
+
+@keyframes logoPulse {
+  0%,100% { transform:scale(1); }
+  50% { transform:scale(1.04); }
+}
+
+/* ==============================
+   HERO TEXT
+============================== */
 .hero-details {
   margin-top:20px;
   font-size:1.1rem;
+  opacity:0.9;
 }
 
-/* COUNTDOWN */
 .countdown-box {
   margin-top:20px;
   font-size:2rem;
@@ -178,177 +161,120 @@ section {
   padding:80px 10%;
 }
 
-/* ABOUT */
-.about-section h2 {
-  color:#4fc3fc;
-}
-
-.about-section p {
-  margin-bottom:15px;
+/* glass effect sections */
+section {
+  backdrop-filter: blur(6px);
 }
 
 /* ==============================
    RULES
 ============================== */
 .rules-section {
-  padding:60px 30px;
   border-radius:20px;
   background: linear-gradient(135deg,#050014,#14003a);
-  box-shadow:0 0 40px #00ffff;
-}
-
-.rules-section li {
-  margin-bottom:10px;
+  box-shadow:0 0 40px rgba(0,255,255,0.4);
 }
 
 /* ==============================
    EVENTS
 ============================== */
-.event-grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:30px;
-}
-
 .event-card {
   background:rgba(0,255,255,0.05);
-  border:1px solid rgba(0,255,255,0.3);
+  border:1px solid rgba(0,255,255,0.2);
   border-radius:20px;
   padding:25px;
   text-align:center;
-  transition:0.3s;
+  transition:0.4s;
+  position:relative;
+  overflow:hidden;
+}
+
+/* glowing border animation */
+.event-card::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:20px;
+  background: linear-gradient(120deg,transparent,rgba(0,255,255,0.4),transparent);
+  opacity:0;
+  transition:0.4s;
+}
+
+.event-card:hover::before {
+  opacity:1;
 }
 
 .event-card:hover {
-  transform:translateY(-10px);
-  box-shadow:0 0 30px #00ffff;
+  transform:translateY(-12px) scale(1.02);
+  box-shadow:0 0 40px #00ffff;
 }
 
 .event-logo {
   height:200px;
-  margin-bottom:20px;
-  animation:float 4s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%,100% { transform:translateY(0); }
-  50% { transform:translateY(-10px); }
-}
-
-/* BUTTON */
-.rules-toggle,
-.register-btn {
-  margin-top:10px;
-  padding:10px 20px;
-  border-radius:30px;
-  border:none;
-  font-weight:700;
-  background:linear-gradient(45deg,#ffb703,#fb8500);
-  color:black;
-  cursor:pointer;
-}
-
-.rules-toggle:hover,
-.register-btn:hover {
-  transform:scale(1.05);
-  box-shadow:0 0 20px #ff8500;
-}
-
-/* RULES DROPDOWN */
-.event-rules[hidden] {
-  margin-top:10px;
-  padding:10px;
-  border-radius:10px;
-  background:rgba(0,255,255,0.05);
-}
-
-/* hide only when HTML says hidden */
-.event-rules[hidden] {
-  display:none;
-}
-.event-rules {
-  max-height:0;
-  overflow:hidden;
-  transition:max-height 0.4s ease, opacity 0.3s ease;
-  opacity:0;
-}
-
-.event-rules:not([hidden]) {
-  max-height:300px;
-  opacity:1;
+  animation: float 4s infinite ease-in-out;
 }
 
 /* ==============================
-   FORM
+   BUTTON
 ============================== */
-.registration-section {
-  display:flex;
-  justify-content:center;
-  align-items:center;
+.register-btn {
+  background:linear-gradient(45deg,#ffb703,#fb8500);
+  transition:0.3s;
 }
 
+.register-btn:hover {
+  transform:scale(1.08);
+  box-shadow:0 0 25px #ff8500;
+}
+
+/* ==============================
+   FORM (PREMIUM)
+============================== */
 .registration-card {
-  width:100%;
-  max-width:600px;
-  padding:30px;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(18px);
+  border:1px solid rgba(255,255,255,0.1);
+  box-shadow:0 0 40px rgba(0,255,255,0.2);
   border-radius:20px;
-  background:rgba(255,255,255,0.08);
-  backdrop-filter:blur(10px);
+  position:relative;
+  overflow:hidden;
 }
 
+/* glowing edges */
+.registration-card::before {
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background:linear-gradient(45deg,#00ffff,#ffb703,#00ffff);
+  z-index:-1;
+  filter:blur(20px);
+  opacity:0.3;
+}
+
+/* input glow */
 .registration-card input {
-  width:100%;
-  padding:10px;
-  margin:10px 0;
-  border-radius:10px;
-  border:none;
+  background:rgba(0,0,0,0.5);
+  color:white;
+  border:1px solid rgba(255,255,255,0.1);
+  transition:0.3s;
 }
 
-/* SIZE GRID */
-.option-grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(90px,1fr));
-  gap:10px;
+.registration-card input:focus {
+  outline:none;
+  border:1px solid #00ffff;
+  box-shadow:0 0 10px #00ffff;
 }
 
-.select-box {
-  padding:10px;
-  text-align:center;
-  border-radius:10px;
-  background:rgba(255,255,255,0.05);
-  cursor:pointer;
-}
-
-.select-box:has(input:checked) {
-  background:orange;
-  color:black;
-}
-
-/* QR */
-.qr-section {
-  text-align:center;
-  margin-top:20px;
-}
-
+/* ==============================
+   QR
+============================== */
 .qr-image {
   width:200px;
+  transition:0.4s;
 }
 
-/* ==============================
-   VENUE
-============================== */
-.venue-section iframe {
-  margin-top:15px;
-  border-radius:15px;
-}
-
-/* ==============================
-   CONTACT
-============================== */
-#contact {
-  border:3px solid gold;
-  padding:40px;
-  margin:40px 10%;
+.qr-image:hover {
+  transform:scale(1.1);
 }
 
 /* ==============================
@@ -357,26 +283,22 @@ section {
 footer {
   text-align:center;
   padding:20px;
+  background:rgba(0,0,0,0.6);
+  backdrop-filter:blur(10px);
 }
 
 /* ==============================
-   PARTICLES
+   PARTICLES BG
 ============================== */
 .particles {
   position:fixed;
-  width:100%;
-  height:100%;
+  inset:0;
+  opacity:0.05;
   background-image:
     radial-gradient(#00ffff 1px,transparent 1px),
     radial-gradient(#ffb703 1px,transparent 1px);
   background-size:60px 60px;
-  animation:moveParticles 80s linear infinite;
-  opacity:0.1;
-}
-
-@keyframes moveParticles {
-  from { background-position:0 0; }
-  to { background-position:600px 600px; }
+  animation: moveParticles 100s linear infinite;
 }
 
 /* ==============================
@@ -384,36 +306,11 @@ footer {
 ============================== */
 @media (max-width:768px) {
 
-  .header-top img {
-    height:35px;
-  }
-
-  .college-logo-small {
-    height:50px;
-  }
-
-  section {
-    padding:60px 5%;
-  }
-}
-/* ==============================
-   FIX LOGO CENTER ON MOBILE
-============================== */
-@media (max-width: 768px) {
-
-  .apexrun-logo-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-  }
+  section { padding:60px 5%; }
 
   .apex-run-logo {
-    display: block;
-    margin: 20px auto;
-    max-width: 280px;
-    width: 85%;
+    max-width:280px;
+    width:85%;
   }
 
-  
 }
