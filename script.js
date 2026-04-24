@@ -62,6 +62,29 @@ if (album) {
     });
   }, 3000);
 }
+  /*=========================
+   📸 LIGHTBOX FUNCTION
+========================= */
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.querySelector(".lightbox-img");
+const closeBtn = document.querySelector(".close-btn");
+
+document.querySelectorAll(".album-item img").forEach(img => {
+  img.addEventListener("click", () => {
+    lightbox.classList.add("active");
+    lightboxImg.src = img.src;
+  });
+});
+
+closeBtn.addEventListener("click", () => {
+  lightbox.classList.remove("active");
+});
+
+lightbox.addEventListener("click", (e) => {
+  if (e.target !== lightboxImg) {
+    lightbox.classList.remove("active");
+  }
+});
   /* =========================
      📏 SIZE SUGGESTION
   ========================= */
