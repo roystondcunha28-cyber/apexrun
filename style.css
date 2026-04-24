@@ -263,20 +263,21 @@ h2 { text-align:center; margin-bottom:20px; }
 .album-scroll::-webkit-scrollbar {
   display: none;
 }
-
+/* Instagram portrait post ratio: 1080 x 1350 */
 .album-item {
   flex: 0 0 auto;
-  width: 1080px;
+  width: 280px;          /* visible size on website */
+  aspect-ratio: 4 / 5;   /* 🔥 exact Instagram 1080x1350 ratio */
   border-radius: 20px;
   overflow: hidden;
-  scroll-snap-align: center;
   position: relative;
-  transition: 0.4s;
+  scroll-snap-align: center;
+  transition: 0.4s ease;
 }
 
 .album-item img {
-  width: 1080px;
-  height: 1350px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   display: block;
 }
