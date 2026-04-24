@@ -240,7 +240,59 @@ h2 { text-align:center; margin-bottom:20px; }
   color:#00ffff;
   text-shadow:0 0 15px #00ffff;
 }
+/* ==============================
+   ALBUM SCROLL
+============================== */
+.album-section {
+  padding: 80px 5%;
+  text-align: center;
+}
 
+.album-scroll {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 20px 0;
+
+  /* smooth scroll */
+  scroll-behavior: smooth;
+}
+
+/* hide scrollbar (premium look) */
+.album-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.album-item {
+  flex: 0 0 auto;
+  width: 280px;
+  border-radius: 20px;
+  overflow: hidden;
+  scroll-snap-align: center;
+  position: relative;
+  transition: 0.4s;
+}
+
+.album-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+/* glow + hover */
+.album-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.6));
+}
+
+.album-item:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 30px rgba(0,255,255,0.5);
+}
 /* ==============================
    SECTIONS
 ============================== */
