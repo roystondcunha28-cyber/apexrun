@@ -44,7 +44,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
   }, 1000);
 
+const album = document.querySelector(".album-scroll");
 
+if (album) {
+  let scrollAmount = 0;
+
+  setInterval(() => {
+    scrollAmount += 300;
+
+    if (scrollAmount >= album.scrollWidth) {
+      scrollAmount = 0;
+    }
+
+    album.scrollTo({
+      left: scrollAmount,
+      behavior: "smooth"
+    });
+  }, 3000);
+}
   /* =========================
      📏 SIZE SUGGESTION
   ========================= */
