@@ -761,10 +761,11 @@ section {
 }
 
 /* RUN SELECTION */
-.size-grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(90px,1fr));
-  gap:10px;
+.option-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(85px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
 }
 
 /* ==============================
@@ -822,37 +823,80 @@ section {
   100% { background-position: 200%; }
 }
 /* SIZE SELECTION */
+.option-grid {
+  display: grid;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+/* Kids → centered row */
+.kids-grid {
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+/* Adults → perfect row layout */
+.adult-grid {
+  grid-template-columns: repeat(4, 1fr);
+}
 .select-box {
-  padding: clamp(8px, 2vw, 12px);
+  position: relative;
+  padding: 14px 10px;
   text-align: center;
-  border-radius: 12px;
+  border-radius: 14px;
   background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.12);
   cursor: pointer;
-  font-size: clamp(0.78rem, 1.8vw, 0.9rem);
-  transition: 0.3s;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  overflow: hidden;
 }
 
+/* Hide radio */
 .select-box input {
-  width: 14px !important;
-  height: 14px !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  accent-color: var(--gold);
-  cursor: pointer;
-  position: static !important;
+  display: none;
 }
 
+/* Text */
+.select-box span {
+  position: relative;
+  z-index: 2;
+}
+
+/* Glow hover */
+.select-box:hover {
+  transform: translateY(-3px);
+  border-color: var(--cyan);
+  box-shadow: 0 0 18px rgba(0,255,255,0.25);
+}
+
+/* ACTIVE STATE 🔥 */
 .select-box:has(input:checked) {
-  background: rgba(255,183,3,0.25);
-  border-color: var(--gold);
-  color: var(--gold);
+  background: linear-gradient(135deg, rgba(0,255,255,0.2), rgba(255,183,3,0.2));
+  border-color: var(--cyan);
+  color: var(--cyan);
   font-weight: 700;
-  box-shadow: 0 0 12px rgba(255,183,3,0.3);
+  box-shadow:
+    0 0 10px rgba(0,255,255,0.4),
+    0 0 25px rgba(0,255,255,0.3);
+}
+
+/* Animated glow border */
+.select-box:has(input:checked)::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 14px;
+  background: linear-gradient(90deg, #00ffff, #FFD700, #00ffff);
+  background-size: 200%;
+  animation: borderFlow 2s linear infinite;
+  z-index: 1;
+}
+
+@keyframes borderFlow {
+  0% { background-position: 0%; }
+  100% { background-position: 200%; }
 }
 
 .size-note {
