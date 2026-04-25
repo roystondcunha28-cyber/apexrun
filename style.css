@@ -761,41 +761,66 @@ section {
 }
 
 /* RUN SELECTION */
-.option-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-  gap: clamp(7px, 2vw, 12px);
+.size-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(90px,1fr));
+  gap:10px;
 }
 
-.option-grid label {
+/* ==============================
+   RUN VOLTAGE SELECTOR
+============================== */
+
+.run-voltage-group {
   display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 10px 12px;
-  border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.12);
-  background: rgba(255,255,255,0.05);
+  gap: 12px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.voltage-option {
+  position: relative;
   cursor: pointer;
-  font-size: clamp(0.8rem, 2vw, 0.9rem);
+}
+
+.voltage-option input {
+  display: none;
+}
+
+.voltage-option span {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 30px;
+  background: #0D1127;
+  border: 2px solid #5978F3;
+  color: white;
+  font-weight: 600;
   transition: 0.3s;
 }
 
-.option-grid label:has(input:checked) {
-  background: rgba(255,183,3,0.2);
-  border-color: var(--gold);
-  color: var(--gold);
-  font-weight: 700;
+.voltage-option input:checked + span {
+  background: #0F1C53;
+  box-shadow:
+    0 0 10px #6bfeff,
+    0 0 20px #6bfeff,
+    0 0 30px #6bfeff;
 }
 
-.option-grid input[type="radio"] {
-  width: 14px;
-  height: 14px;
-  accent-color: var(--gold);
-  flex-shrink: 0;
-  cursor: pointer;
-  margin: 0;
+.voltage-option input:checked + span::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 30px;
+  background: linear-gradient(90deg, #6bfeff, #f6de8d, #6bfeff);
+  background-size: 200%;
+  animation: electricFlow 2s linear infinite;
+  z-index: -1;
 }
 
+@keyframes electricFlow {
+  0% { background-position: 0%; }
+  100% { background-position: 200%; }
+}
 /* SIZE SELECTION */
 .select-box {
   padding: clamp(8px, 2vw, 12px);
