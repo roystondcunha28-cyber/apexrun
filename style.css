@@ -474,7 +474,33 @@ section {
 .close-btn:hover {
   background: rgba(255,0,0,0.3);
 }
+// LIGHTBOX FUNCTIONALITY
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.querySelector(".lightbox-img");
+const closeBtn = document.querySelector(".close-btn");
 
+// Open image
+document.querySelectorAll(".album-item img").forEach(img => {
+  img.addEventListener("click", () => {
+    lightbox.classList.add("active");
+    lightboxImg.src = img.src;
+  });
+});
+
+// Close on X
+closeBtn.addEventListener("click", () => {
+  lightbox.classList.remove("active");
+});
+
+// Close on background click
+lightbox.addEventListener("click", (e) => {
+  if (e.target === lightbox) {
+    lightbox.classList.remove("active");
+  }
+});
+   .lightbox-img {
+  cursor: zoom-in;
+}
 /* ==============================
    RULES / GUIDELINES
 ============================== */
