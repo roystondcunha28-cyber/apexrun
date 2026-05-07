@@ -3,8 +3,13 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log("APEX RUN 2026 Loaded ✅");
 
   /* =========================
-     ✅ AMENITIES TOGGLE
+     🔘 REGISTRATION TOGGLE
+     --registration-toggle-btn: 0 = open, 1 = closed
   ========================= */
+
+  /* =========================
+      ✅ AMENITIES TOGGLE
+   ========================= */
   document.querySelectorAll('.rules-toggle').forEach(button => {
     button.addEventListener('click', () => {
       const targetId = button.getAttribute('aria-controls');
